@@ -10,6 +10,41 @@
   </head>
 
   <body>
-    <%= yield %>
+    <!-- Nav bar -->
+    <nav class="navbar fixed-top navbar-dark bg-dark navbar-expand-md navbar-light bg-light">
+      <a class="navbar-brand" href="/">Tangmo</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+    <!-- Content -->
+    <div class="container-fluid">
+      <div class="row justify-content-center" style="margin-top:70px; margin-bottom:60px;">
+        <div class="col-12 col-lg-8">
+        <!-- Content -->
+          <% if flash[:notice] %>
+            <p class="alert alert-success"><%= flash[:notice] %></p>
+          <% end %>
+          <% if flash[:alert] %>
+            <p class="alert alert-danger"><%= flash[:alert] %></p>
+          <% end %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <nav class="navbar fixed-bottom navbar-dark bg-dark" style="color:white">
+      <div>
+        <small>© Copyright PHANGAN ORGANIC COCONUT TRACABILITY SYSTEM.</small>
+      </div>
+      <div>
+        <%# <small>Web Application Engineering</small> %>
+      </div>
+      <div>
+        <small>Created By โครงการพัฒนามะพร้าวอินทรีย์เกาะพะงัน</small>
+      </div>
+    </nav>
   </body>
+  </body>
+
 </html>
