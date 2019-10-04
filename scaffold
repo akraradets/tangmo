@@ -1,3 +1,5 @@
+rails g controller pages index
+
 rails g scaffold organization name:string
 
 rails g scaffold farmer firstName:string lastName:string dateOfBirth:date organization:references addressNo:string addressMoo:string addressTambon:string addressAmphoe:string addressProvince:string addressZipcode:string phoneNo:string facebook:string line:string email:string 
