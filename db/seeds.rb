@@ -6,3 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+orgnames = ["เกษตรแปลงใหญ่","เกษตรอินทรีย์","โครงการแปลงต้นแบบ"]
+for orgname in orgnames do
+    org = Organization.new(name: orgname)
+    if org.save 
+        puts "Organization name '#{orgname}' is added"
+    end
+end
