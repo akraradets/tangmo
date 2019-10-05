@@ -28,6 +28,7 @@ class FarmersTest < ApplicationSystemTestCase
     fill_in "Line", with: @farmer.line
     fill_in "Organization", with: @farmer.organization_id
     fill_in "Phoneno", with: @farmer.phoneNo
+    fill_in "Title", with: @farmer.title
     click_on "Create Farmer"
 
     assert_text "Farmer was successfully created"
@@ -52,6 +53,7 @@ class FarmersTest < ApplicationSystemTestCase
     fill_in "Line", with: @farmer.line
     fill_in "Organization", with: @farmer.organization_id
     fill_in "Phoneno", with: @farmer.phoneNo
+    fill_in "Title", with: @farmer.title
     click_on "Update Farmer"
 
     assert_text "Farmer was successfully updated"

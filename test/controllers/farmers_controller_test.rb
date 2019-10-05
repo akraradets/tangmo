@@ -17,7 +17,7 @@ class FarmersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create farmer" do
     assert_difference('Farmer.count') do
-      post farmers_url, params: { farmer: { addressAmphoe: @farmer.addressAmphoe, addressMoo: @farmer.addressMoo, addressNo: @farmer.addressNo, addressProvince: @farmer.addressProvince, addressTambon: @farmer.addressTambon, addressZipcode: @farmer.addressZipcode, dateOfBirth: @farmer.dateOfBirth, email: @farmer.email, facebook: @farmer.facebook, firstName: @farmer.firstName, lastName: @farmer.lastName, line: @farmer.line, organization_id: @farmer.organization_id, phoneNo: @farmer.phoneNo } }
+      post farmers_url, params: { farmer: { addressAmphoe: @farmer.addressAmphoe, addressMoo: @farmer.addressMoo, addressNo: @farmer.addressNo, addressProvince: @farmer.addressProvince, addressTambon: @farmer.addressTambon, addressZipcode: @farmer.addressZipcode, dateOfBirth: @farmer.dateOfBirth, email: @farmer.email, facebook: @farmer.facebook, firstName: @farmer.firstName, lastName: @farmer.lastName, line: @farmer.line, organization_id: @farmer.organization_id, phoneNo: @farmer.phoneNo, title: @farmer.title } }
     end
 
     assert_redirected_to farmer_url(Farmer.last)
@@ -34,7 +34,7 @@ class FarmersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update farmer" do
-    patch farmer_url(@farmer), params: { farmer: { addressAmphoe: @farmer.addressAmphoe, addressMoo: @farmer.addressMoo, addressNo: @farmer.addressNo, addressProvince: @farmer.addressProvince, addressTambon: @farmer.addressTambon, addressZipcode: @farmer.addressZipcode, dateOfBirth: @farmer.dateOfBirth, email: @farmer.email, facebook: @farmer.facebook, firstName: @farmer.firstName, lastName: @farmer.lastName, line: @farmer.line, organization_id: @farmer.organization_id, phoneNo: @farmer.phoneNo } }
+    patch farmer_url(@farmer), params: { farmer: { addressAmphoe: @farmer.addressAmphoe, addressMoo: @farmer.addressMoo, addressNo: @farmer.addressNo, addressProvince: @farmer.addressProvince, addressTambon: @farmer.addressTambon, addressZipcode: @farmer.addressZipcode, dateOfBirth: @farmer.dateOfBirth, email: @farmer.email, facebook: @farmer.facebook, firstName: @farmer.firstName, lastName: @farmer.lastName, line: @farmer.line, organization_id: @farmer.organization_id, phoneNo: @farmer.phoneNo, title: @farmer.title } }
     assert_redirected_to farmer_url(@farmer)
   end
 

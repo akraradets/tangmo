@@ -1,9 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  title: MyString
   firstName: MyString
   lastName: MyString
-  dateOfBirth: 2019-10-04
+  dateOfBirth: 2019-10-05
   organization: one
   addressNo: MyString
   addressMoo: MyString
@@ -17,9 +18,10 @@ one:
   email: MyString
 
 two:
+  title: MyString
   firstName: MyString
   lastName: MyString
-  dateOfBirth: 2019-10-04
+  dateOfBirth: 2019-10-05
   organization: two
   addressNo: MyString
   addressMoo: MyString

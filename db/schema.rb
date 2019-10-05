@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 4) do
   end
 
   create_table "farmers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "title"
     t.string "firstName"
     t.string "lastName"
     t.date "dateOfBirth"

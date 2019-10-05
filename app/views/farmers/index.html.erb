@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Title</th>
       <th>Firstname</th>
       <th>Lastname</th>
       <th>Dateofbirth</th>
@@ -26,6 +27,7 @@
   <tbody>
     <% @farmers.each do |farmer| %>
       <tr>
+        <td><%= farmer.title %></td>
         <td><%= farmer.firstName %></td>
         <td><%= farmer.lastName %></td>
         <td><%= farmer.dateOfBirth %></td>
