@@ -1,55 +1,16 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Farmers</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Dateofbirth</th>
-      <th>Organization</th>
-      <th>Addressno</th>
-      <th>Addressmoo</th>
-      <th>Addresstambon</th>
-      <th>Addressamphoe</th>
-      <th>Addressprovince</th>
-      <th>Addresszipcode</th>
-      <th>Phoneno</th>
-      <th>Facebook</th>
-      <th>Line</th>
-      <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @farmers.each do |farmer| %>
-      <tr>
-        <td><%= farmer.title %></td>
-        <td><%= farmer.firstName %></td>
-        <td><%= farmer.lastName %></td>
-        <td><%= farmer.dateOfBirth %></td>
-        <td><%= farmer.organization %></td>
-        <td><%= farmer.addressNo %></td>
-        <td><%= farmer.addressMoo %></td>
-        <td><%= farmer.addressTambon %></td>
-        <td><%= farmer.addressAmphoe %></td>
-        <td><%= farmer.addressProvince %></td>
-        <td><%= farmer.addressZipcode %></td>
-        <td><%= farmer.phoneNo %></td>
-        <td><%= farmer.facebook %></td>
-        <td><%= farmer.line %></td>
-        <td><%= farmer.email %></td>
-        <td><%= link_to 'Show', farmer %></td>
-        <td><%= link_to 'Edit', edit_farmer_path(farmer) %></td>
-        <td><%= link_to 'Destroy', farmer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Farmer', new_farmer_path %>
+<h1>รายชื่อเกษตรกร</h1>
+<div class="row">
+  <% @farmers.each do |farmer| %>
+  <div class=col-3>
+    <div class="card" style="margin:5px;">
+      <div class="card-img-top" style="background-image:url('<%= farmer.picture.attached? ? url_for(farmer.picture) : "" %>'); height:200px; background-position:center;">&nbsp;</div>
+      <!--<img src="<%#= farmer.picture.attached? ? url_for(farmer.picture) : "" %>" class="card-img-top" alt="...">-->
+      <div class="card-body">
+        <%= link_to "#{farmer.title} #{farmer.firstName} #{farmer.lastName}", farmer %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

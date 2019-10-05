@@ -25,7 +25,7 @@ class FarmersController < ApplicationController
   # POST /farmers.json
   def create
     @farmer = Farmer.new(farmer_params)
-
+    
     respond_to do |format|
       if @farmer.save
         format.html { redirect_to @farmer, notice: 'Farmer was successfully created.' }
@@ -69,6 +69,6 @@ class FarmersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def farmer_params
-      params.require(:farmer).permit(:title, :firstName, :lastName, :dateOfBirth, :organization_id, :addressNo, :addressMoo, :addressTambon, :addressAmphoe, :addressProvince, :addressZipcode, :phoneNo, :facebook, :line, :email)
+      params.require(:farmer).permit(:title, :firstName, :lastName, :dateOfBirth, :organization_id, :addressNo, :addressMoo, :addressTambon, :addressAmphoe, :addressProvince, :addressZipcode, :phoneNo, :facebook, :line, :email, :picture)
     end
 end
