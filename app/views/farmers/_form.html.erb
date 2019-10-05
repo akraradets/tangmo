@@ -1,3 +1,20 @@
+<script>
+var style = "background-image:url('[img]'); height:200px; background-position:center;";
+$( document ).ready(function() {
+});
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $('#blah')
+          .attr('style', style.replace("[img]",e.target.result))
+          .height(200);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+</script>
 <%= form_with(model: farmer, local: true) do |form| %>
   <% if farmer.errors.any? %>
     <div id="error_explanation">
@@ -11,83 +28,102 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="row">
+    <div class="form-group col-2">
+      <%= form.label "คำนำหน้า" %>
+      <%= form.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-5">
+      <%= form.label "ชื่อ" %>
+      <%= form.text_field :firstName, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-5">
+      <%= form.label "นามสกุล" %>
+      <%= form.text_field :lastName, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :firstName %>
-    <%= form.text_field :firstName %>
+  <div class="form-group">
+    <label style="display: block">วัน-เดือน-ปี เกิด (ค.ศ.)</label>
+    <%= form.date_select :dateOfBirth, {
+        order: [:day, :month, :year],
+        start_year: Date.current.year-100,
+        end_year: Date.current.year-20
+        }, { 
+        class: "form-control",
+        style: "display: inline-flex; width:20%" 
+        } %>
   </div>
 
-  <div class="field">
-    <%= form.label :lastName %>
-    <%= form.text_field :lastName %>
+  <div class="form-group">
+    <%= form.label "สมาชิกกลุ่ม" %>
+    <%= form.collection_select(:organization_id, Organization.all, :id, :name, {}, {class: "form-control"}) %>
   </div>
 
-  <div class="field">
-    <%= form.label :dateOfBirth %>
-    <%= form.date_select :dateOfBirth %>
+  <div class="row">
+    <div class="form-group col-2">
+      <%= form.label "บ้านเลขที่" %>
+      <%= form.text_field :addressNo, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-2">
+      <%= form.label "หมู่" %>
+      <%= form.text_field :addressMoo, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-4">
+      <%= form.label "ตำบล" %>
+      <%= form.text_field :addressTambon, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-4">
+      <%= form.label "อำเภอ" %>
+      <%= form.text_field :addressAmphoe, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :organization_id %>
-    <%= form.text_field :organization_id %>
+  <div class="row">
+    <div class="form-group col-6">
+      <%= form.label "จังหวัด" %>
+      <%= form.text_field :addressProvince, class: "form-control" %>
+    </div>
+    <div class="form-group col-6">
+      <%= form.label "รหัสไปรษณีย์" %>
+      <%= form.text_field :addressZipcode, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :addressNo %>
-    <%= form.text_field :addressNo %>
+  <div class="row">
+    <div class="form-group col-6">
+      <%= form.label "เบอร์โทร" %>
+      <%= form.text_field :phoneNo, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-6">
+      <%= form.label "อีเมล" %>
+      <%= form.text_field :email, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :addressMoo %>
-    <%= form.text_field :addressMoo %>
+  <div class="row">
+    <div class="form-group col-6">
+      <%= form.label :facebook %>
+      <%= form.text_field :facebook, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-6">
+      <%= form.label :line %>
+      <%= form.text_field :line, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :addressTambon %>
-    <%= form.text_field :addressTambon %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressAmphoe %>
-    <%= form.text_field :addressAmphoe %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressProvince %>
-    <%= form.text_field :addressProvince %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressZipcode %>
-    <%= form.text_field :addressZipcode %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phoneNo %>
-    <%= form.text_field :phoneNo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :facebook %>
-    <%= form.text_field :facebook %>
-  </div>
-
-  <div class="field">
-    <%= form.label :line %>
-    <%= form.text_field :line %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.file_field :picture %>
+  <div class="row">
+    <div class="form-group col-4">
+      <div id="blah" class="card-img-top" style="background-image:url('<%= farmer.picture.attached? ? url_for(farmer.picture) : "" %>'); height:200px; background-position:center;"></div>
+      <%= form.file_field :picture, onchange: "readURL(this);"%>
+    </div>
   </div>
 
   <div class="actions">

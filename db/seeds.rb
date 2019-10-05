@@ -10,7 +10,7 @@
 User.create(email: 'admin@tangmo.com', username: 'admin', password: '123456', password_confirmation: '123456')
 puts "User - username='admin' password='123456'"
 
-orgnames = ["ชมรมแตงโมปลอดสารพิษผู้ผลิตปลอดโรค","เกษตรแปลงใหญ่","เกษตรอินทรีย์","โครงการแปลงต้นแบบ"]
+orgnames = ["ไม่มี,ชมรมแตงโมปลอดสารพิษผู้ผลิตปลอดโรค","เกษตรแปลงใหญ่","เกษตรอินทรีย์","โครงการแปลงต้นแบบ"]
 for orgname in orgnames do
     org = Organization.new(name: orgname)
     if org.save 
