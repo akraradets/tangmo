@@ -6,7 +6,7 @@ function readURL(input) {
   if (input.files && input.files[0]) {
     var reader = new FileReader();
     reader.onload = function (e) {
-        $('#blah')
+        $('#pictureSample')
           .attr('style', style.replace("[img]",e.target.result))
           .height(200);
     };
@@ -121,12 +121,10 @@ function readURL(input) {
 
   <div class="row">
     <div class="form-group col-4">
-      <div id="blah" class="card-img-top" style="background-image:url('<%= farmer.picture.attached? ? url_for(farmer.picture) : "" %>'); height:200px; background-position:center;"></div>
-      <%= form.file_field :picture, onchange: "readURL(this);"%>
+      <label for="file">รูปเกษตรกร</label>
+      <div id="pictureSample" class="card-img-top" style="background-image:url('<%= farmer.picture.attached? ? url_for(farmer.picture) : "" %>'); height:200px; background-position:center;"></div>
+      <%= form.file_field :picture, onchange: "readURL(this);", class:"form-control-file"%>
     </div>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <button type="submit" class="btn btn-success" name="commit"><i class='far fa-save'></i> ยืนยัน</button>
 <% end %>
