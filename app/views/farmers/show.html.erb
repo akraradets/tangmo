@@ -1,79 +1,33 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @farmer.title %>
-</p>
-
-<p>
-  <strong>Firstname:</strong>
-  <%= @farmer.firstName %>
-</p>
-
-<p>
-  <strong>Lastname:</strong>
-  <%= @farmer.lastName %>
-</p>
-
-<p>
-  <strong>Dateofbirth:</strong>
-  <%= @farmer.dateOfBirth %>
-</p>
-
-<p>
-  <strong>Organization:</strong>
-  <%= @farmer.organization %>
-</p>
-
-<p>
-  <strong>Addressno:</strong>
-  <%= @farmer.addressNo %>
-</p>
-
-<p>
-  <strong>Addressmoo:</strong>
-  <%= @farmer.addressMoo %>
-</p>
-
-<p>
-  <strong>Addresstambon:</strong>
-  <%= @farmer.addressTambon %>
-</p>
-
-<p>
-  <strong>Addressamphoe:</strong>
-  <%= @farmer.addressAmphoe %>
-</p>
-
-<p>
-  <strong>Addressprovince:</strong>
-  <%= @farmer.addressProvince %>
-</p>
-
-<p>
-  <strong>Addresszipcode:</strong>
-  <%= @farmer.addressZipcode %>
-</p>
-
-<p>
-  <strong>Phoneno:</strong>
-  <%= @farmer.phoneNo %>
-</p>
-
-<p>
-  <strong>Facebook:</strong>
-  <%= @farmer.facebook %>
-</p>
-
-<p>
-  <strong>Line:</strong>
-  <%= @farmer.line %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @farmer.email %>
-</p>
+<div class="row">
+  <!-- Left colum: image -->
+  <div class="col-6">
+    <div class="row justify-content-center">
+      <div class="col-6">
+        <div class="card-img-top" style="background-image:url('<%= @farmer.picture.attached? ? url_for(@farmer.picture) : "" %>'); height:200px; background-position:center;">&nbsp;</div>
+      </div>
+    </div>
+  </div>
+  <!-- Right Column: information-->
+  <div class="col-6">
+    <p><b>ชื่อ</b> <%= @farmer.title %> <%= @farmer.firstName %> <%= @farmer.lastName %> </p>
+    <p><b>วันเกิด</b> <%= @farmer.dateOfBirth %> <b>อายุ</b> <%= @farmer.age %> ปี </p>
+    <p><b>สมาชิกกลุ่ม</b> <%= @farmer.organization.name %> </p>
+    <p><b>ที่อยู่</b><br>
+    บ้านเลขที่<%= @farmer.addressNo %>
+    หมู่<%= @farmer.addressMoo != "" ? @farmer.addressMoo : "-" %> 
+    ตำบล<%= @farmer.addressTambon %>
+    อำเภอ<%= @farmer.addressAmphoe %>
+    จังหวัด<%= @farmer.addressProvince %>
+    รหัสไปรษณีย์<%= @farmer.addressZipcode %>
+    </p>
+    <p><b>ช่องทางติดต่อ</b><br>
+    เบอร์โทร: <%= @farmer.phoneNo %><br>
+    อีเมล: <%= @farmer.facebook %><br>
+    Facebook: <%= @farmer.line %><br>
+    Line: <%= @farmer.email %><br>
+    </p>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_farmer_path(@farmer) %> |
 <%= link_to 'Back', farmers_path %>
