@@ -18,6 +18,14 @@ for orgname in orgnames do
     end
 end
 
+certnames = ["ไม่มี","มกษ."]
+for certname in certnames do
+    cert = Certificate.new(name: certname)
+    if cert.save
+        puts "Certificate - name='#{certname}'"
+    end
+end
+
 farmer = Farmer.new(
     title: "นาย",
     firstName: "ณรงค์",
