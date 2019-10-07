@@ -1,3 +1,20 @@
+<script>
+var style = "background-image:url('[img]'); height:200px; background-position:center;";
+$( document ).ready(function() {
+});
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $('#pictureSample')
+          .attr('style', style.replace("[img]",e.target.result))
+          .height(200);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+</script>
 <%= form_with(model: plot, local: true) do |form| %>
   <% if plot.errors.any? %>
     <div id="error_explanation">
@@ -11,122 +28,150 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :farmer_id %>
-    <%= form.text_field :farmer_id %>
+  <div class="form-group">
+    <%= form.label "เกษตรกร" %>
+    <%= form.collection_select(:farmer_id, Farmer.all, :id, :fullName, {}, {class: "form-control"}) %>
   </div>
 
-  <div class="field">
-    <%= form.label :areaRai %>
-    <%= form.text_field :areaRai %>
+  <div class="row">
+    <div class="form-group col-4">
+      <label for="file">รูปภาพแปลง</label>
+      <div id="pictureSample" class="card-img-top" style="background-image:url('<%= plot.picture.attached? ? url_for(plot.picture) : "" %>'); height:200px; background-position:center;"></div>
+      <%= form.file_field :picture, onchange: "readURL(this);", class:"form-control-file"%>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :treeNumber %>
-    <%= form.number_field :treeNumber %>
+  <div class="row">
+    <div class="form-group col-6">
+      <%= form.label "พันธุ์ที่ปลูก" %>
+      <%= form.text_field :breed, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-3">
+      <%= form.label "ขนาดพื้นที่ (ไร่)" %>
+      <%= form.text_field :areaRai, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-3">
+      <%= form.label "จำนวนต้น" %>
+      <%= form.number_field :treeNumber, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :breed %>
-    <%= form.text_field :breed %>
+  <div class="form-group">
+    <label style="display: block">ปีที่ปลูก</label>
+    <%= form.date_select :plantDate,{}, { 
+        class: "form-control",
+        style: "display: inline-flex; width:20%" 
+        } %>
   </div>
 
-  <div class="field">
-    <%= form.label :plantDate %>
-    <%= form.date_select :plantDate %>
+  <div class="row">
+    <div class="form-group col-3">
+      <%= form.label "ละติจูด" %>
+      <%= form.text_field :lat, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-3">
+      <%= form.label "ลองจิจูด" %>
+      <%= form.text_field :long, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :lat %>
-    <%= form.text_field :lat %>
+  <div class="row">
+    <div class="form-group col-4">
+      <%= form.label "ใบรับรอง" %>
+      <%= form.collection_select(:certificate_id, Certificate.all, :id, :name, {}, {class: "form-control"}) %>
+    </div>
+
+    <div class=col-8>
+      <div class="form-group">
+        <label style="display: block">วันออกใบรับรอง</label>
+        <%= form.date_select :issueDate,{}, { 
+            class: "form-control",
+            style: "display: inline-flex; width:20%" 
+            } %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :long %>
-    <%= form.text_field :long %>
+  <div class="row">
+    <div class="form-group col-3">
+      <%= form.label "วิธีการใส่ปุ๋ย" %>
+      <%= form.text_field :fertilizeProcedure, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-3">
+      <%= form.label "วิธีการขนส่งผลผลิต" %>
+      <%= form.text_field :logistic, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-3">
+      <%= form.label "การจัดการแปลง" %>
+      <%= form.text_field :policy, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-3">
+      <%= form.label "แหล่งรับซื้อ" %>
+      <%= form.text_field :market, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :certificate_id %>
-    <%= form.text_field :certificate_id %>
+
+  <div class="row">
+    <div class="form-group col-3">
+      <%= form.label "ช่วงเดือนเก็บเกี่ยว" %>
+      <%= form.text_field :harvestPeriod, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-3">
+      <%= form.label "จำนวนผลผลิต" %>
+      <%= form.text_field :harvestQuantity, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-3">
+      <%= form.label "วิธีการเก็บเกี่ยวผลผลิต" %>
+      <%= form.text_field :harvestProcedure, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-3">
+      <%= form.label "ราคาผลผลิต" %>
+      <%= form.text_field :price, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :issueDate %>
-    <%= form.date_select :issueDate %>
+  <div class="row">
+    <div class="form-group col-2">
+      <%= form.label "บ้านเลขที่" %>
+      <%= form.text_field :addressNo, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-2">
+      <%= form.label "หมู่" %>
+      <%= form.text_field :addressMoo, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-4">
+      <%= form.label "ตำบล" %>
+      <%= form.text_field :addressTambon, class: "form-control" %>
+    </div>
+
+    <div class="form-group col-4">
+      <%= form.label "อำเภอ" %>
+      <%= form.text_field :addressAmphoe, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :harvestPeriod %>
-    <%= form.text_field :harvestPeriod %>
+  <div class="row">
+    <div class="form-group col-6">
+      <%= form.label "จังหวัด" %>
+      <%= form.text_field :addressProvince, class: "form-control" %>
+    </div>
+    <div class="form-group col-6">
+      <%= form.label "รหัสไปรษณีย์" %>
+      <%= form.text_field :addressZipcode, class: "form-control" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :harvestQuantity %>
-    <%= form.text_field :harvestQuantity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :harvestProcedure %>
-    <%= form.text_field :harvestProcedure %>
-  </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :policy %>
-    <%= form.text_field :policy %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fertilizeProcedure %>
-    <%= form.text_field :fertilizeProcedure %>
-  </div>
-
-  <div class="field">
-    <%= form.label :market %>
-    <%= form.text_field :market %>
-  </div>
-
-  <div class="field">
-    <%= form.label :logistic %>
-    <%= form.text_field :logistic %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressNo %>
-    <%= form.text_field :addressNo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressMoo %>
-    <%= form.text_field :addressMoo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressTambon %>
-    <%= form.text_field :addressTambon %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressAmphoe %>
-    <%= form.text_field :addressAmphoe %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressProvince %>
-    <%= form.text_field :addressProvince %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressZipcode %>
-    <%= form.text_field :addressZipcode %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <button type="submit" class="btn btn-success" name="commit"><i class='far fa-save'></i> ยืนยัน</button>
 <% end %>

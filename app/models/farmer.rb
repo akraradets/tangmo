@@ -19,4 +19,8 @@ class Farmer < ApplicationRecord
     end
     return area
   end
+
+  def fullName
+    return "#{firstName} #{lastName}"
+  end
 end
