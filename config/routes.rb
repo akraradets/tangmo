@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :plots
+  resources :certificates
   resources :farmers
   devise_for :users, controllers: {
     sessions: 'users/sessions'

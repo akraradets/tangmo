@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Plots</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Farmer</th>
+      <th>Arearai</th>
+      <th>Treenumber</th>
+      <th>Breed</th>
+      <th>Plantdate</th>
+      <th>Lat</th>
+      <th>Long</th>
+      <th>Certificate</th>
+      <th>Harvestperiod</th>
+      <th>Harvestquantity</th>
+      <th>Harvestprocedure</th>
+      <th>Price</th>
+      <th>Policy</th>
+      <th>Fertilizeprocedure</th>
+      <th>Market</th>
+      <th>Logistic</th>
+      <th>Addressno</th>
+      <th>Addressmoo</th>
+      <th>Addresstambon</th>
+      <th>Addressamphoe</th>
+      <th>Addressprovince</th>
+      <th>Addresszipcode</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plots.each do |plot| %>
+      <tr>
+        <td><%= plot.farmer %></td>
+        <td><%= plot.areaRai %></td>
+        <td><%= plot.treeNumber %></td>
+        <td><%= plot.breed %></td>
+        <td><%= plot.plantDate %></td>
+        <td><%= plot.lat %></td>
+        <td><%= plot.long %></td>
+        <td><%= plot.certificate %></td>
+        <td><%= plot.harvestPeriod %></td>
+        <td><%= plot.harvestQuantity %></td>
+        <td><%= plot.harvestProcedure %></td>
+        <td><%= plot.price %></td>
+        <td><%= plot.policy %></td>
+        <td><%= plot.fertilizeProcedure %></td>
+        <td><%= plot.market %></td>
+        <td><%= plot.logistic %></td>
+        <td><%= plot.addressNo %></td>
+        <td><%= plot.addressMoo %></td>
+        <td><%= plot.addressTambon %></td>
+        <td><%= plot.addressAmphoe %></td>
+        <td><%= plot.addressProvince %></td>
+        <td><%= plot.addressZipcode %></td>
+        <td><%= link_to 'Show', plot %></td>
+        <td><%= link_to 'Edit', edit_plot_path(plot) %></td>
+        <td><%= link_to 'Destroy', plot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Plot', new_plot_path %>

@@ -2,4 +2,30 @@ rails g controller pages index
 
 rails g scaffold organization name:string
 
-rails g scaffold farmer title:string firstName:string lastName:string dateOfBirth:date organization:references addressNo:string addressMoo:string addressTambon:string addressAmphoe:string addressProvince:string addressZipcode:string phoneNo:string facebook:string line:string email:string 
+rails g scaffold farmer title:string firstName:string lastName:string dateOfBirth:date organization:references addressNo:string addressMoo:string addressTambon:string addressAmphoe:string addressProvince:string addressZipcode:string phoneNo:string facebook:string line:string email:string
+
+rails g scaffold certificate name:string
+
+rails g scaffold plot farmer:references areaRai:float treeNumber:integer breed:string plantDate:date lat:float long:float certificate:references harvestPeriod:string harvestQuantity:string harvestProcedure:string price:float policy:string fertilizeProcedure:string market:string logistic:string addressNo:string addressMoo:string addressTambon:string addressAmphoe:string addressProvince:string addressZipcode:string
+
+2.1 รหัสแปลง (ตั้งเองได้)
+2.2 รหัสเกษตรกร (ของเจ้าของแปลง)
+2.3 ชื่อเกษตรกรเจ้าของแปลง
+2.4 ขนาดพื้นที่ (ไร่ หรือ ตรม.) ถ้าไม่ทราบไม่ต้องกรอก เพราะใช้ข้อมูลขอบเขตแปลงได้
+2.5 จำนวนต้น (ถ้าทราบ)
+2.6 พันธุ์ที่ปลูก
+2.7 ปีที่ปลูก (ประมาณได้)
+2.8 ตำแหน่งที่ตั้ง (ที่อยู่ของแปลง)
+2.9 โครงการที่เข้าร่วม (เช่น เกษตรแปลงใหญ่)
+2.10 ใบรับรองที่ได้ และวันที่ได้ใบรับรอง (ถ้ามี เช่น มกษ.)
+2.11 ช่วงการเก็บเกี่ยวผลผลิต (เช่น 30 วัน ครั้ง)
+2.12 ปริมาณผลผลิตต่อรอบ 
+2.13 ราคาผลผลิต
+2.14 การจัดการแปลง (เกษตรอินทรีย์ /อินทรีย์และเคมี/การตัดหญ้าและดูแปลง)
+2.15 วิธีการใส่ปุ๋ย (รอบการใส่ปุ๋ย หรือสูตรปุ๋ย)
+2.15 วิธีการเก็บเกี่ยวผลผลิต (ใช้แรงงานคน/ใช้วิธีการปีน/ใช้ชะลอม/ใช้เครื่องจักร)
+2.16 แหล่งรับซื้อ (กลุ่มอินทรีย์ เกษตรอำเภอ ล้ง ขายส่งที่ตลาด หรืออื่นๆ)
+2.17 วิธีการขนส่งผลผลิต (มีรถมารับซื้อ รถบรรทุก รถกระบะ)
+2.18 ข้อมูลพิกัดตำแหน่งแปลง (ละติจูด ลองจิจูด หรือ พิกัด UTM ของตำแหน่งกลางแปลง)
+2.19หรือ ขอบเขตแปลง (รูปร่างแปลงของเกษตรกร / ซึ่งสามารถนำไปหาตำแหน่งพิกัดแปลงได้ทีหลัง)
+2.20 รูปถ่ายบริเวณแปลง รูปผลผลิต (แบบสวยงาม ถ้ามี ส่งทีหลังได้)

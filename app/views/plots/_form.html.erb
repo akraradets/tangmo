@@ -1,0 +1,127 @@
+<%= form_with(model: plot, local: true) do |form| %>
+  <% if plot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(plot.errors.count, "error") %> prohibited this plot from being saved:</h2>
+
+      <ul>
+      <% plot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :farmer_id %>
+    <%= form.text_field :farmer_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :areaRai %>
+    <%= form.text_field :areaRai %>
+  </div>
+
+  <div class="field">
+    <%= form.label :treeNumber %>
+    <%= form.number_field :treeNumber %>
+  </div>
+
+  <div class="field">
+    <%= form.label :breed %>
+    <%= form.text_field :breed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plantDate %>
+    <%= form.date_select :plantDate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lat %>
+    <%= form.text_field :lat %>
+  </div>
+
+  <div class="field">
+    <%= form.label :long %>
+    <%= form.text_field :long %>
+  </div>
+
+  <div class="field">
+    <%= form.label :certificate_id %>
+    <%= form.text_field :certificate_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :harvestPeriod %>
+    <%= form.text_field :harvestPeriod %>
+  </div>
+
+  <div class="field">
+    <%= form.label :harvestQuantity %>
+    <%= form.text_field :harvestQuantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :harvestProcedure %>
+    <%= form.text_field :harvestProcedure %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :policy %>
+    <%= form.text_field :policy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fertilizeProcedure %>
+    <%= form.text_field :fertilizeProcedure %>
+  </div>
+
+  <div class="field">
+    <%= form.label :market %>
+    <%= form.text_field :market %>
+  </div>
+
+  <div class="field">
+    <%= form.label :logistic %>
+    <%= form.text_field :logistic %>
+  </div>
+
+  <div class="field">
+    <%= form.label :addressNo %>
+    <%= form.text_field :addressNo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :addressMoo %>
+    <%= form.text_field :addressMoo %>
+  </div>
+
+  <div class="field">
+    <%= form.label :addressTambon %>
+    <%= form.text_field :addressTambon %>
+  </div>
+
+  <div class="field">
+    <%= form.label :addressAmphoe %>
+    <%= form.text_field :addressAmphoe %>
+  </div>
+
+  <div class="field">
+    <%= form.label :addressProvince %>
+    <%= form.text_field :addressProvince %>
+  </div>
+
+  <div class="field">
+    <%= form.label :addressZipcode %>
+    <%= form.text_field :addressZipcode %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

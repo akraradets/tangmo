@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 4) do
+ActiveRecord::Schema.define(version: 6) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,13 @@ ActiveRecord::Schema.define(version: 4) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "certificates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_certificates_on_name", unique: true
   end
 
   create_table "farmers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -62,6 +69,36 @@ ActiveRecord::Schema.define(version: 4) do
     t.index ["name"], name: "index_organizations_on_name", unique: true
   end
 
+  create_table "plots", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "farmer_id"
+    t.float "areaRai"
+    t.integer "treeNumber"
+    t.string "breed"
+    t.date "plantDate"
+    t.float "lat"
+    t.float "long"
+    t.bigint "certificate_id"
+    t.string "harvestPeriod"
+    t.string "harvestQuantity"
+    t.string "harvestProcedure"
+    t.float "price"
+    t.string "policy"
+    t.string "fertilizeProcedure"
+    t.string "market"
+    t.string "logistic"
+    t.string "addressNo"
+    t.string "addressMoo"
+    t.string "addressTambon"
+    t.string "addressAmphoe"
+    t.string "addressProvince"
+    t.string "addressZipcode"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["certificate_id"], name: "index_plots_on_certificate_id"
+    t.index ["farmer_id"], name: "index_plots_on_farmer_id"
+    t.index ["lat", "long"], name: "index_plots_on_lat_and_long"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "username", default: "", null: false
@@ -83,4 +120,6 @@ ActiveRecord::Schema.define(version: 4) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "farmers", "organizations"
+  add_foreign_key "plots", "certificates"
+  add_foreign_key "plots", "farmers"
 end
