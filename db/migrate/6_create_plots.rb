@@ -9,6 +9,7 @@ class CreatePlots < ActiveRecord::Migration[5.2]
       t.float :lat
       t.float :long
       t.references :certificate, foreign_key: true
+      t.date :issueDate
       t.string :harvestPeriod
       t.string :harvestQuantity
       t.string :harvestProcedure

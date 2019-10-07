@@ -28,6 +28,7 @@ class PlotsTest < ApplicationSystemTestCase
     fill_in "Harvestperiod", with: @plot.harvestPeriod
     fill_in "Harvestprocedure", with: @plot.harvestProcedure
     fill_in "Harvestquantity", with: @plot.harvestQuantity
+    fill_in "Issuedate", with: @plot.issueDate
     fill_in "Lat", with: @plot.lat
     fill_in "Logistic", with: @plot.logistic
     fill_in "Long", with: @plot.long
@@ -60,6 +61,7 @@ class PlotsTest < ApplicationSystemTestCase
     fill_in "Harvestperiod", with: @plot.harvestPeriod
     fill_in "Harvestprocedure", with: @plot.harvestProcedure
     fill_in "Harvestquantity", with: @plot.harvestQuantity
+    fill_in "Issuedate", with: @plot.issueDate
     fill_in "Lat", with: @plot.lat
     fill_in "Logistic", with: @plot.logistic
     fill_in "Long", with: @plot.long

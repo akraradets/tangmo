@@ -9,6 +9,7 @@ one:
   lat: 1.5
   long: 1.5
   certificate: one
+  issueDate: 2019-10-07
   harvestPeriod: MyString
   harvestQuantity: MyString
   harvestProcedure: MyString
@@ -33,6 +34,7 @@ two:
   lat: 1.5
   long: 1.5
   certificate: two
+  issueDate: 2019-10-07
   harvestPeriod: MyString
   harvestQuantity: MyString
   harvestProcedure: MyString

@@ -69,6 +69,6 @@ class PlotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plot_params
-      params.require(:plot).permit(:farmer_id, :areaRai, :treeNumber, :breed, :plantDate, :lat, :long, :certificate_id, :harvestPeriod, :harvestQuantity, :harvestProcedure, :price, :policy, :fertilizeProcedure, :market, :logistic, :addressNo, :addressMoo, :addressTambon, :addressAmphoe, :addressProvince, :addressZipcode)
+      params.require(:plot).permit(:farmer_id, :areaRai, :treeNumber, :breed, :plantDate, :lat, :long, :certificate_id, :issueDate, :harvestPeriod, :harvestQuantity, :harvestProcedure, :price, :policy, :fertilizeProcedure, :market, :logistic, :addressNo, :addressMoo, :addressTambon, :addressAmphoe, :addressProvince, :addressZipcode)
     end
 end

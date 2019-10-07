@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 6) do
     t.float "lat"
     t.float "long"
     t.bigint "certificate_id"
+    t.date "issueDate"
     t.string "harvestPeriod"
     t.string "harvestQuantity"
     t.string "harvestProcedure"
