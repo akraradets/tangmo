@@ -80,3 +80,39 @@ farmer = Farmer.new(
     email: ""
 )
 farmer.save
+farmer = Farmer.new(
+    title: "นาย",
+    firstName: "ณรงค์4",
+    lastName: "มะขามป้อม",
+    dateOfBirth: Date.strptime('20-05-1965', '%d-%m-%Y'),
+    organization_id: 1,
+    addressNo: "32/9",
+    addressMoo: "3",
+    addressTambon: "ศรีวิชัย",
+    addressAmphoe: "พุนพิน",
+    addressProvince: "สุราษฎร์ธานี",
+    addressZipcode: "",
+    phoneNo: "082-422-4429",
+    facebook: "",
+    line: "",
+    email: ""
+)
+farmer.save
+farmer = Farmer.new(
+    title: "นาย",
+    firstName: "ณรงค์5",
+    lastName: "มะขามป้อม",
+    dateOfBirth: Date.strptime('20-05-1965', '%d-%m-%Y'),
+    organization_id: 1,
+    addressNo: "32/9",
+    addressMoo: "3",
+    addressTambon: "ศรีวิชัย",
+    addressAmphoe: "พุนพิน",
+    addressProvince: "สุราษฎร์ธานี",
+    addressZipcode: "",
+    phoneNo: "082-422-4429",
+    facebook: "",
+    line: "",
+    email: ""
+)
+farmer.save
