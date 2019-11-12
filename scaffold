@@ -6,7 +6,28 @@ rails g scaffold farmer title:string firstName:string lastName:string dateOfBirt
 
 rails g scaffold certificate name:string
 
-rails g scaffold plot farmer:references areaRai:float treeNumber:integer breed:string plantDate:date lat:float long:float certificate:references issueDate:date harvestPeriod:string harvestQuantity:string harvestProcedure:string price:float policy:string fertilizeProcedure:string market:string logistic:string addressNo:string addressMoo:string addressTambon:string addressAmphoe:string addressProvince:string addressZipcode:string
+การจัดการแปลง
+rails g scaffold policy name:string
+
+วิธีการใส่ปุ๋ย
+rails g scaffold fertilizeProcedure name:string
+
+การจัดการน้ำ
+rails g scaffold wateringManagement name:string
+
+การควบคุมโรค
+rails g scaffold illnessControl name:string
+
+วิธีการเก็บเกี่ยวผลผลิต
+rails g scaffold harvestProcedure name:string
+
+แหล่งรับซื้อ
+rails g scaffold market name:string
+
+วิธีการขนส่งผลผลิต
+rails g scaffold logistic name:string
+
+rails g scaffold plot farmer:references areaRai:float treeNumber:integer breed:string plantDate:date lat:float long:float certificate:references issueDate:date harvestPeriod:string harvestQuantity:string harvestProcedure:string price:float policy:string fertilizeProcedure:string wateringManagement:string illnessControl:string market:string logistic:string addressNo:string addressMoo:string addressTambon:string addressAmphoe:string addressProvince:string addressZipcode:string
 
 2.1 รหัสแปลง (ตั้งเองได้)
 2.2 รหัสเกษตรกร (ของเจ้าของแปลง)
