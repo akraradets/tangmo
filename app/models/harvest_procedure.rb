@@ -1,0 +1,2 @@
+class HarvestProcedure < ApplicationRecord
+end

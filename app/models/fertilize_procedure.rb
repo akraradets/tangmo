@@ -1,0 +1,2 @@
+class FertilizeProcedure < ApplicationRecord
+end

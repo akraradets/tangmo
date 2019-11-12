@@ -1,0 +1,2 @@
+module HarvestProceduresHelper
+end

@@ -1,0 +1,2 @@
+class WateringManagement < ApplicationRecord
+end

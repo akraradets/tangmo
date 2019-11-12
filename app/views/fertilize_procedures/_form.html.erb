@@ -1,0 +1,22 @@
+<%= form_with(model: fertilize_procedure, local: true) do |form| %>
+  <% if fertilize_procedure.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(fertilize_procedure.errors.count, "error") %> prohibited this fertilize_procedure from being saved:</h2>
+
+      <ul>
+      <% fertilize_procedure.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

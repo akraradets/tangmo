@@ -16,6 +16,8 @@ class CreatePlots < ActiveRecord::Migration[5.2]
       t.float :price
       t.string :policy
       t.string :fertilizeProcedure
+      t.string :wateringManagement
+      t.string :illnessControl
       t.string :market
       t.string :logistic
       t.string :addressNo

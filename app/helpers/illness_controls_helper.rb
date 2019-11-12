@@ -1,0 +1,2 @@
+module IllnessControlsHelper
+end

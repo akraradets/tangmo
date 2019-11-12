@@ -26,6 +26,54 @@ for certname in certnames do
     end
 end
 
+polinames = ["เกษตรอินทรีย์","อินทรีย์และเคมี","ตัดหญ้าดูแลแปลง"]
+for poliname in polinames do
+    poli = Policy.new(name: poliname)
+    if poli.save
+        puts "Policy - name='#{poliname}'"
+    end
+end
+
+waternames = ["มีระบบน้ำหยด","ไม่มีระบบน้ำ"]
+for watername in waternames do
+    water = WateringManagement.new(name: watername)
+    if water.save
+        puts "Water Management - name='#{watername}'"
+    end
+end
+
+illConnames = ["พบโรคเถาเหี่ยว","พบโรคราน้ำค้าง","พบโรคเหี่ยวเขียว"]
+for illConname in illConnames do
+    illCon = IllnessControl.new(name: illConname)
+    if illCon.save
+        puts "Illness Control - name='#{illConname}'"
+    end
+end
+
+harvProdnames = ["ใช้แรงงานคน","ใช้เครื่องจักร"]
+for harvProdname in harvProdnames do
+    harvProd = HarvestProcedure.new(name: harvProdname)
+    if harvProd.save
+        puts "Harvest Procedure - name='#{harvProdname}'"
+    end
+end
+
+marketnames = ["เกษตรกรจำหน่ายเอง","เกษตรกรตัดพ่อค้าคนกลางมารับ","พ่อค้าคนกลางเหมายกแปลง"]
+for marketname in marketnames do
+    market = Market.new(name: marketname)
+    if market.save
+        puts "Market - name='#{marketname}'"
+    end
+end
+
+logisticnames = ["มีรถมารับซื้อ","รถบรรทุก","รถกระบะ"]
+for logisticname in logisticnames do
+    logistic = Logistic.new(name: logisticname)
+    if logistic.save
+        puts "Logistic - name='#{logisticname}'"
+    end
+end
+
 farmer = Farmer.new(
     title: "นาย",
     firstName: "ณรงค์",

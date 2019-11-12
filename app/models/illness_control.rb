@@ -1,0 +1,2 @@
+class IllnessControl < ApplicationRecord
+end
