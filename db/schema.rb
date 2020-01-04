@@ -45,19 +45,20 @@ ActiveRecord::Schema.define(version: 4) do
   end
 
   create_table "farmers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title"
-    t.string "firstName"
-    t.string "lastName"
-    t.string "dateOfBirth"
+    t.string "title", null: false
+    t.string "firstName", null: false
+    t.string "lastName", null: false
+    t.string "dateOfBirth", default: "", null: false
+    t.string "group", default: "", null: false
+    t.string "phone", default: "", null: false
+    t.string "email", default: "", null: false
+    t.string "facebook", default: "", null: false
+    t.string "line", default: "", null: false
     t.bigint "address_id"
-    t.string "group"
-    t.string "phone"
-    t.string "email"
-    t.string "facebook"
-    t.string "line"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_farmers_on_address_id"
+    t.index ["firstName", "lastName"], name: "index_farmers_on_firstName_and_lastName"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

@@ -1,33 +1,44 @@
 rails g controller pages index
 
 rails g scaffold organization name:string
+rails d scaffold organization
 
 rails g scaffold farmer title:string firstName:string lastName:string dateOfBirth:date organization:references addressNo:string addressMoo:string addressTambon:string addressAmphoe:string addressProvince:string addressZipcode:string phoneNo:string facebook:string line:string email:string
+rails d scaffold farmer
 
 rails g scaffold certificate name:string
+rails d scaffold certificate
 
 การจัดการแปลง
 rails g scaffold policy name:string
+rails d scaffold policy
 
 วิธีการใส่ปุ๋ย
 rails g scaffold fertilizeProcedure name:string
+rails d scaffold fertilizeProcedure
 
 การจัดการน้ำ
 rails g scaffold wateringManagement name:string
+rails d scaffold wateringManagement
 
 การควบคุมโรค
 rails g scaffold illnessControl name:string
+rails d scaffold illnessControl
 
 วิธีการเก็บเกี่ยวผลผลิต
 rails g scaffold harvestProcedure name:string
+rails d scaffold harvestProcedure
 
 แหล่งรับซื้อ
 rails g scaffold market name:string
+rails d scaffold market
 
 วิธีการขนส่งผลผลิต
 rails g scaffold logistic name:string
+rails d scaffold logistic
 
 rails g scaffold plot farmer:references areaRai:float treeNumber:integer breed:string plantDate:date lat:float long:float certificate:references issueDate:date harvestPeriod:string harvestQuantity:string harvestProcedure:string price:float policy:string fertilizeProcedure:string wateringManagement:string illnessControl:string market:string logistic:string addressNo:string addressMoo:string addressTambon:string addressAmphoe:string addressProvince:string addressZipcode:string
+rails d scaffold plot
 
 2.1 รหัสแปลง (ตั้งเองได้)
 2.2 รหัสเกษตรกร (ของเจ้าของแปลง)
