@@ -10,6 +10,12 @@ one:
   email: MyString
   facebook: MyString
   line: MyString
+  addressNo: MyString
+  addressMoo: MyString
+  addressTambon: MyString
+  addressAmphoe: MyString
+  addressProvince: MyString
+  addressZipcode: MyString
 
 two:
   title: MyString
@@ -21,3 +27,9 @@ two:
   email: MyString
   facebook: MyString
   line: MyString
+  addressNo: MyString
+  addressMoo: MyString
+  addressTambon: MyString
+  addressAmphoe: MyString
+  addressProvince: MyString
+  addressZipcode: MyString

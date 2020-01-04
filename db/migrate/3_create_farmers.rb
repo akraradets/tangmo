@@ -10,9 +10,14 @@ class CreateFarmers < ActiveRecord::Migration[5.2]
       t.string :email
       t.string :facebook
       t.string :line
+      t.string :addressNo
+      t.string :addressMoo
+      t.string :addressTambon
+      t.string :addressAmphoe
+      t.string :addressProvince
+      t.string :addressZipcode
 
       t.timestamps
     end
-    add_index :farmers, [:firstName, :lastName]
   end
 end

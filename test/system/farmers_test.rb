@@ -14,6 +14,12 @@ class FarmersTest < ApplicationSystemTestCase
     visit farmers_url
     click_on "New Farmer"
 
+    fill_in "Addressamphoe", with: @farmer.addressAmphoe
+    fill_in "Addressmoo", with: @farmer.addressMoo
+    fill_in "Addressno", with: @farmer.addressNo
+    fill_in "Addressprovince", with: @farmer.addressProvince
+    fill_in "Addresstambon", with: @farmer.addressTambon
+    fill_in "Addresszipcode", with: @farmer.addressZipcode
     fill_in "Dateofbirth", with: @farmer.dateOfBirth
     fill_in "Email", with: @farmer.email
     fill_in "Facebook", with: @farmer.facebook
@@ -33,6 +39,12 @@ class FarmersTest < ApplicationSystemTestCase
     visit farmers_url
     click_on "Edit", match: :first
 
+    fill_in "Addressamphoe", with: @farmer.addressAmphoe
+    fill_in "Addressmoo", with: @farmer.addressMoo
+    fill_in "Addressno", with: @farmer.addressNo
+    fill_in "Addressprovince", with: @farmer.addressProvince
+    fill_in "Addresstambon", with: @farmer.addressTambon
+    fill_in "Addresszipcode", with: @farmer.addressZipcode
     fill_in "Dateofbirth", with: @farmer.dateOfBirth
     fill_in "Email", with: @farmer.email
     fill_in "Facebook", with: @farmer.facebook
