@@ -1,55 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Farmers</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Firstname</th>
-      <th>Lastname</th>
-      <th>Dateofbirth</th>
-      <th>Group</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Facebook</th>
-      <th>Line</th>
-      <th>Addressno</th>
-      <th>Addressmoo</th>
-      <th>Addresstambon</th>
-      <th>Addressamphoe</th>
-      <th>Addressprovince</th>
-      <th>Addresszipcode</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @farmers.each do |farmer| %>
-      <tr>
-        <td><%= farmer.title %></td>
-        <td><%= farmer.firstName %></td>
-        <td><%= farmer.lastName %></td>
-        <td><%= farmer.dateOfBirth %></td>
-        <td><%= farmer.group %></td>
-        <td><%= farmer.phone %></td>
-        <td><%= farmer.email %></td>
-        <td><%= farmer.facebook %></td>
-        <td><%= farmer.line %></td>
-        <td><%= farmer.addressNo %></td>
-        <td><%= farmer.addressMoo %></td>
-        <td><%= farmer.addressTambon %></td>
-        <td><%= farmer.addressAmphoe %></td>
-        <td><%= farmer.addressProvince %></td>
-        <td><%= farmer.addressZipcode %></td>
-        <td><%= link_to 'Show', farmer %></td>
-        <td><%= link_to 'Edit', edit_farmer_path(farmer) %></td>
-        <td><%= link_to 'Destroy', farmer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Farmer', new_farmer_path %>
+<h1>รายชื่อเกษตรกร</h1>
+<div class="row">
+  <% @farmers.each do |farmer| %>
+  <div class="col-lg-3 col-md-4">
+    <div class="card" style="margin:5px;">
+      <div class="card-img-top">
+        <%= farmer_picture(farmer, 400) %>
+      </div>
+      <div class="card-body">
+        <%= link_to "#{farmer.title} #{farmer.firstName} #{farmer.lastName}", farmer %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

@@ -1,79 +1,28 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @farmer.title %>
-</p>
-
-<p>
-  <strong>Firstname:</strong>
-  <%= @farmer.firstName %>
-</p>
-
-<p>
-  <strong>Lastname:</strong>
-  <%= @farmer.lastName %>
-</p>
-
-<p>
-  <strong>Dateofbirth:</strong>
-  <%= @farmer.dateOfBirth %>
-</p>
-
-<p>
-  <strong>Group:</strong>
-  <%= @farmer.group %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @farmer.phone %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @farmer.email %>
-</p>
-
-<p>
-  <strong>Facebook:</strong>
-  <%= @farmer.facebook %>
-</p>
-
-<p>
-  <strong>Line:</strong>
-  <%= @farmer.line %>
-</p>
-
-<p>
-  <strong>Addressno:</strong>
-  <%= @farmer.addressNo %>
-</p>
-
-<p>
-  <strong>Addressmoo:</strong>
-  <%= @farmer.addressMoo %>
-</p>
-
-<p>
-  <strong>Addresstambon:</strong>
-  <%= @farmer.addressTambon %>
-</p>
-
-<p>
-  <strong>Addressamphoe:</strong>
-  <%= @farmer.addressAmphoe %>
-</p>
-
-<p>
-  <strong>Addressprovince:</strong>
-  <%= @farmer.addressProvince %>
-</p>
-
-<p>
-  <strong>Addresszipcode:</strong>
-  <%= @farmer.addressZipcode %>
-</p>
+<div class="row">
+  <!-- Left colum: image -->
+  <div class="col-md-6">
+    <div class="row justify-content-center">
+      <div class="col">
+        <%= farmer_picture(@farmer, 300) %>
+      </div>
+    </div>
+  </div>
+  <!-- Right Column: information-->
+  <div class="col-md-6">
+    <p><b>ชื่อ</b> <%= @farmer.title %> <%= @farmer.firstName %> <%= @farmer.lastName %> </p>
+    <p><b>วันเกิด</b> <%= @farmer.display_dateOfBirth %> <b>อายุ</b> <%= @farmer.age %> ปี </p>
+    <p><b>สมาชิกกลุ่ม</b> <%= @farmer.group %> </p>
+    <p><b>ที่อยู่</b><br> <%= @farmer.display_address %> </p>
+    <p><b>ช่องทางติดต่อ</b><br>
+    เบอร์โทร: <%= @farmer.phone %><br>
+    อีเมล: <%= @farmer.facebook %><br>
+    Facebook: <%= @farmer.line %><br>
+    Line: <%= @farmer.email %><br>
+    </p>
+    <p><b>จำนวนแปลง</b> <%= @farmer.plots.count %></p>
+    <p><b>ขนาดแปลงรวม</b> </p>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_farmer_path(@farmer) %> |
 <%= link_to 'Back', farmers_path %>
