@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Houseno:</strong>
+  <%= @address.houseNo %>
+</p>
+
+<p>
+  <strong>Moo:</strong>
+  <%= @address.moo %>
+</p>
+
+<p>
+  <strong>Tambon:</strong>
+  <%= @address.tambon %>
+</p>
+
+<p>
+  <strong>Amphoe:</strong>
+  <%= @address.amphoe %>
+</p>
+
+<p>
+  <strong>Province:</strong>
+  <%= @address.province %>
+</p>
+
+<p>
+  <strong>Zipcode:</strong>
+  <%= @address.zipcode %>
+</p>
+
+<%= link_to 'Edit', edit_address_path(@address) %> |
+<%= link_to 'Back', addresses_path %>

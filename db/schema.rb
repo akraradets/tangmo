@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 100) do
+ActiveRecord::Schema.define(version: 4) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -33,109 +33,31 @@ ActiveRecord::Schema.define(version: 100) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "certificates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "houseNo", default: "", null: false
+    t.string "moo", default: "", null: false
+    t.string "tambon", default: "", null: false
+    t.string "amphoe", default: "", null: false
+    t.string "province", default: "", null: false
+    t.string "zipcode", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_certificates_on_name", unique: true
   end
 
   create_table "farmers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
     t.string "firstName"
     t.string "lastName"
-    t.date "dateOfBirth"
-    t.bigint "organization_id"
-    t.string "addressNo"
-    t.string "addressMoo"
-    t.string "addressTambon"
-    t.string "addressAmphoe"
-    t.string "addressProvince"
-    t.string "addressZipcode"
-    t.string "phoneNo"
+    t.string "dateOfBirth"
+    t.bigint "address_id"
+    t.string "group"
+    t.string "phone"
+    t.string "email"
     t.string "facebook"
     t.string "line"
-    t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["firstName", "lastName"], name: "index_farmers_on_firstName_and_lastName"
-    t.index ["organization_id"], name: "index_farmers_on_organization_id"
-  end
-
-  create_table "fertilize_procedures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "harvest_procedures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "illness_controls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "logistics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "markets", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "organizations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_organizations_on_name", unique: true
-  end
-
-  create_table "plots", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "farmer_id"
-    t.float "areaRai"
-    t.integer "treeNumber"
-    t.string "breed"
-    t.date "plantDate"
-    t.float "lat"
-    t.float "long"
-    t.bigint "certificate_id"
-    t.date "issueDate"
-    t.string "harvestPeriod"
-    t.string "harvestQuantity"
-    t.string "harvestProcedure"
-    t.float "price"
-    t.string "policy"
-    t.string "fertilizeProcedure"
-    t.string "wateringManagement"
-    t.string "illnessControl"
-    t.string "market"
-    t.string "logistic"
-    t.string "addressNo"
-    t.string "addressMoo"
-    t.string "addressTambon"
-    t.string "addressAmphoe"
-    t.string "addressProvince"
-    t.string "addressZipcode"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["certificate_id"], name: "index_plots_on_certificate_id"
-    t.index ["farmer_id"], name: "index_plots_on_farmer_id"
-    t.index ["lat", "long"], name: "index_plots_on_lat_and_long"
-  end
-
-  create_table "policies", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_farmers_on_address_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -157,14 +79,6 @@ ActiveRecord::Schema.define(version: 100) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  create_table "watering_managements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "farmers", "organizations"
-  add_foreign_key "plots", "certificates"
-  add_foreign_key "plots", "farmers"
+  add_foreign_key "farmers", "addresses"
 end

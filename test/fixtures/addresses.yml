@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  houseNo: MyString
+  moo: MyString
+  tambon: MyString
+  amphoe: MyString
+  province: MyString
+  zipcode: MyString
+
+two:
+  houseNo: MyString
+  moo: MyString
+  tambon: MyString
+  amphoe: MyString
+  province: MyString
+  zipcode: MyString
