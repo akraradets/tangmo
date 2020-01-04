@@ -14,7 +14,6 @@ class FarmersTest < ApplicationSystemTestCase
     visit farmers_url
     click_on "New Farmer"
 
-    fill_in "Address", with: @farmer.address_id
     fill_in "Dateofbirth", with: @farmer.dateOfBirth
     fill_in "Email", with: @farmer.email
     fill_in "Facebook", with: @farmer.facebook
@@ -34,7 +33,6 @@ class FarmersTest < ApplicationSystemTestCase
     visit farmers_url
     click_on "Edit", match: :first
 
-    fill_in "Address", with: @farmer.address_id
     fill_in "Dateofbirth", with: @farmer.dateOfBirth
     fill_in "Email", with: @farmer.email
     fill_in "Facebook", with: @farmer.facebook

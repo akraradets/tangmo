@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Plot Addresses</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Plot</th>
+      <th>Houseno</th>
+      <th>Moo</th>
+      <th>Tambon</th>
+      <th>Amphoe</th>
+      <th>Province</th>
+      <th>Zipcode</th>
+      <th>Lat</th>
+      <th>Long</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @plot_addresses.each do |plot_address| %>
+      <tr>
+        <td><%= plot_address.plot %></td>
+        <td><%= plot_address.houseNo %></td>
+        <td><%= plot_address.moo %></td>
+        <td><%= plot_address.tambon %></td>
+        <td><%= plot_address.amphoe %></td>
+        <td><%= plot_address.province %></td>
+        <td><%= plot_address.zipcode %></td>
+        <td><%= plot_address.lat %></td>
+        <td><%= plot_address.long %></td>
+        <td><%= link_to 'Show', plot_address %></td>
+        <td><%= link_to 'Edit', edit_plot_address_path(plot_address) %></td>
+        <td><%= link_to 'Destroy', plot_address, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Plot Address', new_plot_address_path %>

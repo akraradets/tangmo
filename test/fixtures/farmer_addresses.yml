@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  farmer: one
   houseNo: MyString
   moo: MyString
   tambon: MyString
@@ -9,6 +10,7 @@ one:
   zipcode: MyString
 
 two:
+  farmer: two
   houseNo: MyString
   moo: MyString
   tambon: MyString

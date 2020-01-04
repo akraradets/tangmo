@@ -14,7 +14,6 @@ class PlotsTest < ApplicationSystemTestCase
     visit plots_url
     click_on "New Plot"
 
-    fill_in "Address", with: @plot.address_id
     fill_in "Arearai", with: @plot.areaRai
     fill_in "Breed", with: @plot.breed
     fill_in "Certificate", with: @plot.certificate
@@ -42,7 +41,6 @@ class PlotsTest < ApplicationSystemTestCase
     visit plots_url
     click_on "Edit", match: :first
 
-    fill_in "Address", with: @plot.address_id
     fill_in "Arearai", with: @plot.areaRai
     fill_in "Breed", with: @plot.breed
     fill_in "Certificate", with: @plot.certificate

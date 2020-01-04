@@ -1,15 +1,20 @@
-<%= form_with(model: address, local: true) do |form| %>
-  <% if address.errors.any? %>
+<%= form_with(model: plot_address, local: true) do |form| %>
+  <% if plot_address.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(address.errors.count, "error") %> prohibited this address from being saved:</h2>
+      <h2><%= pluralize(plot_address.errors.count, "error") %> prohibited this plot_address from being saved:</h2>
 
       <ul>
-      <% address.errors.full_messages.each do |message| %>
+      <% plot_address.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
+
+  <div class="field">
+    <%= form.label :plot_id %>
+    <%= form.text_field :plot_id %>
+  </div>
 
   <div class="field">
     <%= form.label :houseNo %>
@@ -39,6 +44,16 @@
   <div class="field">
     <%= form.label :zipcode %>
     <%= form.text_field :zipcode %>
+  </div>
+
+  <div class="field">
+    <%= form.label :lat %>
+    <%= form.text_field :lat %>
+  </div>
+
+  <div class="field">
+    <%= form.label :long %>
+    <%= form.text_field :long %>
   </div>
 
   <div class="actions">

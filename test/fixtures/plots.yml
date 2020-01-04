@@ -18,7 +18,6 @@ one:
   harvestManagement: MyString
   sellingChannel: MyString
   logistic: MyString
-  address: one
 
 two:
   farmer: two
@@ -38,4 +37,3 @@ two:
   harvestManagement: MyString
   sellingChannel: MyString
   logistic: MyString
-  address: two

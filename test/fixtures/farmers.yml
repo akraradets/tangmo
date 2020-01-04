@@ -4,8 +4,7 @@ one:
   title: MyString
   firstName: MyString
   lastName: MyString
-  dateOfBirth: MyString
-  address: one
+  dateOfBirth: 2020-01-04
   group: MyString
   phone: MyString
   email: MyString
@@ -16,8 +15,7 @@ two:
   title: MyString
   firstName: MyString
   lastName: MyString
-  dateOfBirth: MyString
-  address: two
+  dateOfBirth: 2020-01-04
   group: MyString
   phone: MyString
   email: MyString

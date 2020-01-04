@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Farmer:</strong>
+  <%= @farmer_address.farmer %>
+</p>
+
+<p>
+  <strong>Houseno:</strong>
+  <%= @farmer_address.houseNo %>
+</p>
+
+<p>
+  <strong>Moo:</strong>
+  <%= @farmer_address.moo %>
+</p>
+
+<p>
+  <strong>Tambon:</strong>
+  <%= @farmer_address.tambon %>
+</p>
+
+<p>
+  <strong>Amphoe:</strong>
+  <%= @farmer_address.amphoe %>
+</p>
+
+<p>
+  <strong>Province:</strong>
+  <%= @farmer_address.province %>
+</p>
+
+<p>
+  <strong>Zipcode:</strong>
+  <%= @farmer_address.zipcode %>
+</p>
+
+<%= link_to 'Edit', edit_farmer_address_path(@farmer_address) %> |
+<%= link_to 'Back', farmer_addresses_path %>

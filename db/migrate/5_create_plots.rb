@@ -18,7 +18,6 @@ class CreatePlots < ActiveRecord::Migration[5.2]
       t.string :harvestManagement
       t.string :sellingChannel
       t.string :logistic
-      t.references :address, foreign_key: true
 
       t.timestamps
     end
