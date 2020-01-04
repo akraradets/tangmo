@@ -1,2 +1,0 @@
-class Logistic < ApplicationRecord
-end

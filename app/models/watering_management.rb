@@ -1,2 +1,0 @@
-class WateringManagement < ApplicationRecord
-end
