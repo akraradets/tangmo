@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :plots
   resources :farmers
   resources :addresses
   devise_for :users, controllers: {

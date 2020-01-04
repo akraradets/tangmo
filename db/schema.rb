@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 4) do
+ActiveRecord::Schema.define(version: 5) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -61,6 +61,31 @@ ActiveRecord::Schema.define(version: 4) do
     t.index ["firstName", "lastName"], name: "index_farmers_on_firstName_and_lastName"
   end
 
+  create_table "plots", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "farmer_id"
+    t.float "areaRai"
+    t.integer "treeCount"
+    t.string "breed"
+    t.string "project"
+    t.string "certificate"
+    t.date "certificateDate"
+    t.string "harvestPeriod"
+    t.string "harvestQuantity"
+    t.string "price"
+    t.string "plotManagement"
+    t.string "fertilizeManagement"
+    t.string "waterManagement"
+    t.string "illnessManagement"
+    t.string "harvestManagement"
+    t.string "sellingChannel"
+    t.string "logistic"
+    t.bigint "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_plots_on_address_id"
+    t.index ["farmer_id"], name: "index_plots_on_farmer_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "username", default: "", null: false
@@ -82,4 +107,6 @@ ActiveRecord::Schema.define(version: 4) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "farmers", "addresses"
+  add_foreign_key "plots", "addresses"
+  add_foreign_key "plots", "farmers"
 end

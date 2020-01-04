@@ -1,0 +1,41 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  farmer: one
+  areaRai: 1.5
+  treeCount: 1
+  breed: MyString
+  project: MyString
+  certificate: MyString
+  certificateDate: 2020-01-04
+  harvestPeriod: MyString
+  harvestQuantity: MyString
+  price: MyString
+  plotManagement: MyString
+  fertilizeManagement: MyString
+  waterManagement: MyString
+  illnessManagement: MyString
+  harvestManagement: MyString
+  sellingChannel: MyString
+  logistic: MyString
+  address: one
+
+two:
+  farmer: two
+  areaRai: 1.5
+  treeCount: 1
+  breed: MyString
+  project: MyString
+  certificate: MyString
+  certificateDate: 2020-01-04
+  harvestPeriod: MyString
+  harvestQuantity: MyString
+  price: MyString
+  plotManagement: MyString
+  fertilizeManagement: MyString
+  waterManagement: MyString
+  illnessManagement: MyString
+  harvestManagement: MyString
+  sellingChannel: MyString
+  logistic: MyString
+  address: two

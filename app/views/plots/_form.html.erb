@@ -1,0 +1,107 @@
+<%= form_with(model: plot, local: true) do |form| %>
+  <% if plot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(plot.errors.count, "error") %> prohibited this plot from being saved:</h2>
+
+      <ul>
+      <% plot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :farmer_id %>
+    <%= form.text_field :farmer_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :areaRai %>
+    <%= form.text_field :areaRai %>
+  </div>
+
+  <div class="field">
+    <%= form.label :treeCount %>
+    <%= form.number_field :treeCount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :breed %>
+    <%= form.text_field :breed %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project %>
+    <%= form.text_field :project %>
+  </div>
+
+  <div class="field">
+    <%= form.label :certificate %>
+    <%= form.text_field :certificate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :certificateDate %>
+    <%= form.date_select :certificateDate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :harvestPeriod %>
+    <%= form.text_field :harvestPeriod %>
+  </div>
+
+  <div class="field">
+    <%= form.label :harvestQuantity %>
+    <%= form.text_field :harvestQuantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plotManagement %>
+    <%= form.text_field :plotManagement %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fertilizeManagement %>
+    <%= form.text_field :fertilizeManagement %>
+  </div>
+
+  <div class="field">
+    <%= form.label :waterManagement %>
+    <%= form.text_field :waterManagement %>
+  </div>
+
+  <div class="field">
+    <%= form.label :illnessManagement %>
+    <%= form.text_field :illnessManagement %>
+  </div>
+
+  <div class="field">
+    <%= form.label :harvestManagement %>
+    <%= form.text_field :harvestManagement %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sellingChannel %>
+    <%= form.text_field :sellingChannel %>
+  </div>
+
+  <div class="field">
+    <%= form.label :logistic %>
+    <%= form.text_field :logistic %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address_id %>
+    <%= form.text_field :address_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
