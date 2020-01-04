@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 4) do
     t.string "title", null: false
     t.string "firstName", null: false
     t.string "lastName", null: false
-    t.string "dateOfBirth", default: "", null: false
+    t.date "dateOfBirth", null: false
     t.string "group", default: "", null: false
     t.string "phone", default: "", null: false
     t.string "email", default: "", null: false

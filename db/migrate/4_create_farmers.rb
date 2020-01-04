@@ -4,7 +4,7 @@ class CreateFarmers < ActiveRecord::Migration[5.2]
       t.string :title       ,null: false
       t.string :firstName   ,null: false
       t.string :lastName    ,null: false
-      t.string :dateOfBirth ,null: false, default: ""
+      t.date   :dateOfBirth ,null: false
       t.string :group       ,null: false, default: ""
       t.string :phone       ,null: false, default: ""
       t.string :email       ,null: false, default: ""
