@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 5) do
+ActiveRecord::Schema.define(version: 6) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -33,7 +33,8 @@ ActiveRecord::Schema.define(version: 5) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "farmer_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "farmer_id"
     t.string "houseNo", default: "", null: false
     t.string "moo", default: "", null: false
     t.string "tambon", default: "", null: false
@@ -42,23 +43,37 @@ ActiveRecord::Schema.define(version: 5) do
     t.string "zipcode", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["farmer_id"], name: "index_farmer_addresses_on_farmer_id"
   end
 
   create_table "farmers", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "title", null: false
-    t.string "firstName", null: false
-    t.string "lastName", null: false
-    t.date "dateOfBirth", null: false
-    t.string "group", default: "", null: false
-    t.string "phone", default: "", null: false
-    t.string "email", default: "", null: false
-    t.string "facebook", default: "", null: false
-    t.string "line", default: "", null: false
-    t.bigint "address_id"
+    t.string "title"
+    t.string "firstName"
+    t.string "lastName"
+    t.date "dateOfBirth"
+    t.string "group"
+    t.string "phone"
+    t.string "email"
+    t.string "facebook"
+    t.string "line"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_farmers_on_address_id"
     t.index ["firstName", "lastName"], name: "index_farmers_on_firstName_and_lastName"
+  end
+
+  create_table "plot_addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "plot_id"
+    t.string "houseNo", default: "", null: false
+    t.string "moo", default: "", null: false
+    t.string "tambon", default: "", null: false
+    t.string "amphoe", default: "", null: false
+    t.string "province", default: "", null: false
+    t.string "zipcode", default: "", null: false
+    t.float "lat"
+    t.float "long"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plot_id"], name: "index_plot_addresses_on_plot_id"
   end
 
   create_table "plots", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -79,10 +94,8 @@ ActiveRecord::Schema.define(version: 5) do
     t.string "harvestManagement"
     t.string "sellingChannel"
     t.string "logistic"
-    t.bigint "address_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["address_id"], name: "index_plots_on_address_id"
     t.index ["farmer_id"], name: "index_plots_on_farmer_id"
   end
 
@@ -106,7 +119,7 @@ ActiveRecord::Schema.define(version: 5) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "farmers", "addresses"
-  add_foreign_key "plots", "addresses"
+  add_foreign_key "farmer_addresses", "farmers"
+  add_foreign_key "plot_addresses", "plots"
   add_foreign_key "plots", "farmers"
 end
