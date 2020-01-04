@@ -2,7 +2,6 @@ class Farmer < ApplicationRecord
     validates :firstName, presence: true, uniqueness: {scope: :lastName}
     validates :lastName, presence: true
   
-    belongs_to :address
     has_one_attached :picture
     has_many :plots
   
