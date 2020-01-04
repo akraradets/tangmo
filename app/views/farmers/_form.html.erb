@@ -61,25 +61,25 @@ function readURL(input) {
 
   <div class="form-group">
     <label>วัน-เดือน-ปี เกิด (ค.ศ.)</label>
-    <div id="datepicker"></div>
+    <%= form.text_field :dateOfBirth, class: "form-control",autocomplete: "off", value: farmer.display_dateOfBirth %>
     <script>
         $(function() {
           
-          $( "#datepicker" ).datepicker({
+          $( "#farmer_dateOfBirth" ).datepicker({
               changeMonth: true,
               changeYear: true,
-              yearRange: "-100:+0"
+              yearRange: "-100:+0",
             });
           $( "#datepicker" ).datepicker( $.datepicker.regional[ "th" ] );
           $( "#datepicker" ).datepicker( "option", "dateFormat", "d MM yy" );
-          $( "#datepicker" ).datepicker( "show" );
+          
         });
     </script>
   </div>
 
   <div class="form-group">
     <%= form.label "สมาชิกกลุ่ม" %>
-    <%= form.text_field :group, class: "form-control" %>
+    <%= form.text_field :group, class: "form-control",autocomplete: "off" %>
   </div>
 
   <hr>
@@ -87,57 +87,57 @@ function readURL(input) {
   <div class="row">
     <div class="form-group col-md-2">
       <%= form.label "บ้านเลขที่" %>
-      <%= form.text_field :addressNo, class: "form-control" %>
+      <%= form.text_field :addressNo, class: "form-control",autocomplete: "off" %>
     </div>
 
     <div class="form-group col-md-2">
       <%= form.label "หมู่" %>
-      <%= form.text_field :addressMoo, class: "form-control" %>
+      <%= form.text_field :addressMoo, class: "form-control",autocomplete: "off" %>
     </div>
 
     <div class="form-group col-md-4">
       <%= form.label "ตำบล" %>
-      <%= form.text_field :addressTambon, class: "form-control" %>
+      <%= form.text_field :addressTambon, class: "form-control",autocomplete: "off" %>
     </div>
 
     <div class="form-group col-md-4">
       <%= form.label "อำเภอ" %>
-      <%= form.text_field :addressAmphoe, class: "form-control" %>
+      <%= form.text_field :addressAmphoe, class: "form-control",autocomplete: "off" %>
     </div>
   </div>
 
   <div class="row">
     <div class="form-group col-md-6">
       <%= form.label "จังหวัด" %>
-      <%= form.text_field :addressProvince, class: "form-control" %>
+      <%= form.text_field :addressProvince, class: "form-control",autocomplete: "off" %>
     </div>
     <div class="form-group col-md-6">
       <%= form.label "รหัสไปรษณีย์" %>
-      <%= form.text_field :addressZipcode, class: "form-control" %>
+      <%= form.text_field :addressZipcode, class: "form-control",autocomplete: "off" %>
     </div>
   </div>
   <hr>
   <div class="row">
     <div class="form-group col-md-6">
       <%= form.label "เบอร์โทร" %>
-      <%= form.text_field :phone, class: "form-control" %>
+      <%= form.text_field :phone, class: "form-control",autocomplete: "off" %>
     </div>
 
     <div class="form-group col-md-6">
       <%= form.label "อีเมล" %>
-      <%= form.text_field :email, class: "form-control" %>
+      <%= form.text_field :email, class: "form-control",autocomplete: "off" %>
     </div>
   </div>
 
   <div class="row">
     <div class="form-group col-md-6">
       <%= form.label :facebook %>
-      <%= form.text_field :facebook, class: "form-control" %>
+      <%= form.text_field :facebook, class: "form-control",autocomplete: "off" %>
     </div>
 
     <div class="form-group col-md-6">
       <%= form.label :line %>
-      <%= form.text_field :line, class: "form-control" %>
+      <%= form.text_field :line, class: "form-control",autocomplete: "off" %>
     </div>
   </div>
 

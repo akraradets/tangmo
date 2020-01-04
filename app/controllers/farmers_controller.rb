@@ -69,6 +69,6 @@ class FarmersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def farmer_params
-      params.require(:farmer).permit(:title, :firstName, :lastName, :dateOfBirth, :group, :phone, :email, :facebook, :line, :addressNo, :addressMoo, :addressTambon, :addressAmphoe, :addressProvince, :addressZipcode)
+      params.require(:farmer).permit(:title, :firstName, :lastName, :dateOfBirth, :group, :phone, :email, :facebook, :line, :addressNo, :addressMoo, :addressTambon, :addressAmphoe, :addressProvince, :addressZipcode, :picture)
     end
 end
