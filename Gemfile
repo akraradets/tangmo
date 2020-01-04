@@ -42,6 +42,7 @@ gem 'popper_js'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'font_awesome5_rails'
+gem 'jquery-ui-rails'
 
 # Authentication
 gem 'devise'
