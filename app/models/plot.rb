@@ -3,7 +3,7 @@ class Plot < ApplicationRecord
   validates :long, presence: true
 
   belongs_to :farmer
-  has_one_attached :picture
+  has_many_attached :pictures
 
   def display_address
     addrNo = addressNo != "" ? addressNo : "-" 

@@ -29,6 +29,22 @@ class Farmer < ApplicationRecord
         return addr
     end
 
+    def disaply_plot_totalArea
+        return "#{plot_totalArea} ไร่"
+    end
+
+    def plot_count
+        return self.plots.count
+    end
+
+    def plot_totalArea
+        totalArea = 0
+        for plot in self.plots do
+            totalArea = totalArea + plot.areaRai
+        end
+        return totalArea
+    end
+
     def age
       now = Time.now.utc.to_date
       age = now.year - dateOfBirth.year - (dateOfBirth.to_date.change(:year => now.year) > now ? 1 : 0)
