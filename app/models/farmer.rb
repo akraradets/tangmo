@@ -23,7 +23,7 @@ class Farmer < ApplicationRecord
     
         addr = "บ้านเลขที่#{addrNo} หมู่#{addrMoo}  ตำบล#{addrTambon} อำเภอ#{addrAmphoe} จังหวัด#{addrProvince} รหัสไปรษณีย์#{addrZipcode}" 
         return addr
-      end
+    end
 
     def age
       now = Time.now.utc.to_date

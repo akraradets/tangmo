@@ -14,6 +14,12 @@ class PlotsTest < ApplicationSystemTestCase
     visit plots_url
     click_on "New Plot"
 
+    fill_in "Addressamphoe", with: @plot.addressAmphoe
+    fill_in "Addressmoo", with: @plot.addressMoo
+    fill_in "Addressno", with: @plot.addressNo
+    fill_in "Addressprovince", with: @plot.addressProvince
+    fill_in "Addresstambon", with: @plot.addressTambon
+    fill_in "Addresszipcode", with: @plot.addressZipcode
     fill_in "Arearai", with: @plot.areaRai
     fill_in "Breed", with: @plot.breed
     fill_in "Certificate", with: @plot.certificate
@@ -24,7 +30,9 @@ class PlotsTest < ApplicationSystemTestCase
     fill_in "Harvestperiod", with: @plot.harvestPeriod
     fill_in "Harvestquantity", with: @plot.harvestQuantity
     fill_in "Illnessmanagement", with: @plot.illnessManagement
+    fill_in "Lat", with: @plot.lat
     fill_in "Logistic", with: @plot.logistic
+    fill_in "Long", with: @plot.long
     fill_in "Plotmanagement", with: @plot.plotManagement
     fill_in "Price", with: @plot.price
     fill_in "Project", with: @plot.project
@@ -41,6 +49,12 @@ class PlotsTest < ApplicationSystemTestCase
     visit plots_url
     click_on "Edit", match: :first
 
+    fill_in "Addressamphoe", with: @plot.addressAmphoe
+    fill_in "Addressmoo", with: @plot.addressMoo
+    fill_in "Addressno", with: @plot.addressNo
+    fill_in "Addressprovince", with: @plot.addressProvince
+    fill_in "Addresstambon", with: @plot.addressTambon
+    fill_in "Addresszipcode", with: @plot.addressZipcode
     fill_in "Arearai", with: @plot.areaRai
     fill_in "Breed", with: @plot.breed
     fill_in "Certificate", with: @plot.certificate
@@ -51,7 +65,9 @@ class PlotsTest < ApplicationSystemTestCase
     fill_in "Harvestperiod", with: @plot.harvestPeriod
     fill_in "Harvestquantity", with: @plot.harvestQuantity
     fill_in "Illnessmanagement", with: @plot.illnessManagement
+    fill_in "Lat", with: @plot.lat
     fill_in "Logistic", with: @plot.logistic
+    fill_in "Long", with: @plot.long
     fill_in "Plotmanagement", with: @plot.plotManagement
     fill_in "Price", with: @plot.price
     fill_in "Project", with: @plot.project

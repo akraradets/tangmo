@@ -71,17 +71,18 @@ ActiveRecord::Schema.define(version: 4) do
     t.string "harvestManagement"
     t.string "sellingChannel"
     t.string "logistic"
-    t.string "houseNo", default: "", null: false
-    t.string "moo", default: "", null: false
-    t.string "tambon", default: "", null: false
-    t.string "amphoe", default: "", null: false
-    t.string "province", default: "", null: false
-    t.string "zipcode", default: "", null: false
+    t.string "addressNo"
+    t.string "addressMoo"
+    t.string "addressTambon"
+    t.string "addressAmphoe"
+    t.string "addressProvince"
+    t.string "addressZipcode"
     t.float "lat"
     t.float "long"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["farmer_id"], name: "index_plots_on_farmer_id"
+    t.index ["lat", "long"], name: "index_plots_on_lat_and_long"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

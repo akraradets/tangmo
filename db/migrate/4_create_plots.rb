@@ -18,17 +18,17 @@ class CreatePlots < ActiveRecord::Migration[5.2]
       t.string :harvestManagement
       t.string :sellingChannel
       t.string :logistic
-
-      t.string :houseNo ,null: false, default: ""
-      t.string :moo     ,null: false, default: ""
-      t.string :tambon  ,null: false, default: ""
-      t.string :amphoe  ,null: false, default: ""
-      t.string :province,null: false, default: ""
-      t.string :zipcode ,null: false, default: ""
-      t.float :lat      ,null: true
-      t.float :long     ,null: true
+      t.string :addressNo
+      t.string :addressMoo
+      t.string :addressTambon
+      t.string :addressAmphoe
+      t.string :addressProvince
+      t.string :addressZipcode
+      t.float :lat
+      t.float :long
 
       t.timestamps
     end
+    add_index :plots, [:lat, :long]
   end
 end

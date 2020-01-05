@@ -1,59 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Plots</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Farmer</th>
-      <th>Arearai</th>
-      <th>Treecount</th>
-      <th>Breed</th>
-      <th>Project</th>
-      <th>Certificate</th>
-      <th>Certificatedate</th>
-      <th>Harvestperiod</th>
-      <th>Harvestquantity</th>
-      <th>Price</th>
-      <th>Plotmanagement</th>
-      <th>Fertilizemanagement</th>
-      <th>Watermanagement</th>
-      <th>Illnessmanagement</th>
-      <th>Harvestmanagement</th>
-      <th>Sellingchannel</th>
-      <th>Logistic</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @plots.each do |plot| %>
-      <tr>
-        <td><%= plot.farmer %></td>
-        <td><%= plot.areaRai %></td>
-        <td><%= plot.treeCount %></td>
-        <td><%= plot.breed %></td>
-        <td><%= plot.project %></td>
-        <td><%= plot.certificate %></td>
-        <td><%= plot.certificateDate %></td>
-        <td><%= plot.harvestPeriod %></td>
-        <td><%= plot.harvestQuantity %></td>
-        <td><%= plot.price %></td>
-        <td><%= plot.plotManagement %></td>
-        <td><%= plot.fertilizeManagement %></td>
-        <td><%= plot.waterManagement %></td>
-        <td><%= plot.illnessManagement %></td>
-        <td><%= plot.harvestManagement %></td>
-        <td><%= plot.sellingChannel %></td>
-        <td><%= plot.logistic %></td>
-        <td><%= link_to 'Show', plot %></td>
-        <td><%= link_to 'Edit', edit_plot_path(plot) %></td>
-        <td><%= link_to 'Destroy', plot, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<h1>แปลงแตงโม</h1>
+<div class="row">
+  <% @plots.each do |plot| %>
+  <div class="col-lg-3 col-md-4">
+    <div class="card" style="margin:5px;">
+      <div class="card-img-top" style="background-image:url('<%= plot.picture.attached? ? url_for(plot.picture) : "" %>'); height:200px; background-position:center;">&nbsp;</div>
+      <!--<img src="<%#= plot.picture.attached? ? url_for(plot.picture) : "" %>" class="card-img-top" alt="...">-->
+      <div class="card-body">
+        <%= link_to "รหัสแปลง #{plot.id}", plot %><br>
+        <b>เจ้าของ</b> <%= plot.farmer.fullName %><br>
+        <b>ที่อยู่</b> <%= plot.address %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
 
 <%= link_to 'New Plot', new_plot_path %>

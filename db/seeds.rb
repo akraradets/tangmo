@@ -10,93 +10,22 @@
 User.create(email: 'admin@tangmo.com', username: 'admin', password: '123456', password_confirmation: '123456')
 puts "User - username='admin' password='123456'"
 
-# farmer = Farmer.new(
-#     title: "นาย",
-#     firstName: "ณรงค์",
-#     lastName: "มะขามป้อม",
-#     dateOfBirth: Date.strptime('20-05-1965', '%d-%m-%Y'),
-#     organization_id: 1,
-#     addressNo: "32/9",
-#     addressMoo: "3",
-#     addressTambon: "ศรีวิชัย",
-#     addressAmphoe: "พุนพิน",
-#     addressProvince: "สุราษฎร์ธานี",
-#     addressZipcode: "",
-#     phoneNo: "082-422-4429",
-#     facebook: "",
-#     line: "",
-#     email: ""
-# )
-# farmer.save
-# farmer = Farmer.new(
-#     title: "นาย",
-#     firstName: "ณรงค์2",
-#     lastName: "มะขามป้อม",
-#     dateOfBirth: Date.strptime('20-05-1965', '%d-%m-%Y'),
-#     organization_id: 1,
-#     addressNo: "32/9",
-#     addressMoo: "3",
-#     addressTambon: "ศรีวิชัย",
-#     addressAmphoe: "พุนพิน",
-#     addressProvince: "สุราษฎร์ธานี",
-#     addressZipcode: "",
-#     phoneNo: "082-422-4429",
-#     facebook: "",
-#     line: "",
-#     email: ""
-# )
-# farmer.save
-# farmer = Farmer.new(
-#     title: "นาย",
-#     firstName: "ณรงค์3",
-#     lastName: "มะขามป้อม",
-#     dateOfBirth: Date.strptime('20-05-1965', '%d-%m-%Y'),
-#     organization_id: 1,
-#     addressNo: "32/9",
-#     addressMoo: "3",
-#     addressTambon: "ศรีวิชัย",
-#     addressAmphoe: "พุนพิน",
-#     addressProvince: "สุราษฎร์ธานี",
-#     addressZipcode: "",
-#     phoneNo: "082-422-4429",
-#     facebook: "",
-#     line: "",
-#     email: ""
-# )
-# farmer.save
-# farmer = Farmer.new(
-#     title: "นาย",
-#     firstName: "ณรงค์4",
-#     lastName: "มะขามป้อม",
-#     dateOfBirth: Date.strptime('20-05-1965', '%d-%m-%Y'),
-#     organization_id: 1,
-#     addressNo: "32/9",
-#     addressMoo: "3",
-#     addressTambon: "ศรีวิชัย",
-#     addressAmphoe: "พุนพิน",
-#     addressProvince: "สุราษฎร์ธานี",
-#     addressZipcode: "",
-#     phoneNo: "082-422-4429",
-#     facebook: "",
-#     line: "",
-#     email: ""
-# )
-# farmer.save
-# farmer = Farmer.new(
-#     title: "นาย",
-#     firstName: "ณรงค์5",
-#     lastName: "มะขามป้อม",
-#     dateOfBirth: Date.strptime('20-05-1965', '%d-%m-%Y'),
-#     organization_id: 1,
-#     addressNo: "32/9",
-#     addressMoo: "3",
-#     addressTambon: "ศรีวิชัย",
-#     addressAmphoe: "พุนพิน",
-#     addressProvince: "สุราษฎร์ธานี",
-#     addressZipcode: "",
-#     phoneNo: "082-422-4429",
-#     facebook: "",
-#     line: "",
-#     email: ""
-# )
-# farmer.save
+farmer = Farmer.new(
+    title: "นาย",
+    firstName: "ณรงค์",
+    lastName: "มะขามป้อม",
+    dateOfBirth: Date.strptime('20-05-1965', '%d-%m-%Y'),
+    group: "ชมรมแตงโมปลอดสารพิษผู้ผลิตปลอดโรค",
+    addressNo: "32/9",
+    addressMoo: "3",
+    addressTambon: "ศรีวิชัย",
+    addressAmphoe: "พุนพิน",
+    addressProvince: "สุราษฎร์ธานี",
+    addressZipcode: "",
+    phone: "082-422-4429",
+    facebook: "ณรงค์ มะขามป้อม",
+    line: "082-422-4429",
+    email: ""
+)
+farmer.picture.attach(io: File.open(Rails.root + 'seedPicture/farmer_1.jpg'), filename: 'farmer_1.jpg')
+farmer.save
