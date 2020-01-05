@@ -3,7 +3,7 @@ class Plot < ApplicationRecord
   validates :long, presence: true
 
   belongs_to :farmer
-  # has_one_attached :picture
+  has_one_attached :picture
 
   def display_address
     addrNo = addressNo != "" ? addressNo : "-" 
@@ -16,5 +16,4 @@ class Plot < ApplicationRecord
     addr = "บ้านเลขที่#{addrNo} หมู่#{addrMoo}  ตำบล#{addrTambon} อำเภอ#{addrAmphoe} จังหวัด#{addrProvince} รหัสไปรษณีย์#{addrZipcode}" 
     return addr
   end
-
 end

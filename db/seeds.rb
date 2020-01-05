@@ -29,3 +29,32 @@ farmer = Farmer.new(
 )
 farmer.picture.attach(io: File.open(Rails.root + 'seedPicture/farmer_1.jpg'), filename: 'farmer_1.jpg')
 farmer.save
+
+plot = Plot.new(
+    farmer: farmer,
+    areaRai: 10,
+    treeCount: 7000,
+    breed: "คอมมานโด",
+    project: "ชมรมแตงโมปลอดสารพิษผู้ผลิตปลอดโรค ผู้บริโภคปลอดภัย ปี 2562",
+    certificate: "",
+    certificateDate: "19 มีนาคม 2562 - 18 มีนาคม 2564",
+    harvestPeriod: "Apr-62",
+    harvestQuantity: "2000",
+    price: "18",
+    plotManagement: "",
+    fertilizeManagement: "", 
+    waterManagement: "",
+    illnessManagement: "",
+    harvestManagement: "",
+    sellingChannel: "",
+    logistic: "",
+    addressNo: "",
+    addressMoo: "",
+    addressTambon: "มะลวน",
+    addressAmphoe: "",
+    addressProvince: "",
+    addressZipcode: "",
+    lat: 9.190191,
+    long: 99.224061
+)
+plot.save

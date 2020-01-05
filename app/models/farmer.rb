@@ -5,6 +5,10 @@ class Farmer < ApplicationRecord
     has_one_attached :picture
     has_many :plots
   
+    def display_name
+        return "#{title} #{firstName} #{lastName}"
+    end
+
     def display_dateOfBirth
         if dateOfBirth.nil?
             return ""
