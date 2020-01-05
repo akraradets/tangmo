@@ -25,7 +25,6 @@ class PlotsController < ApplicationController
   # POST /plots.json
   def create
     @plot = Plot.new(plot_params)
-
     respond_to do |format|
       if @plot.save
         format.html { redirect_to @plot, notice: 'Plot was successfully created.' }
@@ -42,6 +41,16 @@ class PlotsController < ApplicationController
   def update
     respond_to do |format|
       if @plot.update(plot_params)
+        if params["plot"]["picture"].nil? == false
+          if params["plot"]["picture"]["delete"].nil? == false
+            params["plot"]["picture"]["delete"].each do |index,value|
+              @plot.pictures[index.to_i].delete
+            end
+          end
+          if params["plot"]["picture"]["new"].nil? == false
+            @plot.pictures.attach(params["plot"]["picture"]["new"])
+          end
+        end
         format.html { redirect_to @plot, notice: 'Plot was successfully updated.' }
         format.json { render :show, status: :ok, location: @plot }
       else

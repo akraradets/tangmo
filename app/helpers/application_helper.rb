@@ -8,7 +8,7 @@ module ApplicationHelper
     end
 
     def plot_picture(plot, size=40, option="rounded", index=0)
-        if plot.pictures.attached?
+        if plot.pictures.attached? && index != -1
             image_tag plot.pictures[index].variant( resize: "#{size}x#{size}!"), class: "img-fluid mx-auto d-block #{option}", height: "#{size}", width: "#{size}" 
         else
             image_tag "plot-picture-placeholder.jpg", class: "img-fluid mx-auto d-block #{option}", height: "#{size}", width: "#{size}"
