@@ -29,6 +29,7 @@
           <li class="nav-item active">
             <a class="nav-link" href="<%= plots_path %>">แปลงแตงโม</a>
           </li>
+          <% if !current_user.nil? %>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               หน้าจัดการ
@@ -38,6 +39,7 @@
               <a class="dropdown-item" href="<%= new_plot_path %>">เพิ่มแปลงแตงโม</a>
             </div>
           </li>
+          <% end %>
         </ul>
         <!-- Navbar Right -->
         <ul class="navbar-nav">

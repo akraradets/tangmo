@@ -1,6 +1,7 @@
 class PlotsController < ApplicationController
   before_action :set_plot, only: [:show, :edit, :update, :destroy]
   before_action :pre_process, only: [:create, :update]
+  before_action :authenticate_user!, except: [:index,:show]
 
   # GET /plots
   # GET /plots.json
