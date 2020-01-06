@@ -1,129 +1,89 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Farmer:</strong>
-  <%= @plot.farmer %>
-</p>
-
-<p>
-  <strong>Arearai:</strong>
-  <%= @plot.areaRai %>
-</p>
-
-<p>
-  <strong>Treecount:</strong>
-  <%= @plot.treeCount %>
-</p>
-
-<p>
-  <strong>Breed:</strong>
-  <%= @plot.breed %>
-</p>
-
-<p>
-  <strong>Project:</strong>
-  <%= @plot.project %>
-</p>
-
-<p>
-  <strong>Certificate:</strong>
-  <%= @plot.certificate %>
-</p>
-
-<p>
-  <strong>Certificatedate:</strong>
-  <%= @plot.certificateDate %>
-</p>
-
-<p>
-  <strong>Harvestperiod:</strong>
-  <%= @plot.harvestPeriod %>
-</p>
-
-<p>
-  <strong>Harvestquantity:</strong>
-  <%= @plot.harvestQuantity %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @plot.price %>
-</p>
-
-<p>
-  <strong>Plotmanagement:</strong>
-  <%= @plot.plotManagement %>
-</p>
-
-<p>
-  <strong>Fertilizemanagement:</strong>
-  <%= @plot.fertilizeManagement %>
-</p>
-
-<p>
-  <strong>Watermanagement:</strong>
-  <%= @plot.waterManagement %>
-</p>
-
-<p>
-  <strong>Illnessmanagement:</strong>
-  <%= @plot.illnessManagement %>
-</p>
-
-<p>
-  <strong>Harvestmanagement:</strong>
-  <%= @plot.harvestManagement %>
-</p>
-
-<p>
-  <strong>Sellingchannel:</strong>
-  <%= @plot.sellingChannel %>
-</p>
-
-<p>
-  <strong>Logistic:</strong>
-  <%= @plot.logistic %>
-</p>
-
-<p>
-  <strong>Addressno:</strong>
-  <%= @plot.addressNo %>
-</p>
-
-<p>
-  <strong>Addressmoo:</strong>
-  <%= @plot.addressMoo %>
-</p>
-
-<p>
-  <strong>Addresstambon:</strong>
-  <%= @plot.addressTambon %>
-</p>
-
-<p>
-  <strong>Addressamphoe:</strong>
-  <%= @plot.addressAmphoe %>
-</p>
-
-<p>
-  <strong>Addressprovince:</strong>
-  <%= @plot.addressProvince %>
-</p>
-
-<p>
-  <strong>Addresszipcode:</strong>
-  <%= @plot.addressZipcode %>
-</p>
-
-<p>
-  <strong>Lat:</strong>
-  <%= @plot.lat %>
-</p>
-
-<p>
-  <strong>Long:</strong>
-  <%= @plot.long %>
-</p>
-
+<div class="row">
+  <!-- Left colum: image -->
+  <div class="col-md-6">
+    <div class="row justify-content-center">
+      <div class="col">
+        <%= raw plot_picture_carousel(@plot, 300) %>
+      </div>
+    </div>
+  </div>
+  <!-- Right Column: information-->
+  <div class="col-md-6">
+    <p><b>เจ้าของแปลง</b> <a href="<%= farmer_url @plot.farmer %>"> <%= @plot.farmer.display_name %> </a> </p>
+    <p><b>ที่อยู่</b><br> <%= @plot.display_address %> </p>
+    <p>
+      <b>ขนาดพื้นที่</b> <%= @plot.areaRai %> ไร่ 
+      <b>จำนวน</b> <%= @plot.treeCount %> ต้น 
+      <b>พันธุ์</b> <%= @plot.breed %> ต้น 
+    </p>
+    <p><b>โครงการที่เข้าร่วม</b> <%= @plot.project %> </p>
+    <p>
+      <b>ใบรับรองที่ได้</b> <%= @plot.certificate %> <br>
+      <b>วันที่ได้ใบรับรอง</b> <%= @plot.certificateDate %> 
+    </p>
+    <p>
+      <b>ช่วงการเก็บเกี่ยวผลผลิต</b> <%= @plot.harvestPeriod %> <br>
+      <b>ปริมาณผลผลิตทั้งหมด</b> <%= @plot.harvestQuantity %> กิโลกรัม
+      <b>ราคา</b> <%= @plot.price %> บาท/กิโลกรัม
+    </p>
+    <hr>
+    <p>
+      <b>การจัดการแปลง</b>
+      <ul>
+        <% JSON.parse(@plot.plotManagement).each do |index,value| %>
+          <li><%= index %></li>
+        <% end %>
+      </ul>
+    </p>
+    <p>
+      <b>วิธีการใส่ปุ๋ย</b>
+      <ul>
+        <% JSON.parse(@plot.fertilizeManagement).each do |index,value| %>
+          <li>สูตรปุ๋ย <%= value["สูตรปุ๋ย"] %> อัตรา <%= value["อัตรา"] %> กิโลกรัม</li>
+        <% end %>
+      </ul>
+    </p>
+    <p>
+      <b>การจัดการน้ำ</b>
+      <ul>
+        <% JSON.parse(@plot.waterManagement).each do |index,value| %>
+          <li><%= index %></li>
+        <% end %>
+      </ul>
+    </p>
+    <p>
+      <b>การควบคุมโรค</b>
+      <ul>
+        <% JSON.parse(@plot.illnessManagement).each do |index,value| %>
+          <li><%= index %> : <%= value %> </li>
+        <% end %>
+      </ul>
+    </p>
+    <p>
+      <b>วิธีการเก็บเกี่ยวผลผลิต</b>
+      <ul>
+        <% JSON.parse(@plot.harvestManagement).each do |index,value| %>
+          <li><%= index %></li>
+        <% end %>
+      </ul>
+    </p>
+    <p>
+      <b>แหล่งรับซื้อ</b>
+      <ul>
+        <% JSON.parse(@plot.sellingChannel).each do |index,value| %>
+          <li><%= index %></li>
+        <% end %>
+      </ul>
+    </p>
+    <p>
+      <b>วิธีการขนส่งผลผลิต</b>
+      <ul>
+        <% JSON.parse(@plot.logistic).each do |index,value| %>
+          <li><%= index %></li>
+        <% end %>
+      </ul>
+    </p>
+  </div>
+</div>
 <%= link_to 'Edit', edit_plot_path(@plot) %> |
 <%= link_to 'Back', plots_path %>

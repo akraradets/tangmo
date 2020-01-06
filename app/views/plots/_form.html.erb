@@ -277,7 +277,7 @@ $('#myForm').submit(function() {
   <div class="row">
     <% waterManagement = JSON.parse(@plot.waterManagement) %>
     <div class="form-group col-12">
-      <%= form.label "การจัดการแปลง" %>
+      <%= form.label "การจัดการน้ำ" %>
       <div class="form-check">
         <input class="form-check-input" value="true" type="checkbox" name="plot[waterManagement][มีระบบน้ำหยด]" <%= waterManagement["มีระบบน้ำหยด"].nil? ? "" : "checked" %>>
         <label class="form-check-label">

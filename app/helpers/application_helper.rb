@@ -16,7 +16,7 @@ module ApplicationHelper
     end
 
     def plot_picture_carousel(plot, size=40, option="rounded")
-        id = plot.id
+        id = "plot_#{plot.id}_carousel"
         carousel = "<div id='#{id}' class='carousel slide' data-ride='carousel'>
           <ol class='carousel-indicators'>
             [li-list]
