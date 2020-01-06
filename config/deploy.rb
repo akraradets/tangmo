@@ -23,7 +23,6 @@ namespace :deploy do
   after :publishing, :restart
 end
 
-before "deploy:assets:precompile", "bundle:install"
 # set :application, "tangmo"
 # set :repo_url, "git@github.com:akraradets/tangmo.git"
 
