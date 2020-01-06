@@ -5,6 +5,15 @@ class Plot < ApplicationRecord
   belongs_to :farmer
   has_many_attached :pictures
 
+  after_initialize do
+    if self.new_record?
+      # values will be available for new record forms.
+      self.plotManagement = "".to_json
+      self.fertilizeManagement = "".to_json
+    end
+  end
+
+
   def display_address
     addrNo = addressNo != "" ? addressNo : "-" 
     addrMoo = addressMoo != "" ? addressMoo : "-" 

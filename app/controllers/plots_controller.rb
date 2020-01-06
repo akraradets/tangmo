@@ -40,14 +40,24 @@ class PlotsController < ApplicationController
   # PATCH/PUT /plots/1.json
   def update
     respond_to do |format|
-      if @plot.update(plot_params)
-        if params["plot"]["picture"].nil? == false
-          if params["plot"]["picture"]["delete"].nil? == false
+      #pre process
+      params["plot"]["plotManagement"] = params["plot"]["plotManagement"].to_json
+
+      # submit with deletePicture
+      if !params["commit_deletePicture"].nil?
+        params["plot"]["picture"]["delete"].each do |index,value|
+          @plot.pictures[index.to_i].delete
+        end
+        format.html { redirect_to edit_plot_path(@plot) }
+      # Normal update button
+      elsif @plot.update(plot_params)
+        if !params["plot"]["picture"].nil?
+          if !params["plot"]["picture"]["delete"].nil?
             params["plot"]["picture"]["delete"].each do |index,value|
               @plot.pictures[index.to_i].delete
             end
           end
-          if params["plot"]["picture"]["new"].nil? == false
+          if !params["plot"]["picture"]["new"].nil?
             @plot.pictures.attach(params["plot"]["picture"]["new"])
           end
         end

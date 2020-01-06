@@ -29,7 +29,7 @@ function readURL(input) {
   <% end %>
 
   <label>รูปแปลงแตงโม</label>
-  <button type="submit" class="btn btn-outline-danger fas fa-trash" name="commit"></button>
+  <button type="submit" class="btn btn-outline-danger fas fa-trash" name="commit_deletePicture"></button>
   <div class="row" style="margin-bottom:1rem;">
     <% 
       count = 0
@@ -63,69 +63,108 @@ function readURL(input) {
   </div>
 
   <div class="row">
-    <div class="form-group col-md-2">
-      <%= form.label "คำนำหน้า" %>
-      <select class="form-control" type="text" name="farmer[title]" id="farmer_title">
-        <option disabled selected>กรุณาเลือก</option>
-      </select>
+    <div class="form-group col-12">
+      <%= form.label "เจ้าของแปลง" %>
+      <%= form.collection_select(:farmer_id, Farmer.all, :id, :display_name, {}, {class: "form-control"}) %>
     </div>
   </div>
 
-  <div class="field">
-    <%= form.label :farmer_id %>
-    <%= form.text_field :farmer_id %>
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%= form.label "ขนาดพื้นที่ (ไร่)" %>
+      <%= form.text_field :areaRai, class: "form-control",autocomplete: "off" %>
+    </div>
+    <div class="form-group col-md-4">
+      <%= form.label "จำนวนต้น (ต้น)" %>
+      <%= form.text_field :treeCount, class: "form-control",autocomplete: "off" %>
+    </div>
+    <div class="form-group col-md-4">
+      <%= form.label "พันธุ์ที่ปลูก" %>
+      <%= form.text_field :breed, class: "form-control",autocomplete: "off" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :areaRai %>
-    <%= form.text_field :areaRai %>
+  <div class="row">
+    <div class="form-group col-12">
+      <%= form.label "โครงการที่เข้าร่วม" %>
+      <%= form.text_field :project, class: "form-control",autocomplete: "off" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :treeCount %>
-    <%= form.number_field :treeCount %>
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%= form.label "ใบรับรองที่ได้" %>
+      <%= form.text_field :certificate, class: "form-control",autocomplete: "off" %>
+    </div>
+    <div class="form-group col-md-4">
+      <%= form.label "วันที่ได้ใบรับรอง" %>
+      <%= form.text_field :certificateDate, class: "form-control",autocomplete: "off" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :breed %>
-    <%= form.text_field :breed %>
+  <div class="row">
+    <div class="form-group col-md-4">
+      <%= form.label "ช่วงการเก็บเกี่ยวผลผลิต (วัน)" %>
+      <%= form.text_field :harvestPeriod, class: "form-control",autocomplete: "off" %>
+    </div>
+    <div class="form-group col-md-4">
+      <%= form.label "ปริมาณผลผลิตทั้งหมด (กิโลกรัม)" %>
+      <%= form.text_field :harvestQuantity, class: "form-control",autocomplete: "off" %>
+    </div>
+    <div class="form-group col-md-4">
+      <%= form.label "ราคาผลผลิต (บาท/กิโลกรัม)" %>
+      <%= form.text_field :price, class: "form-control",autocomplete: "off" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :project %>
-    <%= form.text_field :project %>
+  <hr>
+  <div class="row">
+    <% plotManagement = JSON.parse(@plot.plotManagement) %>
+    <div class="form-group col-md-4">
+      <%= form.label "การจัดการแปลง" %>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[plotManagement][เกษตรอินทรีย์]" <%= plotManagement["เกษตรอินทรีย์"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>เกษตรอินทรีย์</span>
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[plotManagement][อินทรีย์และเคมี]" <%= plotManagement["อินทรีย์และเคมี"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>อินทรีย์และเคมี</span>
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[plotManagement][ตัดหญ้าดูแลแปลง]" <%= plotManagement["ตัดหญ้าดูแลแปลง"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>ตัดหญ้าดูแลแปลง</span>
+        </label>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :certificate %>
-    <%= form.text_field :certificate %>
+  <div class="row">
+    <% fertilizeManagement = JSON.parse(@plot.fertilizeManagement) %>
+    <div class="form-group col-md-4">
+      <%= form.label "วิธีการใส่ปุ๋ย" %>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[fertilizeManagement][เกษตรอินทรีย์]" <%= plotManagement["เกษตรอินทรีย์"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>เกษตรอินทรีย์</span>
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[plotManagement][อินทรีย์และเคมี]" <%= plotManagement["อินทรีย์และเคมี"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>อินทรีย์และเคมี</span>
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[plotManagement][ตัดหญ้าดูแลแปลง]" <%= plotManagement["ตัดหญ้าดูแลแปลง"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>ตัดหญ้าดูแลแปลง</span>
+        </label>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :certificateDate %>
-    <%= form.date_select :certificateDate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :harvestPeriod %>
-    <%= form.text_field :harvestPeriod %>
-  </div>
-
-  <div class="field">
-    <%= form.label :harvestQuantity %>
-    <%= form.text_field :harvestQuantity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :plotManagement %>
-    <%= form.text_field :plotManagement %>
-  </div>
-
   <div class="field">
     <%= form.label :fertilizeManagement %>
     <%= form.text_field :fertilizeManagement %>

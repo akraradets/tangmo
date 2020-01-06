@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 4) do
     t.string "breed"
     t.string "project"
     t.string "certificate"
-    t.date "certificateDate"
+    t.string "certificateDate"
     t.string "harvestPeriod"
     t.string "harvestQuantity"
     t.string "price"

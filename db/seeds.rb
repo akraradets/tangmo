@@ -90,3 +90,23 @@ plot2 = Plot.new(
     long: 99.224060
 )
 plot2.save
+
+
+farmer2 = Farmer.new(
+    title: "นาย",
+    firstName: "ณรงค์2",
+    lastName: "มะขามป้อม2",
+    dateOfBirth: Date.strptime('20-05-1965', '%d-%m-%Y'),
+    group: "ชมรมแตงโมปลอดสารพิษผู้ผลิตปลอดโรค",
+    addressNo: "32/9",
+    addressMoo: "3",
+    addressTambon: "ศรีวิชัย",
+    addressAmphoe: "พุนพิน",
+    addressProvince: "สุราษฎร์ธานี",
+    addressZipcode: "",
+    phone: "082-422-4429",
+    facebook: "ณรงค์ มะขามป้อม",
+    line: "082-422-4429",
+    email: ""
+)
+farmer2.save

@@ -7,7 +7,7 @@ class CreatePlots < ActiveRecord::Migration[5.2]
       t.string :breed
       t.string :project
       t.string :certificate
-      t.date :certificateDate
+      t.string :certificateDate
       t.string :harvestPeriod
       t.string :harvestQuantity
       t.string :price
