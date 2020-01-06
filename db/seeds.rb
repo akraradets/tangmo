@@ -10,6 +10,12 @@
 User.create(email: 'admin@tangmo.com', username: 'admin', password: '123456', password_confirmation: '123456')
 puts "User - username='admin' password='123456'"
 
+fertilizeObj = {"0" => {"สูตรปุ๋ย" => "25-7-7", "อัตรา" => "5"},
+                "1" => {"สูตรปุ๋ย" => "15-15-15", "อัตรา" => "10"},
+                "2" => {"สูตรปุ๋ย" => "14-14-21", "อัตรา" => "15"},
+                "3" => {"สูตรปุ๋ย" => "14-14-21", "อัตรา" => "20"}
+            }
+
 farmer = Farmer.new(
     title: "นาย",
     firstName: "ณรงค์",
@@ -41,10 +47,10 @@ plot = Plot.new(
     harvestPeriod: "Apr-62",
     harvestQuantity: "2000",
     price: "18",
-    plotManagement: "",
-    fertilizeManagement: "", 
-    waterManagement: "",
-    illnessManagement: "",
+    plotManagement: "".to_json,
+    fertilizeManagement: fertilizeObj.to_json, 
+    waterManagement: "".to_json,
+    illnessManagement: "".to_json,
     harvestManagement: "",
     sellingChannel: "",
     logistic: "",
@@ -73,10 +79,10 @@ plot2 = Plot.new(
     harvestPeriod: "Apr-62",
     harvestQuantity: "2000",
     price: "18",
-    plotManagement: "",
-    fertilizeManagement: "", 
-    waterManagement: "",
-    illnessManagement: "",
+    plotManagement: "".to_json,
+    fertilizeManagement: fertilizeObj.to_json, 
+    waterManagement: "".to_json,
+    illnessManagement: "".to_json,
     harvestManagement: "",
     sellingChannel: "",
     logistic: "",

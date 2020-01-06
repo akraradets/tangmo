@@ -8,8 +8,18 @@ class Plot < ApplicationRecord
   after_initialize do
     if self.new_record?
       # values will be available for new record forms.
-      self.plotManagement = "".to_json
-      self.fertilizeManagement = "".to_json
+      if self.plotManagement.nil?
+        self.plotManagement = "".to_json
+      end
+
+      if self.fertilizeManagement.nil?
+        fert = {"0" => {"สูตรปุ๋ย" => "25-7-7", "อัตรา" => "100"}}
+        self.fertilizeManagement = fert.to_json
+      end
+      
+      if self.waterManagement.nil?
+        self.waterManagement = "".to_json
+      end
     end
   end
 

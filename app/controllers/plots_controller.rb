@@ -40,9 +40,23 @@ class PlotsController < ApplicationController
   # PATCH/PUT /plots/1.json
   def update
     respond_to do |format|
-      #pre process
+      # pre process
+      if(params["plot"]["plotManagement"].nil?)
+        params["plot"]["plotManagement"] = ""
+      end
+      if(params["plot"]["fertilizeManagement"].nil?)
+        params["plot"]["fertilizeManagement"] = ""
+      end
+      if(params["plot"]["waterManagement"].nil?)
+        params["plot"]["waterManagement"] = ""
+      end
+      if(params["plot"]["illnessManagement"].nil?)
+        params["plot"]["illnessManagement"] = ""
+      end
       params["plot"]["plotManagement"] = params["plot"]["plotManagement"].to_json
-
+      params["plot"]["fertilizeManagement"] = params["plot"]["fertilizeManagement"].to_json
+      params["plot"]["waterManagement"] = params["plot"]["waterManagement"].to_json
+      params["plot"]["illnessManagement"] = params["plot"]["illnessManagement"].to_json
       # submit with deletePicture
       if !params["commit_deletePicture"].nil?
         params["plot"]["picture"]["delete"].each do |index,value|

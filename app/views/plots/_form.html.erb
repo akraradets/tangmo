@@ -13,9 +13,23 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]);
   }
 }
+function copyValue(input){
+  target = input.getAttribute('data')
+  console.log(target)
+  checkbox = $("input[name='plot[illnessManagement]["+target+"]']")[0]
+  checkbox.value = input.value
+}
+
+$('#myForm').submit(function() {
+    copyValue($("input[data=พบโรคเถาเหี่ยว]")[0]);
+    copyValue($("input[data=พบโรคราน้ำค้าง]")[0]);
+    copyValue($("input[data=พบโรคเหี่ยวเขียว]")[0]);
+    return true; // return false to cancel form action
+});
+
 </script>
 
-<%= form_with(model: plot, local: true) do |form| %>
+<%= form_with(model: plot, local: true, id:"myForm") do |form| %>
   <% if plot.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(plot.errors.count, "error") %> prohibited this plot from being saved:</h2>
@@ -32,33 +46,33 @@ function readURL(input) {
   <button type="submit" class="btn btn-outline-danger fas fa-trash" name="commit_deletePicture"></button>
   <div class="row" style="margin-bottom:1rem;">
     <% 
-      count = 0
+      picture_count = 0
       size = 210
       for pic in plot.pictures do 
     %>
     <div class="col-lg-3 col-md-4" style="text-align:center;">
-      <div id="picture-<%= count %>">
-        <%= plot_picture(plot, size, "rounded", count) %>
+      <div id="picture-<%= picture_count %>">
+        <%= plot_picture(plot, size, "rounded", picture_count) %>
       </div>
       
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="plot[picture][delete][<%= count %>]">
-        <label class="form-check-label" for="defaultCheck1">
-          <span>รูปถ่ายที่ <%= count+1 %></span>
+        <input class="form-check-input" type="checkbox" value="" name="plot[picture][delete][<%= picture_count %>]">
+        <label class="form-check-label">
+          <span>รูปถ่ายที่ <%= picture_count+1 %></span>
         </label>
       </div>
     </div>
     <% 
-      count = count + 1
+      picture_count = picture_count + 1
       end 
     %>
     <!-- New picture -->
     <div class="col-lg-3 col-md-4" style="text-align:center;">
-      <div id="picture-<%= count %>">
+      <div id="picture-<%= picture_count %>">
         <%= plot_picture(plot, size, "rounded", -1) %>
       </div>
       <span>รูปใหม่</span>
-      <%= form.file_field :picture, name:"plot[picture][new]",data:"picture-#{count}" , onchange:"readURL(this);", class:"form-control-file"%>
+      <%= form.file_field :picture, name:"plot[picture][new]",data:"picture-#{picture_count}" , onchange:"readURL(this);", class:"form-control-file"%>
     </div>
   </div>
 
@@ -117,9 +131,10 @@ function readURL(input) {
     </div>
   </div>
   <hr>
+
   <div class="row">
     <% plotManagement = JSON.parse(@plot.plotManagement) %>
-    <div class="form-group col-md-4">
+    <div class="form-group col-12">
       <%= form.label "การจัดการแปลง" %>
       <div class="form-check">
         <input class="form-check-input" value="true" type="checkbox" name="plot[plotManagement][เกษตรอินทรีย์]" <%= plotManagement["เกษตรอินทรีย์"].nil? ? "" : "checked" %>>
@@ -141,44 +156,146 @@ function readURL(input) {
       </div>
     </div>
   </div>
+
+  <%= form.label "วิธีการใส่ปุ๋ย" %>
+  <div class="row form-group">
+    <% 
+      fertilizeManagement = JSON.parse(@plot.fertilizeManagement)
+    %>
+    <div class="input-group col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text">สูตรปุ๋ย</span>
+      </div>
+      <input type="text" class="form-control" name="plot[fertilizeManagement][0][สูตรปุ๋ย]" value="<%= fertilizeManagement["0"]["สูตรปุ๋ย"] %>" autocomplete="off">
+    </div>
+    <div class="input-group col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text">อัตรา</span>
+      </div>
+      <input type="text" class="form-control" name="plot[fertilizeManagement][0][อัตรา]" value="<%= fertilizeManagement["0"]["อัตรา"] %>" autocomplete="off">
+      <div class="input-group-append">
+        <span class="input-group-text">กิโลกรัม</span>
+      </div>
+    </div>
+
+    <div class="input-group col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text">สูตรปุ๋ย</span>
+      </div>
+      <input type="text" class="form-control" name="plot[fertilizeManagement][1][สูตรปุ๋ย]" value="<%= fertilizeManagement["1"]["สูตรปุ๋ย"] %>" autocomplete="off">
+    </div>
+    <div class="input-group col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text">อัตรา</span>
+      </div>
+      <input type="text" class="form-control" name="plot[fertilizeManagement][1][อัตรา]" value="<%= fertilizeManagement["1"]["อัตรา"] %>" autocomplete="off">
+      <div class="input-group-append">
+        <span class="input-group-text">กิโลกรัม</span>
+      </div>
+    </div>
+
+    <div class="input-group col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text">สูตรปุ๋ย</span>
+      </div>
+      <input type="text" class="form-control" name="plot[fertilizeManagement][2][สูตรปุ๋ย]" value="<%= fertilizeManagement["2"]["สูตรปุ๋ย"] %>" autocomplete="off">
+    </div>
+    <div class="input-group col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text">อัตรา</span>
+      </div>
+      <input type="text" class="form-control" name="plot[fertilizeManagement][2][อัตรา]" value="<%= fertilizeManagement["2"]["อัตรา"] %>" autocomplete="off">
+      <div class="input-group-append">
+        <span class="input-group-text">กิโลกรัม</span>
+      </div>
+    </div>
+
+    <div class="input-group col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text">สูตรปุ๋ย</span>
+      </div>
+      <input type="text" class="form-control" name="plot[fertilizeManagement][3][สูตรปุ๋ย]" value="<%= fertilizeManagement["3"]["สูตรปุ๋ย"] %>" autocomplete="off">
+    </div>
+    <div class="input-group col-md-6">
+      <div class="input-group-prepend">
+        <span class="input-group-text">อัตรา</span>
+      </div>
+      <input type="text" class="form-control" name="plot[fertilizeManagement][3][อัตรา]" value="<%= fertilizeManagement["3"]["อัตรา"] %>" autocomplete="off">
+      <div class="input-group-append">
+        <span class="input-group-text">กิโลกรัม</span>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
-    <% fertilizeManagement = JSON.parse(@plot.fertilizeManagement) %>
-    <div class="form-group col-md-4">
-      <%= form.label "วิธีการใส่ปุ๋ย" %>
+    <% waterManagement = JSON.parse(@plot.waterManagement) %>
+    <div class="form-group col-12">
+      <%= form.label "การจัดการแปลง" %>
       <div class="form-check">
-        <input class="form-check-input" value="true" type="checkbox" name="plot[fertilizeManagement][เกษตรอินทรีย์]" <%= plotManagement["เกษตรอินทรีย์"].nil? ? "" : "checked" %>>
+        <input class="form-check-input" value="true" type="checkbox" name="plot[waterManagement][มีระบบน้ำหยด]" <%= waterManagement["มีระบบน้ำหยด"].nil? ? "" : "checked" %>>
         <label class="form-check-label">
-          <span>เกษตรอินทรีย์</span>
+          <span>มีระบบน้ำหยด</span>
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" value="true" type="checkbox" name="plot[plotManagement][อินทรีย์และเคมี]" <%= plotManagement["อินทรีย์และเคมี"].nil? ? "" : "checked" %>>
+        <input class="form-check-input" value="true" type="checkbox" name="plot[waterManagement][ไม่มีระบบน้ำ]" <%= waterManagement["ไม่มีระบบน้ำ"].nil? ? "" : "checked" %>>
         <label class="form-check-label">
-          <span>อินทรีย์และเคมี</span>
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" value="true" type="checkbox" name="plot[plotManagement][ตัดหญ้าดูแลแปลง]" <%= plotManagement["ตัดหญ้าดูแลแปลง"].nil? ? "" : "checked" %>>
-        <label class="form-check-label">
-          <span>ตัดหญ้าดูแลแปลง</span>
+          <span>ไม่มีระบบน้ำ</span>
         </label>
       </div>
     </div>
   </div>
-  <div class="field">
-    <%= form.label :fertilizeManagement %>
-    <%= form.text_field :fertilizeManagement %>
+
+
+  <%= form.label "การควบคุมโรค" %>
+  <div class="row">
+    <% illnessManagement = JSON.parse(@plot.illnessManagement) %>
+    <div class="form-group col-12">      
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="plot[illnessManagement][พบโรคเถาเหี่ยว]" <%= illnessManagement["พบโรคเถาเหี่ยว"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">พบโรคเถาเหี่ยว</span>
+            </div>
+            <input type="text" class="form-control" data="พบโรคเถาเหี่ยว" value="<%= illnessManagement["พบโรคเถาเหี่ยว"] %>" autocomplete="off">
+          </div>
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="plot[illnessManagement][พบโรคราน้ำค้าง]" <%= illnessManagement["พบโรคราน้ำค้าง"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">พบโรคราน้ำค้าง</span>
+            </div>
+            <input type="text" class="form-control" data="พบโรคราน้ำค้าง" value="<%= illnessManagement["พบโรคราน้ำค้าง"] %>" autocomplete="off">
+          </div>
+        </label>
+      </div>
+
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="plot[illnessManagement][พบโรคเหี่ยวเขียว]" <%= illnessManagement["พบโรคเหี่ยวเขียว"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">พบโรคเหี่ยวเขียว</span>
+            </div>
+            <input type="text" class="form-control" data="พบโรคเหี่ยวเขียว" value="<%= illnessManagement["พบโรคเหี่ยวเขียว"] %>" autocomplete="off">
+          </div>
+        </label>
+      </div>
+       
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[illnessManagement][ไม่พบ]" <%= illnessManagement["ไม่พบ"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>ไม่พบ</span>
+        </label>
+      </div>      
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :waterManagement %>
-    <%= form.text_field :waterManagement %>
-  </div>
-
-  <div class="field">
-    <%= form.label :illnessManagement %>
-    <%= form.text_field :illnessManagement %>
-  </div>
 
   <div class="field">
     <%= form.label :harvestManagement %>
