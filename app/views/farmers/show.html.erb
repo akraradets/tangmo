@@ -19,10 +19,18 @@
     Facebook: <%= @farmer.line %><br>
     Line: <%= @farmer.email %><br>
     </p>
-    <p><b>จำนวนแปลง</b> <%= @farmer.plot_count %></p>
-    <p><b>ขนาดแปลงรวม</b> <%= @farmer.disaply_plot_totalArea %> </p>
+    <p>
+      <b>จำนวนแปลง</b> <%= @farmer.plot_count %><br>
+      <b>ขนาดแปลงรวม</b> <%= @farmer.disaply_plot_totalArea %>
+      <ul>
+        <% @farmer.plots.each do |plot| %>
+          <li><a href=<%= plot_url(plot) %>>รหัสแปลงที่ <%= plot.id %></a></li>
+        <% end %>
+      </ul>
+    </p>
   </div>
 </div>
-
-<%= link_to 'Edit', edit_farmer_path(@farmer) %> |
-<%= link_to 'Back', farmers_path %>
+<div class="row">
+  <a href="<%= edit_farmer_path(@farmer) %>" class="btn btn-light"><i class='far fa-edit'></i> แก้ไข</a>
+</div>
+<%= link_to 'กลับ', farmers_path %>

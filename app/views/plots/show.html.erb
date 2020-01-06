@@ -88,5 +88,7 @@
     </p>
   </div>
 </div>
-<%= link_to 'Edit', edit_plot_path(@plot) %> |
-<%= link_to 'Back', plots_path %>
+<div class="row">
+  <a href="<%= edit_plot_path(@plot) %>" class="btn btn-light"><i class='far fa-edit'></i> แก้ไข</a>
+</div>
+<%= link_to 'กลับ', plots_path %>

@@ -24,9 +24,6 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item active">
             <a class="nav-link" href="<%= farmers_path %>">เกษตกร</a>
           </li>
           <li class="nav-item active">
@@ -38,6 +35,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="<%= new_farmer_path %>">เพิ่มเกษตรกร</a>
+              <a class="dropdown-item" href="<%= new_plot_path %>">เพิ่มแปลงแตงโม</a>
             </div>
           </li>
         </ul>
@@ -89,7 +87,7 @@
       </div>
     </div>
     <!-- Footer -->
-    <nav class="navbar fixed-bottom navbar-dark bg-dark" style="color:white">
+    <nav class="navbar fixed-bottom navbar-dark bg-dark" style="color:white; display:none;">
       <div>
         <small>© Copyright PHANGAN ORGANIC COCONUT TRACABILITY SYSTEM.</small>
       </div>

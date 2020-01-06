@@ -40,7 +40,9 @@ class Farmer < ApplicationRecord
     def plot_totalArea
         totalArea = 0
         for plot in self.plots do
-            totalArea = totalArea + plot.areaRai
+            if !plot.areaRai.nil?
+                totalArea = totalArea + plot.areaRai
+            end
         end
         return totalArea
     end
