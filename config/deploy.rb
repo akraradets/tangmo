@@ -9,7 +9,7 @@ set :rbenv_ruby, '2.6.4'
 
 append :linked_files, "config/database.yml", "config/master.key"
 
-append :linked_dirs, "log", "tmp", "public/system", ".bundle"
+append :linked_dirs, "log", "tmp", "public/system", ".bundle", "storage"
 
 set :keep_releases, 5
 
