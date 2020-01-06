@@ -66,6 +66,7 @@ group :development do
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   gem 'capistrano-rbenv-install'
+  gem 'capistrano-rails-db'
 end
 
 group :test do
