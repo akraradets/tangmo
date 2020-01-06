@@ -84,6 +84,41 @@ $('#myForm').submit(function() {
   </div>
 
   <div class="row">
+    <div class="form-group col-md-2">
+      <%= form.label "บ้านเลขที่" %>
+      <%= form.text_field :addressNo, class: "form-control",autocomplete: "off" %>
+    </div>
+
+    <div class="form-group col-md-2">
+      <%= form.label "หมู่" %>
+      <%= form.text_field :addressMoo, class: "form-control",autocomplete: "off" %>
+    </div>
+
+    <div class="form-group col-md-4">
+      <%= form.label "ตำบล" %>
+      <%= form.text_field :addressTambon, class: "form-control",autocomplete: "off" %>
+    </div>
+
+    <div class="form-group col-md-4">
+      <%= form.label "อำเภอ" %>
+      <%= form.text_field :addressAmphoe, class: "form-control",autocomplete: "off" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <%= form.label "จังหวัด" %>
+      <%= form.text_field :addressProvince, class: "form-control",autocomplete: "off" %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= form.label "รหัสไปรษณีย์" %>
+      <%= form.text_field :addressZipcode, class: "form-control",autocomplete: "off" %>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
     <div class="form-group col-md-4">
       <%= form.label "ขนาดพื้นที่ (ไร่)" %>
       <%= form.text_field :areaRai, class: "form-control",autocomplete: "off" %>
@@ -246,7 +281,6 @@ $('#myForm').submit(function() {
     </div>
   </div>
 
-
   <%= form.label "การควบคุมโรค" %>
   <div class="row">
     <% illnessManagement = JSON.parse(@plot.illnessManagement) %>
@@ -296,52 +330,76 @@ $('#myForm').submit(function() {
     </div>
   </div>
 
-
-  <div class="field">
-    <%= form.label :harvestManagement %>
-    <%= form.text_field :harvestManagement %>
+  <div class="row">
+    <% harvestManagement = JSON.parse(@plot.harvestManagement) %>
+    <div class="form-group col-12">
+      <%= form.label "วิธีการเก็บเกี่ยวผลผลิต" %>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[harvestManagement][ใช้แรงงานคน]" <%= harvestManagement["ใช้แรงงานคน"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>ใช้แรงงานคน</span>
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[harvestManagement][ใช้เครื่องจักร]" <%= harvestManagement["ใช้เครื่องจักร"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>ใช้เครื่องจักร</span>
+        </label>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :sellingChannel %>
-    <%= form.text_field :sellingChannel %>
+  <div class="row">
+    <% sellingChannel = JSON.parse(@plot.sellingChannel) %>
+    <div class="form-group col-12">
+      <%= form.label "แหล่งรับซื้อ" %>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[sellingChannel][เกษตรกรจำหน่ายเอง]" <%= sellingChannel["เกษตรกรจำหน่ายเอง"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>เกษตรกรจำหน่ายเอง</span>
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[sellingChannel][เกษตรกรตัดพ่อค้าคนกลางมารับ]" <%= sellingChannel["เกษตรกรตัดพ่อค้าคนกลางมารับ"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>เกษตรกรตัดพ่อค้าคนกลางมารับ</span>
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[sellingChannel][พ่อค้าคนกลางเหมายกแปลง]" <%= sellingChannel["พ่อค้าคนกลางเหมายกแปลง"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>พ่อค้าคนกลางเหมายกแปลง</span>
+        </label>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :logistic %>
-    <%= form.text_field :logistic %>
+  <div class="row">
+    <% logistic = JSON.parse(@plot.logistic) %>
+    <div class="form-group col-12">
+      <%= form.label "วิธีการขนส่งผลผลิต" %>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[logistic][มีรถมารับซื้อ]" <%= logistic["มีรถมารับซื้อ"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>มีรถมารับซื้อ</span>
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[logistic][รถบรรทุก]" <%= logistic["รถบรรทุก"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>รถบรรทุก</span>
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" value="true" type="checkbox" name="plot[logistic][รถกระบะ]" <%= logistic["รถกระบะ"].nil? ? "" : "checked" %>>
+        <label class="form-check-label">
+          <span>รถกระบะ</span>
+        </label>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :addressNo %>
-    <%= form.text_field :addressNo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressMoo %>
-    <%= form.text_field :addressMoo %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressTambon %>
-    <%= form.text_field :addressTambon %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressAmphoe %>
-    <%= form.text_field :addressAmphoe %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressProvince %>
-    <%= form.text_field :addressProvince %>
-  </div>
-
-  <div class="field">
-    <%= form.label :addressZipcode %>
-    <%= form.text_field :addressZipcode %>
-  </div>
-
+  
+  <hr>
   <div class="field">
     <%= form.label :lat %>
     <%= form.text_field :lat %>

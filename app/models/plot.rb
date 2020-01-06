@@ -12,13 +12,34 @@ class Plot < ApplicationRecord
         self.plotManagement = "".to_json
       end
 
+
       if self.fertilizeManagement.nil?
-        fert = {"0" => {"สูตรปุ๋ย" => "25-7-7", "อัตรา" => "100"}}
-        self.fertilizeManagement = fert.to_json
+        fertilizeObj = {"0" => {"สูตรปุ๋ย" => "", "อัตรา" => ""},
+                        "1" => {"สูตรปุ๋ย" => "", "อัตรา" => ""},
+                        "2" => {"สูตรปุ๋ย" => "", "อัตรา" => ""},
+                        "3" => {"สูตรปุ๋ย" => "", "อัตรา" => ""}
+                    }
+        self.fertilizeManagement = fertilizeObj.to_json
       end
-      
+
       if self.waterManagement.nil?
         self.waterManagement = "".to_json
+      end
+
+      if self.illnessManagement.nil?
+        self.illnessManagement = "".to_json
+      end
+
+      if self.harvestManagement.nil?
+        self.harvestManagement = "".to_json
+      end
+
+      if self.sellingChannel.nil?
+        self.sellingChannel = "".to_json
+      end
+
+      if self.logistic.nil?
+        self.logistic = "".to_json
       end
     end
   end

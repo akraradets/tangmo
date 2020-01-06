@@ -53,10 +53,24 @@ class PlotsController < ApplicationController
       if(params["plot"]["illnessManagement"].nil?)
         params["plot"]["illnessManagement"] = ""
       end
+      if(params["plot"]["harvestManagement"].nil?)
+        params["plot"]["harvestManagement"] = ""
+      end
+      if(params["plot"]["sellingChannel"].nil?)
+        params["plot"]["sellingChannel"] = ""
+      end
+      if(params["plot"]["logistic"].nil?)
+        params["plot"]["logistic"] = ""
+      end
+
       params["plot"]["plotManagement"] = params["plot"]["plotManagement"].to_json
       params["plot"]["fertilizeManagement"] = params["plot"]["fertilizeManagement"].to_json
       params["plot"]["waterManagement"] = params["plot"]["waterManagement"].to_json
       params["plot"]["illnessManagement"] = params["plot"]["illnessManagement"].to_json
+      params["plot"]["harvestManagement"] = params["plot"]["harvestManagement"].to_json
+      params["plot"]["sellingChannel"] = params["plot"]["sellingChannel"].to_json
+      params["plot"]["logistic"] = params["plot"]["logistic"].to_json
+
       # submit with deletePicture
       if !params["commit_deletePicture"].nil?
         params["plot"]["picture"]["delete"].each do |index,value|
