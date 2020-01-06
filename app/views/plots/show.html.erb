@@ -88,9 +88,9 @@
     </p>
   </div>
 </div>
-<% if !current_user.nil? %>
-<div class="row">
-  <a href="<%= edit_plot_path(@plot) %>" class="btn btn-light"><i class='far fa-edit'></i> แก้ไข</a>
+<div class="row justify-content-center">
+  <% if !current_user.nil? %>
+  <a href="<%= edit_plot_path(@plot) %>" class="btn btn-light-brown"><i class='far fa-edit'></i> แก้ไข</a>
+  <% end %>
+  <a href="<%= plots_path(@plot) %>" class="btn btn-light"><i class="fas fa-arrow-left"></i> กลับ</a>
 </div>
-<% end %>
-<%= link_to 'กลับ', plots_path %>

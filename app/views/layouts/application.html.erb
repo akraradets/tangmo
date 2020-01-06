@@ -12,9 +12,45 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+<style>
+  .bg-pattern {
+    background-image: url("<%= image_url('TANGMO_pattern.png') %>");
+    background-color: #d7ccc8 !important;
+  }
+  .my-container {
+      /* background: #d7ccc8; */
+      /* overflow: hidden; */
+      background-repeat: 'repeat'
+  }
+  /* You could use :after - it doesn't really matter */
+  .my-container:after {
+      content: ' ';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      background-image: url("<%= image_url('TANGMO_pattern.png') %>");
+      /* background-position: 50% 0; */
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  ul {
+    font-size: 1rem;
+  }
+  .btn-light-brown {
+      /* color: #212529; */
+      background-color: #d7ccc8;
+      border-color: #d7ccc8;
+  }
+</style>
   <body>
     <!-- Nav bar -->
-    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-main">
       <a class="navbar-brand" href="/"> <%= image_tag 'TANGMO_logo.png', height:37, width:37 %></a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -84,6 +120,7 @@
           <% if flash[:alert] %>
             <p class="alert alert-danger"><%= flash[:alert] %></p>
           <% end %>
+          <br>
           <%= yield %>
         </div>
       </div>
