@@ -9,7 +9,7 @@ class Plot < ApplicationRecord
     if self.new_record?
       # values will be available for new record forms.
       if self.plotManagement.nil?
-        self.plotManagement = "".to_json
+        self.plotManagement = "{}".to_json
       end
 
 
@@ -23,23 +23,23 @@ class Plot < ApplicationRecord
       end
 
       if self.waterManagement.nil?
-        self.waterManagement = "".to_json
+        self.waterManagement = "{}".to_json
       end
 
       if self.illnessManagement.nil?
-        self.illnessManagement = "".to_json
+        self.illnessManagement = "{}".to_json
       end
 
       if self.harvestManagement.nil?
-        self.harvestManagement = "".to_json
+        self.harvestManagement = "{}".to_json
       end
 
       if self.sellingChannel.nil?
-        self.sellingChannel = "".to_json
+        self.sellingChannel = "{}".to_json
       end
 
       if self.logistic.nil?
-        self.logistic = "".to_json
+        self.logistic = "{}".to_json
       end
     end
   end
