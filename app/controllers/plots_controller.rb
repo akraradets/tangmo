@@ -92,25 +92,25 @@ class PlotsController < ApplicationController
     def pre_process
       # pre process
       if(params["plot"]["plotManagement"].nil?)
-        params["plot"]["plotManagement"] = ""
+        params["plot"]["plotManagement"] = {}
       end
       if(params["plot"]["fertilizeManagement"].nil?)
-        params["plot"]["fertilizeManagement"] = ""
+        params["plot"]["fertilizeManagement"] = {}
       end
       if(params["plot"]["waterManagement"].nil?)
-        params["plot"]["waterManagement"] = ""
+        params["plot"]["waterManagement"] = {}
       end
       if(params["plot"]["illnessManagement"].nil?)
-        params["plot"]["illnessManagement"] = ""
+        params["plot"]["illnessManagement"] = {}
       end
       if(params["plot"]["harvestManagement"].nil?)
-        params["plot"]["harvestManagement"] = ""
+        params["plot"]["harvestManagement"] = {}
       end
       if(params["plot"]["sellingChannel"].nil?)
-        params["plot"]["sellingChannel"] = ""
+        params["plot"]["sellingChannel"] = {}
       end
       if(params["plot"]["logistic"].nil?)
-        params["plot"]["logistic"] = ""
+        params["plot"]["logistic"] = {}
       end
 
       params["plot"]["plotManagement"] = params["plot"]["plotManagement"].to_json
