@@ -63,9 +63,9 @@ plot = Plot.new(
     lat: 9.190191,
     long: 99.224061
 )
-plot.pictures.attach(io: File.open(Rails.root + 'seedPicture/plot_1_1.jpg'), filename: 'plot_1_1.jpg')
-plot.pictures.attach(io: File.open(Rails.root + 'seedPicture/plot_1_2.jpg'), filename: 'plot_1_2.jpg')
-plot.pictures.attach(io: File.open(Rails.root + 'seedPicture/plot_1_3.jpg'), filename: 'plot_1_3.jpg')
+Dir[Rails.root + "seedPicture/plot_1*"].each do |pic|
+    plot.pictures.attach(io: File.open(pic), filename: pic.split('/').last)
+end
 plot.save
 
 plot2 = Plot.new(
