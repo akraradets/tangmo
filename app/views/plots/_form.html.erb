@@ -21,11 +21,19 @@ function copyValue(input){
 }
 
 $('#myForm').submit(function() {
-    copyValue($("input[data=พบโรคเถาเหี่ยว]")[0]);
-    copyValue($("input[data=พบโรคราน้ำค้าง]")[0]);
-    copyValue($("input[data=พบโรคเหี่ยวเขียว]")[0]);
-    return true; // return false to cancel form action
+  return chunckFunction(delay());
 });
+
+function chunckFunction(__callback){
+  copyValue($("input[data=พบโรคเถาเหี่ยว]")[0]);
+  copyValue($("input[data=พบโรคราน้ำค้าง]")[0]);
+  copyValue($("input[data=พบโรคเหี่ยวเขียว]")[0]);
+  return __callback()
+}
+
+function delay(){
+  return true;
+}
 
 </script>
 
