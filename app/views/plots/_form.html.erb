@@ -20,19 +20,31 @@ function copyValue(input){
   checkbox.value = input.value
 }
 
-$('#myForm').submit(function() {
-  return chunckFunction(delay());
-});
-
-function chunckFunction(__callback){
-  copyValue($("input[data=พบโรคเถาเหี่ยว]")[0]);
-  copyValue($("input[data=พบโรคราน้ำค้าง]")[0]);
-  copyValue($("input[data=พบโรคเหี่ยวเขียว]")[0]);
-  return __callback()
+function populate(){
+  return promiseFunc()
 }
 
-function delay(){
-  return true;
+function promiseFunc(){
+  return new Promise(function(fulfill, reject){
+      //do something for 5 seconds
+      copyValue($("input[data=พบโรคเถาเหี่ยว]")[0]);
+      fulfill();
+  }).then(function(){
+      new Promise(function(fulfill, reject){
+          //do something for 5 seconds
+       copyValue($("input[data=พบโรคราน้ำค้าง]")[0]);
+       fulfill();
+      });
+  }).then(function(){
+      new Promise(function(fulfill, reject){
+          //do something for 8 seconds
+       copyValue($("input[data=พบโรคเหี่ยวเขียว]")[0]);
+       fulfill();
+      });
+  }).then(function(){
+      console.log("submit--1")
+      return false
+  });
 }
 
 </script>
@@ -419,6 +431,6 @@ function delay(){
     </div>
   </div>
 
-  <button type="submit" class="btn btn-success" name="commit"><i class='far fa-save'></i> ยืนยัน</button>
+  <button type="submit" class="btn btn-success" onclick="return populate();" name="commit"><i class='far fa-save'></i> ยืนยัน</button>
 
 <% end %>
