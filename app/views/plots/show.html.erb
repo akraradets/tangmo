@@ -7,7 +7,9 @@
       </div>
     </div>
     <div class="row">
-      <%= qrCode(plot_url(@plot),200) %>
+      <% if !current_user.nil? %>
+        <%= qrCode(plot_url(@plot),200) %>
+      <% end %>
     </div>
   </div>
   <!-- Right Column: information-->
