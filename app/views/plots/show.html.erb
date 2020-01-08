@@ -14,80 +14,99 @@
   </div>
   <!-- Right Column: information-->
   <div class="col-md-6">
-    <p><b>เจ้าของแปลง</b> <a href="<%= farmer_url @plot.farmer %>"> <%= @plot.farmer.display_name %> </a> </p>
-    <p><b>ที่อยู่</b><br> <%= @plot.display_address %> </p>
-    <p>
-      <b>ขนาดพื้นที่</b> <%= @plot.areaRai %> ไร่ 
-      <b>จำนวน</b> <%= @plot.treeCount %> ต้น 
-      <b>พันธุ์</b> <%= @plot.breed %> ต้น 
-    </p>
-    <p><b>โครงการที่เข้าร่วม</b> <%= @plot.project %> </p>
-    <p>
-      <b>ใบรับรองที่ได้</b> <%= @plot.certificate %> <br>
-      <b>วันที่ได้ใบรับรอง</b> <%= @plot.certificateDate %> 
-    </p>
-    <p>
-      <b>ช่วงการเก็บเกี่ยวผลผลิต</b> <%= @plot.harvestPeriod %> <br>
-      <b>ปริมาณผลผลิตทั้งหมด</b> <%= @plot.harvestQuantity %> กิโลกรัม
-      <b>ราคา</b> <%= @plot.price %> บาท/กิโลกรัม
-    </p>
-    <hr>
-    <p>
-      <b>การจัดการแปลง</b>
-      <ul>
-        <% JSON.parse(@plot.plotManagement).each do |index,value| %>
-          <li><%= index %></li>
-        <% end %>
-      </ul>
-    </p>
-    <p>
-      <b>วิธีการใส่ปุ๋ย</b>
-      <ul>
-        <% JSON.parse(@plot.fertilizeManagement).each do |index,value| %>
-          <li>สูตรปุ๋ย <%= value["สูตรปุ๋ย"] %> อัตรา <%= value["อัตรา"] %> กิโลกรัม</li>
-        <% end %>
-      </ul>
-    </p>
-    <p>
-      <b>การจัดการน้ำ</b>
-      <ul>
-        <% JSON.parse(@plot.waterManagement).each do |index,value| %>
-          <li><%= index %></li>
-        <% end %>
-      </ul>
-    </p>
-    <p>
-      <b>การควบคุมโรค</b>
-      <ul>
-        <% JSON.parse(@plot.illnessManagement).each do |index,value| %>
-          <li><%= index %> : <%= value %> </li>
-        <% end %>
-      </ul>
-    </p>
-    <p>
-      <b>วิธีการเก็บเกี่ยวผลผลิต</b>
-      <ul>
-        <% JSON.parse(@plot.harvestManagement).each do |index,value| %>
-          <li><%= index %></li>
-        <% end %>
-      </ul>
-    </p>
-    <p>
-      <b>แหล่งรับซื้อ</b>
-      <ul>
-        <% JSON.parse(@plot.sellingChannel).each do |index,value| %>
-          <li><%= index %></li>
-        <% end %>
-      </ul>
-    </p>
-    <p>
-      <b>วิธีการขนส่งผลผลิต</b>
-      <ul>
-        <% JSON.parse(@plot.logistic).each do |index,value| %>
-          <li><%= index %></li>
-        <% end %>
-      </ul>
-    </p>
+    <table class="table table-striped table-sm">
+      <tr>
+        <th>เจ้าของแปลง</th>
+        <td><a href="<%= farmer_url @plot.farmer %>"> <%= @plot.farmer.display_name %> </a></td>
+      </tr>
+      <tr>
+        <th>ที่อยู่</th>
+        <td><%= @plot.display_address %></td>
+      </tr>
+      <tr>
+        <th>ขนาดพื้นที่</th>
+        <td><%= @plot.areaRai %> ไร่ </td>
+      </tr>
+      <tr><th>จำนวน</th><td><%= @plot.treeCount %> ต้น</td></tr>
+      <tr><th>พันธุ์</th><td><%= @plot.breed %> ต้น</td></tr>   
+      <tr><th>โครงการที่เข้าร่วม</th><td><%= @plot.project %> </td></tr>
+      <tr><th>ใบรับรองที่ได้</th><td><%= @plot.certificate %> </td></tr>
+      <tr><th>วันที่ได้ใบรับรอง</th><td><%= @plot.certificateDate %> </td></tr>
+      <tr><th>ช่วงการเก็บเกี่ยวผลผลิต</th><td><%= @plot.harvestPeriod %> </td></tr>
+      <tr><th>ปริมาณผลผลิตทั้งหมด</th><td><%= @plot.harvestQuantity %> กิโลกรัม</td></tr>
+      <tr><th>ราคา</th><td><%= @plot.price %> บาท/กิโลกรัม</td></tr>
+      <tr>
+        <th>การจัดการแปลง</th>
+        <td>
+          <ul>
+            <% JSON.parse(@plot.plotManagement).each do |index,value| %>
+              <li><%= index %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>วิธีการใส่ปุ๋ย</th>
+        <td>
+          <ul>
+            <% JSON.parse(@plot.fertilizeManagement).each do |index,value| %>
+              <li>สูตรปุ๋ย <%= value["สูตรปุ๋ย"] %> อัตรา <%= value["อัตรา"] %> กิโลกรัม</li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>การจัดการน้ำ</th>
+        <td>
+          <ul>
+            <% JSON.parse(@plot.waterManagement).each do |index,value| %>
+              <li><%= index %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>การควบคุมโรค</th>
+        <td>
+          <ul>
+            <% JSON.parse(@plot.illnessManagement).each do |index,value| %>
+              <li><%= index %> : <%= value %> </li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>วิธีการเก็บเกี่ยวผลผลิต</th>
+        <td>
+          <ul>
+            <% JSON.parse(@plot.harvestManagement).each do |index,value| %>
+              <li><%= index %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>แหล่งรับซื้อ</th>
+        <td>
+          <ul>
+            <% JSON.parse(@plot.sellingChannel).each do |index,value| %>
+              <li><%= index %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>วิธีการขนส่งผลผลิต</th>
+        <td>
+          <ul>
+            <% JSON.parse(@plot.logistic).each do |index,value| %>
+              <li><%= index %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    </table>
+
   </div>
 </div>
 <div class="row justify-content-center">

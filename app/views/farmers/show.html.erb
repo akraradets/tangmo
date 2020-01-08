@@ -9,25 +9,55 @@
   </div>
   <!-- Right Column: information-->
   <div class="col-md-6">
-    <p><b>ชื่อ</b> <%= @farmer.title %> <%= @farmer.firstName %> <%= @farmer.lastName %> </p>
-    <p><b>วันเกิด</b> <%= @farmer.display_dateOfBirth %> <b>อายุ</b> <%= @farmer.age %> ปี </p>
-    <p><b>สมาชิกกลุ่ม</b> <%= @farmer.group %> </p>
-    <p><b>ที่อยู่</b><br> <%= @farmer.display_address %> </p>
-    <p><b>ช่องทางติดต่อ</b><br>
-    เบอร์โทร: <%= @farmer.phone %><br>
-    อีเมล: <%= @farmer.facebook %><br>
-    Facebook: <%= @farmer.line %><br>
-    Line: <%= @farmer.email %><br>
-    </p>
-    <p>
-      <b>จำนวนแปลง</b> <%= @farmer.plot_count %><br>
-      <b>ขนาดแปลงรวม</b> <%= @farmer.disaply_plot_totalArea %>
-      <ul>
-        <% @farmer.plots.each do |plot| %>
-          <li><a href=<%= plot_url(plot) %>>รหัสแปลงที่ <%= plot.id %></a></li>
-        <% end %>
-      </ul>
-    </p>
+    <table class="table table-striped table-sm">
+      <tr>
+        <th scope="row">ชื่อ</th>
+        <td><%= @farmer.display_name %></td>
+      </tr>
+      </tr>
+        <th>วันเกิด</th> 
+        <td><%= @farmer.display_dateOfBirth %></td>
+      </tr>
+      </tr>
+        <th>อายุ</th> 
+        <td><%= @farmer.age %> ปี </td>
+      </tr>
+      </tr>
+        <th>สมาชิกกลุ่ม</th> 
+        <td><%= @farmer.group %></td>
+      </tr>
+      </tr>
+        <th>ที่อยู่</th> 
+        <td><%= @farmer.display_address %></td>
+      </tr>
+      </tr>
+        <th>ช่องทางติดต่อ</th> 
+        <td>
+          เบอร์โทร: <%= @farmer.phone %><br>
+          อีเมล: <%= @farmer.facebook %><br>
+          Facebook: <%= @farmer.line %><br>
+          Line: <%= @farmer.email %><br>
+        </td>
+      </tr>
+      </tr>
+        <th>จำนวนแปลง</th> 
+        <td><%= @farmer.plot_count %></td>
+      </tr>
+      </tr>
+        <th>ขนาดแปลงรวม</th> 
+        <td><%= @farmer.disaply_plot_totalArea %></td>
+      </tr>
+      </tr>
+        <th>แปลงที่ครอบครอง</th> 
+        <td>
+          <ul>
+            <% @farmer.plots.each do |plot| %>
+              <li><a href=<%= plot_url(plot) %>>รหัสแปลงที่ <%= plot.id %></a></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
 <div class="row justify-content-center">

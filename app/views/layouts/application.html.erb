@@ -51,6 +51,7 @@
   <body>
     <script src="https://www.promisejs.org/polyfills/promise-7.0.4.min.js"></script>
     <script src="https://www.promisejs.org/polyfills/promise-done-7.0.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <!-- Nav bar -->
     <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-main">
       <a class="navbar-brand" href="/"> <%= image_tag 'TANGMO_logo.png', height:37, width:37 %></a>
@@ -82,7 +83,7 @@
         <!-- Navbar Right -->
         <ul class="navbar-nav">
           <% if user_signed_in? %>
-            <!-- d-none d-md-block => Show when on desktop-->
+            <!-- d-none d-md-block => Show when on desktop-->   
             <li class="nav-item d-none d-md-block">
               <span class="navbar-text">ยินดีตอนรับ</span> 
               <span style="color:white;"><b><%= current_user.username %></b></span>
