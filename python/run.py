@@ -1,6 +1,17 @@
 import pandas
+import datetime
 import glob
 import math
+import re
+
+def tryint(s):
+    try:
+        return int(s)
+    except ValueError:
+        return s
+
+def alphanum_key(s):
+    return [tryint(c) for c in re.split('([0-9]+)', s)]
 
 def attachPicture(objName, attachName='picture'):
     
@@ -9,6 +20,11 @@ def attachPicture(objName, attachName='picture'):
 end"""
     return template
 
+def getCol(record, col):
+    try:
+        return record[col]
+    except:
+        return ""
 
 def createFarmer(records):
     # 0	ข้อมูลเกษตรกรในโครงการวิจัยและพัฒนาการผลิตแตงโมบ้านทุ่งอ่าว	
@@ -68,15 +84,15 @@ def createFarmer(records):
     # 7	ขนาดพื้นที่รวมทุกแปลง (ไร่)
     # 8	เป็นสมาชิกกลุ่ม
     # group: "ชมรมแตงโมปลอดสารพิษผู้ผลิตปลอดโรค",
-    group = records[8][3]
+    group = records[8][3].strip() if type(records[8][3]) == type("") else "-" 
     # 9	ประสบการณ์การปลูกแตงโม (ปี)
     # 10	เบอร์โทรศัพท์
-    phone = records[10][3]
+    phone = records[10][3].strip() if type(records[10][3]) == type("") else "-" 
     # 11	อีเมล
-    email = records[11][3]
+    email = records[11][3].strip() if type(records[11][3]) == type("") else "-" 
     # 12	ช่องทางการขายและติดต่อ
-    facebook = records[12][6]
-    line = records[12][8]
+    facebook = records[12][6].strip() if type(records[12][6]) == type("") else "-" 
+    line = getCol(records[12],8).strip() if type(getCol(records[12],8)) == type("") else "-" 
     # 13	พันธุ์ของแตงโม
     # 14	รูปถ่ายเกษตรกร ครึ่งตัว ใบหน้ายิ้มแย้มถ่ายคู่กับผลผลิต
 
@@ -109,7 +125,7 @@ def createPlot(records, farmer_id):
     # 5	จำนวนต้น (ต้น)
     treeCount = records[4][3]
     # 6	พันธุ์ที่ปลูก
-    breed = records[5][3].strip()
+    breed = records[5][3].strip() if type(records[5][3]) == type("") else "-"
     # 7	ปลูกรอบที่
     # 8	ตำแหน่งที่ตั้ง (ที่อยู่แปลง)
     addresses = records[7][3].strip().split(' ')
@@ -152,12 +168,12 @@ def createPlot(records, farmer_id):
         isAddressNo = False
 
     # 9	โครงการที่เข้าร่วม
-    project = records[8][3].strip()
+    project = records[8][3].strip() if type(records[8][3]) == type("") else "-"
     # 10	ใบรับรองที่ได้ และวันที่ได้ใบรับรอง
     certificate = ''
-    certificateDate = records[9][3].strip() if type(records[9][3]) == type("") else ""
+    certificateDate = records[9][3].strip() if type(records[9][3]) == type("") else "-"
     # 11	ช่วงการเก็บเกี่ยวผลผลิต (วัน)
-    harvestPeriod = records[10][3].strftime('%B %Y') if type(records[9][3]) != float else ""
+    harvestPeriod = records[10][3].strftime('%B %Y') if type(records[9][3]) == type(datetime.datetime.now()) else records[10][3]
     # 12	ปริมาณผลผลิตทั้งหมด (กิโลกรัม)
     harvestQuantity = records[11][3]
     # 13	ราคาผลผลิต (บาท/กิโลกรัม)
@@ -195,11 +211,17 @@ def createPlot(records, farmer_id):
     # 17	การควบคุมโรค
     illnessManagement = {}
     if records[21+offset][3].find('√') != -1:
-        illnessManagement["พบโรคเถาเหี่ยว"] = records[21+offset][4].strip() + " " +records[21+offset][5].strip()
+        part1 = records[21+offset][4].strip() if type(records[21+offset][4]) == type("") else '-'
+        part2 = getCol(records[21+offset],5).strip() if type(getCol(records[21+offset],5)) == type("") else '-'
+        illnessManagement["พบโรคเถาเหี่ยว"] = f"{part1} {part2}"
     if records[22+offset][3].find('√') != -1:
-        illnessManagement["พบโรคราน้ำค้าง"] = records[22+offset][4].strip() + " " +records[22+offset][5].strip()
+        part1 = records[22+offset][4].strip() if type(records[22+offset][4]) == type("") else '-'
+        part2 = getCol(records[22+offset],5).strip() if type(getCol(records[22+offset],5)) == type("") else '-'
+        illnessManagement["พบโรคราน้ำค้าง"] = f"{part1} {part2}"
     if records[23+offset][3].find('√') != -1:
-        illnessManagement["พบโรคเหี่ยวเขียว"] = records[23+offset][4].strip() + " " +records[23+offset][5].strip()
+        part1 = records[23+offset][4].strip() if type(records[23+offset][4]) == type("") else '-'
+        part2 = getCol(records[23+offset],5).strip() if type(getCol(records[23+offset],5)) == type("") else '-'
+        illnessManagement["พบโรคเหี่ยวเขียว"] = f"{part1} {part2}"
     if records[24+offset][3].find('√') != -1:
         illnessManagement["ไม่พบ"] = "true"
     # 18	วิธีการเก็บเกี่ยวผลผลิต
@@ -262,7 +284,7 @@ def createPlot(records, farmer_id):
 
 
 seedFile = open('seed_tail.txt','w')
-filenames = sorted(glob.glob("./xls/*"))
+filenames = sorted(glob.glob("./xls/*"), key=alphanum_key)
 farmer_id = 1
 for filename in filenames:
     print(f"{farmer_id}: read file - {filename}")

@@ -53,20 +53,20 @@ Dir[Rails.root + "seedPicture/plot1_1*"].each do |pic|
 end
 plot1_1.save
 farmer2 = Farmer.new( 
-    title: 'นาย',
-    firstName: 'สุริยงค์',
+    title: 'นาง',
+    firstName: 'ปราณี',
     lastName: 'โมอ่อน',
-    dateOfBirth: Date.strptime('02-08-1982', '%d-%m-%Y'),
+    dateOfBirth: Date.strptime('24-01-1964', '%d-%m-%Y'),
     group: 'ชมรมแตงโมปลอดสารพิษผู้ผลิตปลอดโรค',
-    addressNo: '12',
+    addressNo: '48/2',
     addressMoo: '3',
     addressTambon: 'ศรีวิชัย',
     addressAmphoe: 'พุนพิน',
-    addressProvince: 'สุราษฎร์ธานี',
-    addressZipcode: '',
-    phone: '087-563-7573',
-    facebook: 'Jatinjegter',
-    line: 'ไม่มี',
+    addressProvince: '',
+    addressZipcode: 'สุราษฎร์ธานี',
+    phone: '089-909-5851',
+    facebook: 'ปราณี โมอ่อน',
+    line: '062-214-5851',
     email: 'ไม่มี'
     )
 Dir[Rails.root + "seedPicture/farmer2*"].each do |pic|
@@ -75,63 +75,53 @@ end
 farmer2.save
 plot2_1 = Plot.new(
     farmer_id: 2,
-    areaRai: 5,
-    treeCount: 5000,
+    areaRai: 20,
+    treeCount: 10000,
     breed: 'กินรี',
     project: 'ชมรมแตงโมปลอดสารพิษผู้ผลิตปลอดโรค ผู้บริโภคปลอดภัย ปี 2562',
     certificate: '',
-    certificateDate: '',
-    harvestPeriod: '',
-    harvestQuantity: '0',
-    price: '16',
-    plotManagement: '{}',
-    fertilizeManagement: '{"0": {"สูตรปุ๋ย": "-", "อัตรา": "-"}, "1": {"สูตรปุ๋ย": "-", "อัตรา": "-"}, "2": {"สูตรปุ๋ย": "14-14-21", "อัตรา": "-"}, "3": {"สูตรปุ๋ย": "-", "อัตรา": "-"}}',
-    waterManagement: '{}',
-    illnessManagement: '{}',
-    harvestManagement: '{}',
-    sellingChannel: '{}',
-    logistic: '{}',
+    certificateDate: '29 มกราคม 2562 - 28 มกราคม 2564',
+    harvestPeriod: 'January 2004',
+    harvestQuantity: '18',
+    price: 'nan',
+    plotManagement: '{"อินทรีย์และเคมี": "true"}',
+    fertilizeManagement: '{"0": {"สูตรปุ๋ย": "25-7-7", "อัตรา": "-"}, "1": {"สูตรปุ๋ย": "15-15-15", "อัตรา": "-"}, "2": {"สูตรปุ๋ย": "13-13-21", "อัตรา": "-"}, "3": {"สูตรปุ๋ย": "-", "อัตรา": "-"}}',
+    waterManagement: '{"มีระบบน้ำหยด": "true"}',
+    illnessManagement: '{"พบโรคเถาเหี่ยว": "ใช้สารเคมี เมทาแลกซิล อัตรา 12 กรัมต่อน้ำ 20 ลิตร", "พบโรคราน้ำค้าง": "ใช้สารเคมี โพรพิเนบ 70% WP อัตรา 30 กรัมต่อน้ำ 20 ลิตร"}',
+    harvestManagement: '{"ใช้แรงงานคน": "true"}',
+    sellingChannel: '{"เกษตรกรจำหน่ายเอง": "true", "เกษตรกรตัดพ่อค้าคนกลางมารับ": "true"}',
+    logistic: '{"มีรถมารับซื้อ": "true", "รถกระบะ": "true"}',
     addressNo: '',
-    addressMoo: '7',
+    addressMoo: '',
     addressTambon: 'มะลวน',
     addressAmphoe: '',
     addressProvince: '',
     addressZipcode: '',
-    lat: '9.159496',
-    long: '99.187747'
+    lat: '9.173561',
+    long: '99.193547'
     )
 Dir[Rails.root + "seedPicture/plot2_1*"].each do |pic|
     plot2_1.pictures.attach(io: File.open(pic), filename: pic.split('/').last)
 end
 plot2_1.save
-plot2_2 = Plot.new(
-    farmer_id: 2,
-    areaRai: 10,
-    treeCount: 5000,
-    breed: 'กินรี',
-    project: 'ชมรมแตงโมปลอดสารพิษผู้ผลิตปลอดโรค ผู้บริโภคปลอดภัย ปี 2562',
-    certificate: '',
-    certificateDate: 'ไม่มี',
-    harvestPeriod: 'April 2562',
-    harvestQuantity: '10000',
-    price: '16',
-    plotManagement: '{"อินทรีย์และเคมี": "true"}',
-    fertilizeManagement: '{"0": {"สูตรปุ๋ย": "25-7-7", "อัตรา": "-"}, "1": {"สูตรปุ๋ย": "15-15-15", "อัตรา": "-"}, "2": {"สูตรปุ๋ย": "14-14-21", "อัตรา": "-"}, "3": {"สูตรปุ๋ย": "-", "อัตรา": "-"}}',
-    waterManagement: '{"มีระบบน้ำหยด": "true"}',
-    illnessManagement: '{"พบโรคเถาเหี่ยว": "ใช้สารเคมี ไซโปรโคนาโซล อัตรา 10 มิลลิลิตรต่อน้ำ 20 ลิตร", "พบโรคราน้ำค้าง": "ใช้สารเคมี ไซม็อกซานิล+แมนโคแซบ 8% +6% WP อัตรา 20 กรัมต่อน้ำ 20 ลิตร", "พบโรคเหี่ยวเขียว": "ไม่ใช้สารเคมี อัตรา"}',
-    harvestManagement: '{"ใช้แรงงานคน": "true"}',
-    sellingChannel: '{"เกษตรกรจำหน่ายเอง": "true", "เกษตรกรตัดพ่อค้าคนกลางมารับ": "true"}',
-    logistic: '{"มีรถมารับซื้อ": "true", "รถกระบะ": "true"}',
-    addressNo: '',
+farmer3 = Farmer.new( 
+    title: 'นาง',
+    firstName: 'ละออง',
+    lastName: 'สระทองแย',
+    dateOfBirth: Date.strptime('18-01-1954', '%d-%m-%Y'),
+    group: 'ชมรมแตงโมปลอดสารพิษผู้ผลิตปลอดโรค',
+    addressNo: '49/2',
     addressMoo: '7',
-    addressTambon: 'มะลวน',
-    addressAmphoe: '',
+    addressTambon: 'ศรีวิชัย',
+    addressAmphoe: 'พุนพิน',
     addressProvince: '',
-    addressZipcode: '',
-    lat: '9.188585',
-    long: '99.208613'
+    addressZipcode: 'สุราษฎร์ธานี',
+    phone: '093-640-6791',
+    facebook: 'ญาธิณี สระทองแย',
+    line: '093-640-6791',
+    email: 'ไม่มี'
     )
-Dir[Rails.root + "seedPicture/plot2_2*"].each do |pic|
-    plot2_2.pictures.attach(io: File.open(pic), filename: pic.split('/').last)
+Dir[Rails.root + "seedPicture/farmer3*"].each do |pic|
+    farmer3.picture.attach(io: File.open(pic), filename: pic.split('/').last)
 end
-plot2_2.save
+farmer3.save
