@@ -3,6 +3,7 @@ import datetime
 import glob
 import math
 import re
+from pathlib import Path
 
 def tryint(s):
     try:
@@ -14,8 +15,9 @@ def alphanum_key(s):
     return [tryint(c) for c in re.split('([0-9]+)', s)]
 
 def attachPicture(objName, attachName='picture'):
-    
-    template = f"""Dir[Rails.root + "seedPicture/{objName}*"].each do |pic|
+    # create folder
+    Path(f"../seedPicture/{objName}").mkdir(parents=True, exist_ok=True)
+    template = f"""Dir[Rails.root + "seedPicture/{objName}/*"].each do |pic|
     {objName}.{attachName}.attach(io: File.open(pic), filename: pic.split('/').last)
 end"""
     return template
