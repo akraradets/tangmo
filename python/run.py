@@ -261,7 +261,7 @@ def createPlot(records, farmer_id):
     return plot
 
 
-seedFile = open('seed.txt','w')
+seedFile = open('seed_tail.txt','w')
 filenames = sorted(glob.glob("./xls/*"))
 farmer_id = 1
 for filename in filenames:
@@ -287,3 +287,4 @@ for filename in filenames:
             seedFile.write( f"{objName}.save\n")
             print(f"{farmer_id}: - {objName} [DONE]")
     farmer_id = farmer_id + 1
+seedFile.close()

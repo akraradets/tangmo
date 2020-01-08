@@ -1,5 +1,3 @@
-User.create(email: 'admin@tangmo.com', username: 'admin', password: '123456', password_confirmation: '123456')
-puts "User - username='admin' password='123456'"
 farmer1 = Farmer.new( 
     title: 'นาย',
     firstName: 'ณรงค์',
