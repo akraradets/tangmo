@@ -1,4 +1,10 @@
-<h1>แปลงแตงโม</h1>
+<script>
+$( document ).ready(function() {
+  $("#nav-li-plot").addClass('active')
+});
+</script>
+
+<h1>แปลง<%= Rails.configuration.thai %></h1>
 <div class="row">
   <% @plots.each do |plot| %>
   <div class="col-lg-3 col-md-4">

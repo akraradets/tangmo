@@ -1,0 +1,17 @@
+<h1>รายชื่อเกษตรกร</h1>
+<div class="row">
+  <% @farmers.each do |farmer| %>
+  <div class="col-lg-3 col-md-4">
+    <div class="card" style="margin:5px;">
+      <div class="card-img-top">
+        <%= farmer_picture(farmer, 400) %>
+      </div>
+      <div class="card-body">
+        <h6 class="card-title">
+          <%= link_to "#{farmer.title} #{farmer.firstName} #{farmer.lastName}", farmer %>
+        </h6>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

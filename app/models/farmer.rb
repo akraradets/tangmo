@@ -48,8 +48,12 @@ class Farmer < ApplicationRecord
     end
 
     def age
-      now = Time.now.utc.to_date
-      age = now.year - dateOfBirth.year - (dateOfBirth.to_date.change(:year => now.year) > now ? 1 : 0)
-      return age
+      if dateOfBirth.nil?
+        return '-'
+      else
+        now = Time.now.utc.to_date
+        age = now.year - dateOfBirth.year - (dateOfBirth.to_date.change(:year => now.year) > now ? 1 : 0)
+        return age
+      end
     end
 end

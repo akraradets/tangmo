@@ -4,36 +4,15 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Tangmo</title>
+    <title><%= Rails.configuration.title %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link rel="shortcut icon" type="image/png" href="<%= image_url('TANGMO_logo.png') %>"/>
+    <link rel="shortcut icon" type="image/png" href="<%= image_url(Rails.configuration.logo) %>"/>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
 <style>
-  .bg-pattern {
-    background-image: url("<%= image_url('TANGMO_pattern.png') %>");
-    background-color: #d7ccc8 !important;
-  }
-  .my-container {
-      /* background: #d7ccc8; */
-      /* overflow: hidden; */
-      background-repeat: 'repeat'
-  }
-  /* You could use :after - it doesn't really matter */
-  .my-container:after {
-      content: ' ';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      opacity: 0.1;
-      background-image: url("<%= image_url('TANGMO_pattern.png') %>");
-      /* background-position: 50% 0; */
-  }
   p {
     margin-top: 0;
     margin-bottom: 1rem;
@@ -43,9 +22,15 @@
     font-size: 1rem;
   }
   .btn-light-brown {
-      /* color: #212529; */
-      background-color: #d7ccc8;
-      border-color: #d7ccc8;
+    /* color: #212529; */
+    background-color: #d7ccc8;
+    border-color: #d7ccc8;
+  }
+  .bg-main {
+    /* #3e2723 brown darken-4 */
+    background-color: #3e2723 !important;
+    /* #ffcdd2 red lighten-4 */
+    /* #424242 grey darken-3 */
   }
 </style>
   <body>
@@ -53,8 +38,8 @@
     <script src="https://www.promisejs.org/polyfills/promise-done-7.0.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <!-- Nav bar -->
-    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-main">
-      <a class="navbar-brand" href="/"> <%= image_tag 'TANGMO_logo.png', height:37, width:37 %></a>
+    <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light bg-main">
+      <a class="navbar-brand" href="/"> <%= image_tag Rails.configuration.logo, height:37, width:37 %></a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -62,11 +47,11 @@
       <!-- Navbar Left -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li id="nav-li-farmer" class="nav-item">
             <a class="nav-link" href="<%= farmers_path %>">เกษตรกร</a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="<%= plots_path %>">แปลงแตงโม</a>
+          <li id="nav-li-plot" class="nav-item">
+            <a class="nav-link" href="<%= plots_path %>">แปลง<%= Rails.configuration.thai %></a>
           </li>
           <% if !current_user.nil? %>
           <li class="nav-item dropdown">
@@ -75,7 +60,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="<%= new_farmer_path %>">เพิ่มเกษตรกร</a>
-              <a class="dropdown-item" href="<%= new_plot_path %>">เพิ่มแปลงแตงโม</a>
+              <a class="dropdown-item" href="<%= new_plot_path %>">เพิ่มแปลง<%= Rails.configuration.thai %></a>
             </div>
           </li>
           <% end %>
@@ -129,15 +114,15 @@
       </div>
     </div>
     <!-- Footer -->
-    <nav class="navbar fixed-bottom navbar-dark bg-dark" style="color:white; display:none;">
+    <nav class="navbar fixed-bottom navbar-light bg-main">
       <div>
-        <small>© Copyright PHANGAN ORGANIC COCONUT TRACABILITY SYSTEM.</small>
+        <small></small>
       </div>
-      <div>
-        <%# <small>Web Application Engineering</small> %>
-      </div>
-      <div>
+      <%# <div>
         <small>Created By โครงการพัฒนามะพร้าวอินทรีย์เกาะพะงัน</small>
+      </div> %>
+      <div>
+        <small><%= Rails.configuration.version %> - <%= Rails.configuration.date %></small>
       </div>
     </nav>
   </body>
