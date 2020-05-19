@@ -19,6 +19,8 @@ module Tangmo
     config.acentColour = "#3e2723"
     config.navbar = "navbar-dark"
     config.footerTextColor = "white"
+    config.firstPage = false
+
 
     config.title = "Tangmo"
     config.logo = "TANGMO_LOGO.png"

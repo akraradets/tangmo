@@ -57,9 +57,11 @@
       <!-- Navbar Left -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+          <% if Rails.configuration.firstPage %>
           <li id="nav-li-firstPage" class="nav-item">
             <a class="nav-link" href="/">หน้าแรก</a>
           </li>
+          <% end %>
           <li id="nav-li-farmer" class="nav-item">
             <a class="nav-link" href="<%= farmers_path %>">เกษตรกร</a>
           </li>
