@@ -1,0 +1,11 @@
+<script>
+$( document ).ready(function() {
+  $("#nav-li-plot").addClass('active')
+});
+</script>
+
+<h1>แก้ไขแปลง<%= Rails.configuration.thai %></h1>
+
+<%= render 'form', plot: @plot %>
+
+<%= link_to 'ยกเลิก', @plot %>

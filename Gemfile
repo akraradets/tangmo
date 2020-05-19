@@ -46,6 +46,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'font_awesome5_rails'
 gem 'jquery-ui-rails'
+gem 'wow-rails'
 
 # Authentication
 gem 'devise'

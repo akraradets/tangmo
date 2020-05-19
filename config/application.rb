@@ -10,8 +10,8 @@ module Tangmo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
-    config.version = "1.0.1"
-    config.date = "17/05/2020"
+    config.version = "1.0.2"
+    config.date = "20-05-2020"
 
     config.title = "Tangmo"
     config.logo = "TANGMO_LOGO.png"

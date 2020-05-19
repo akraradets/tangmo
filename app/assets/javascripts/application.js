@@ -20,4 +20,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require bootstrap-sprockets
+//= require wow.js
 //= require_tree .

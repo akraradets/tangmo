@@ -6,8 +6,8 @@ $( document ).ready(function() {
 
 <h1>แปลง<%= Rails.configuration.thai %></h1>
 <div class="row">
-  <% @plots.each do |plot| %>
-  <div class="col-lg-3 col-md-4">
+  <% @plots.each_with_index do |plot, index| %>
+  <div class="wow fadeInUp col-lg-3 col-md-4" data-wow-delay="0.<%= index%4 %>s">
     <div class="card" style="margin:5px;">
       <div class="card-img-top">
         <%= raw plot_picture_carousel(plot, 400) %>

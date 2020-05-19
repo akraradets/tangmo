@@ -6,8 +6,8 @@ $( document ).ready(function() {
 
 <h1>รายชื่อเกษตรกร</h1>
 <div class="row">
-  <% @farmers.each do |farmer| %>
-  <div class="col-lg-3 col-md-4">
+  <% @farmers.each_with_index do |farmer,index| %>
+  <div class="wow fadeInUp col-lg-3 col-md-4" data-wow-delay="0.<%= index%4 %>s">
     <div class="card" style="margin:5px;">
       <div class="card-img-top">
         <%= farmer_picture(farmer, 400) %>
