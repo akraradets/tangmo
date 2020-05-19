@@ -1,0 +1,4 @@
+[submodule "animate.less"]
+	path = /app/assets/stylesheets/animate.less
+	url = https://github.com/machito/animate.less
+	branch = master

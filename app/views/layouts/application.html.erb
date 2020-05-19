@@ -27,10 +27,8 @@
     border-color: #d7ccc8;
   }
   .bg-main {
-    /* #3e2723 brown darken-4 */
-    background-color: #3e2723 !important;
-    /* #ffcdd2 red lighten-4 */
-    /* #424242 grey darken-3 */
+
+    background-color: <%= Rails.configuration.acentColour %> !important;
   }
 
   .center-cropped {
@@ -50,7 +48,7 @@
 
 
     <!-- Nav bar -->
-    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-light bg-main">
+    <nav class="navbar fixed-top navbar-expand-md <%= Rails.configuration.navbar %> bg-light bg-main">
       <a class="navbar-brand" href="/"> <%= image_tag Rails.configuration.logo, height:37, width:37 %></a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,9 +57,9 @@
       <!-- Navbar Left -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <!-- <li id="nav-li-firstPage" class="nav-item">
+          <li id="nav-li-firstPage" class="nav-item">
             <a class="nav-link" href="/">หน้าแรก</a>
-          </li> -->
+          </li>
           <li id="nav-li-farmer" class="nav-item">
             <a class="nav-link" href="<%= farmers_path %>">เกษตรกร</a>
           </li>
@@ -129,15 +127,15 @@
       </div>
     </div>
     <!-- Footer -->
-    <nav class="navbar fixed-bottom navbar-light bg-main">
+    <nav class="navbar fixed-bottom <%= Rails.configuration.navbar %> bg-main">
       <div>
-        <small></small>
+        <small style="color: <%= Rails.configuration.footerTextColor %>;">Created By <%= Rails.configuration.project %></small>
       </div>
-      <%# <div>
-        <small>Created By โครงการพัฒนามะพร้าวอินทรีย์เกาะพะงัน</small>
-      </div> %>
       <div>
-        <small><%= Rails.configuration.version %> - <%= Rails.configuration.date %></small>
+        <small style="color: <%= Rails.configuration.footerTextColor %>;"></small>
+      </div>
+      <div>
+        <small style="color: <%= Rails.configuration.footerTextColor %>;"><%= Rails.configuration.version %> - <%= Rails.configuration.date %></small>
       </div>
     </nav>
   </body>
