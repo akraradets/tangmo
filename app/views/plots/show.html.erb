@@ -1,7 +1,32 @@
 <script>
 $( document ).ready(function() {
-  $("#nav-li-plot").addClass('active')
+  $("#nav-li-plot").addClass('active');
+
+  // Init map
+  map = L.map('map', {
+      center: [9.19019, 99.2241],
+      zoom: 13
+  });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+  addMaker();
 });
+
+function addMaker(){
+  L.marker([<%= @plot.lat %>,<%= @plot.long %>],{
+    title: "<%= @plot.farmer.display_name %>",
+  }).addTo(map)
+    .bindPopup("<table>" +
+      "<tr><td><b>เจ้าของแปลง</b></td><td><%= @plot.farmer.display_name %></td></tr>" +
+      "<tr><td><b>รหัสแปลง</b></td><td><%= @plot.id %></td></tr>"+
+      "<tr><td><b>พื้นที่ (ตร.กม.)</b></td><td><%= @plot.areaSqurekilometre %></td></tr>"+
+      "<tr><td><b>พื้นที่ (ไร่)</b></td><td><%= @plot.areaRai %></td></tr>"+
+      '<tr><td><a href="https://www.google.com/maps/search/?api=1&query=<%= @plot.lat %>,<%= @plot.long %>" target="_blank">นำทาง</a></td><td></td></tr>'+
+      "</table>"
+    )
+    .openPopup();
+}
 </script>
 
 <div class="row">
@@ -12,10 +37,15 @@ $( document ).ready(function() {
         <%= raw plot_picture_carousel(@plot, 300) %>
       </div>
     </div>
-    <div class="row">
-      <% if !current_user.nil? %>
+    <% if !current_user.nil? %>
+      <div class="row">
         <%= qrCode(plot_url(@plot),200) %>
-      <% end %>
+      </div>
+    <% end %>
+    <div class="row" style="margin-top: 30px;">
+      <div class="col">
+        <div id="map" style="width: 100%; height: 300px;"></div>
+      </div>
     </div>
   </div>
   <!-- Right Column: information-->
@@ -115,6 +145,7 @@ $( document ).ready(function() {
 
   </div>
 </div>
+
 <div class="row justify-content-center">
   <% if !current_user.nil? %>
   <a href="<%= edit_plot_path(@plot) %>" class="btn btn-light-brown"><i class='far fa-edit'></i> แก้ไข</a>
