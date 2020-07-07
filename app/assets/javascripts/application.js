@@ -21,4 +21,5 @@
 //= require bootstrap
 //= require bootstrap-sprockets
 //= require wow.js
+//= require leaflet
 //= require_tree .
