@@ -91,19 +91,88 @@
 </style>
 <script>
   var map;
+  // var farmers = <%= raw Farmer.all().to_json %>;
+  // var plots = <%= raw Plot.all().to_json %>;
   $( document ).ready(function() {
     $("#nav-li-firstPage").addClass('active');
-    var map = L.map('map').setView([51.505, -0.09], 13);
 
+    // Init map
+    map = L.map('map', {
+        center: [9.19019, 99.2241],
+        zoom: 13
+    });
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-
-    L.marker([51.5, -0.09]).addTo(map)
-        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-        .openPopup();
+    addMaker();
 
   });
+
+  function addMaker(){
+    <% Plot.all().each_with_index do |plot, index| %>
+
+      L.marker([<%= plot.lat %>,<%= plot.long %>],{
+        title: "<%= plot.farmer.display_name %>",
+      }).addTo(map)
+        .bindPopup("<table>" +
+          "<tr><td><b>เจ้าของแปลง</b></td><td><%= plot.farmer.display_name %></td></tr>" +
+          "<tr><td><b>รหัสแปลง</b></td><td><%= plot.id %></td></tr>"+
+          "<tr><td><b>พื้นที่ (ตร.กม.)</b></td><td><%= plot.areaSqurekilometre %></td></tr>"+
+          "<tr><td><b>พื้นที่ (ไร่)</b></td><td><%= plot.areaRai %></td></tr>"+
+          '<tr><td><%= link_to "ไปที่แปลง", plot %></td><td><a href="https://www.google.com/maps/search/?api=1&query=<%= plot.lat %>,<%= plot.long %>" target="_blank">นำทาง</a></td></tr>'+
+          "</table>"
+        );
+        
+    <% end %>
+
+
+    // plots.forEach(plot => {
+    //   if(plot.lat == null || plot.long == null){
+    //     console.log(plot.id + " has null lat + long");
+    //   }
+    //   else{
+    //     try {
+    //       var farmer_index = plot.farmer_id - 1;
+    //       var farmerName = farmers[farmer_index].firstName + " " + farmers[farmer_index].lastName;
+    //       var plotId = plot.id;
+    //       var areaRai = plot.areaRai;
+    //       var latLong = [plot.lat, plot.long];
+    //       var popUpTemplate = "<table>" +
+    //       "<tr><td><b>เจ้าของแปลง</b></td><td>[farmerName]</td></tr>" +
+    //       "<tr><td><b>รหัสแปลง</b</td><td>[plotId]</td></tr>"+
+    //       "<tr><td><b>พื้นที่ (ไร่)</b</td><td>[areaRai]</td></tr>"+
+    //       "</table>";
+    //       popUpTemplate = popUpTemplate.replace('[farmerName]',farmerName);
+    //       popUpTemplate = popUpTemplate.replace('[plotId]',plotId);
+    //       popUpTemplate = popUpTemplate.replace('[areaRai]',areaRai);
+    //       L.marker(latLong,{
+    //         title: farmerName,
+    //       }).addTo(map)
+    //         // .bindPopup('ชื่อ: ' + farmerName );
+    //         .bindPopup(popUpTemplate);
+    //       // console.log(popUpTemplate);
+    //     } catch (error) {
+    //       console.log(error);
+    //       console.log(plot);
+    //       console.log(farmers[plot.farmer_id]);
+    //     }
+        
+        
+    //   }
+    // });
+
+    // L.marker([9.19019, 99.2241]).addTo(map)
+    //     .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+    //     .openPopup();
+
+    // L.marker([9.1595, 99.1877],{
+    //   title: "asdasd"
+    // }).addTo(map)
+    //     .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+    //     .openPopup();
+    
+  }
+
 </script>
 
 <div class="px-md-3">

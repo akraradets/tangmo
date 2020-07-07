@@ -56,4 +56,10 @@ class Plot < ApplicationRecord
     addr = "บ้านเลขที่#{addrNo} หมู่#{addrMoo}  ตำบล#{addrTambon} อำเภอ#{addrAmphoe} จังหวัด#{addrProvince} รหัสไปรษณีย์#{addrZipcode}" 
     return addr
   end
+
+  def areaSqurekilometre
+    # 1 rai = 0.0016 kilometre
+    areaSqurekilometre = areaRai * 0.0016
+    return  areaSqurekilometre
+  end
 end

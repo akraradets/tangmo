@@ -1209,7 +1209,7 @@ plot21_1 = Plot.new(
     addressAmphoe: '',
     addressProvince: '',
     addressZipcode: 'ศรีวิชัย',
-    lat: '',
+    lat: '9.170000',
     long: '99.18000'
     )
 Dir[Rails.root + "seedPicture/plot21_1/*"].each do |pic|
