@@ -107,21 +107,23 @@
   });
 
   function addMaker(){
-    <% Plot.all().each_with_index do |plot, index| %>
-
-      L.marker([<%= plot.lat %>,<%= plot.long %>],{
-        title: "<%= plot.farmer.display_name %>",
-      }).addTo(map)
-        .bindPopup("<table>" +
-          "<tr><td><b>เจ้าของแปลง</b></td><td><%= plot.farmer.display_name %></td></tr>" +
-          "<tr><td><b>รหัสแปลง</b></td><td><%= plot.id %></td></tr>"+
-          "<tr><td><b>พื้นที่ (ตร.กม.)</b></td><td><%= plot.areaSqurekilometre %></td></tr>"+
-          "<tr><td><b>พื้นที่ (ไร่)</b></td><td><%= plot.areaRai %></td></tr>"+
-          '<tr><td><%= link_to "ไปที่แปลง", plot %></td><td><a href="https://www.google.com/maps/search/?api=1&query=<%= plot.lat %>,<%= plot.long %>" target="_blank">นำทาง</a></td></tr>'+
-          "</table>"
-        );
+    <% Plot.all().each_with_index do |plot, index|
+      if(plot.lat.nil? == false and plot.long.nil? == false)
+      %>
+        L.marker([<%= plot.lat %>,<%= plot.long %>],{
+          title: "<%= plot.farmer.display_name %>",
+        }).addTo(map)
+          .bindPopup("<table>" +
+            "<tr><td><b>เจ้าของแปลง</b></td><td><%= plot.farmer.display_name %></td></tr>" +
+            "<tr><td><b>รหัสแปลง</b></td><td><%= plot.id %></td></tr>"+
+            "<tr><td><b>พื้นที่ (ตร.กม.)</b></td><td><%= plot.areaSqurekilometre %></td></tr>"+
+            "<tr><td><b>พื้นที่ (ไร่)</b></td><td><%= plot.areaRai %></td></tr>"+
+            '<tr><td><%= link_to "ไปที่แปลง", plot %></td><td><a href="https://www.google.com/maps/search/?api=1&query=<%= plot.lat %>,<%= plot.long %>" target="_blank">นำทาง</a></td></tr>'+
+            "</table>"
+          );
         
-    <% end %>
+    <% end 
+    end %>
   }
 
 </script>
