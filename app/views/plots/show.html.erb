@@ -4,7 +4,7 @@ $( document ).ready(function() {
 
   // Init map
   map = L.map('map', {
-      center: [9.19019, 99.2241],
+      center: [<%= @plot.lat %>,<%= @plot.long %>],
       zoom: 13
   });
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
