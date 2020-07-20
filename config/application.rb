@@ -10,7 +10,7 @@ module Tangmo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
-    config.version = "1.2"
+    config.version = "1.1.2"
     config.date = "20-07-2020"
     config.project = "โครงการวิจัยและพัฒนาการผลิตแตงโมบ้านทุ่งอ่าว"
     # #3e2723 brown darken-4
