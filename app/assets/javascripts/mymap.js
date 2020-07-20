@@ -45,7 +45,7 @@ function getBasemaps() {
   return basemaps;
 }
 
-function initMap(lat, long, edit = false, id = 'map') {
+function initMap(lat, long, edit, id) {
   //Init BaseMaps
   var basemaps = getBasemaps();
   // Init map
