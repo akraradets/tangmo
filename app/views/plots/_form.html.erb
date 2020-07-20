@@ -57,12 +57,22 @@ function generateLatlng(){
   div = $("#poly-latlngs");
   div.html("");
 
-  template = '<div class="form-group col-md-6"> <label for="<for>"><for>_<i></label>  <input class="form-control" autocomplete="off" data-type="<for>" data-index="<i>" onchange="editLatLng(this);" type="number" name="plot[<i>][<for>]" value="<value>"> </div>';
+  template = '<div class="form-group col-md-6"> <label for="<for_d>"><for_d>_<i_d></label>  <input class="form-control" autocomplete="off" data-type="<for>" data-index="<i>" onchange="editLatLng(this);" type="number" name="plot[polygon][<i>][<for>]" value="<value>"> </div>';
   var count = 1;
   latlngs.forEach(latlng => {
     console.log(latlng);
-    div.append(template.split('<for>').join('ละติจูด').split('<i>').join(count).replace('<value>',latlng.lat));
-    div.append(template.split('<for>').join('ลองจิจูด').split('<i>').join(count).replace('<value>',latlng.lng));
+    temlat = template.split('<for_d>').join('ละติจูด');
+    temlat = temlat.split('<i_d>').join(count);
+    temlat = temlat.split('<for>').join('lat');
+    temlat = temlat.split('<i>').join(count - 1);
+
+    temlng = template.split('<for_d>').join('ลองจิจูด');
+    temlng = temlng.split('<i_d>').join(count);
+    temlng = temlng.split('<for>').join('lng');
+    temlng = temlng.split('<i>').join(count - 1);
+
+    div.append(temlat.replace('<value>',latlng.lat));
+    div.append(temlng.replace('<value>',latlng.lng));
     count = count + 1;
   });
 }
@@ -70,20 +80,21 @@ function generateLatlng(){
 function editLatLng(input){
   input = $(input);
   value = parseFloat(input.val());
-  index = parseInt(input.attr('data-index')) - 1;
+  index = parseInt(input.attr('data-index'));
   type = input.attr('data-type');
   // search latlng
   if(latlngs == undefined){
-    lat = $("input[name=lat1]").val();
-    lng = $("input[name=lng1]").val();
+    lat = $("input[name='plot[polygon][0][lat]']").val();
+    lng = $("input[name='plot[polygon][0][lng]']").val();
     if(lat != "" && lng != ""){
       // search latlng
       console.log("search latlng");
-      map.flyTo([lat,lng],13)
+      console.log([lat,lng]);
+      map.flyTo([lat,lng],13);
     }
   }
   else{
-    if(type == 'ละติจูด'){
+    if(type == 'lat'){
       latlngs[index].lat = value;
     }
     else{
@@ -250,11 +261,11 @@ function promiseFunc(){
   <div class="row" id="poly-latlngs">
     <div class="form-group col-md-6">
       <label for="plot_ลองจิจูด">เสิชละติจูด</label>
-      <input class="form-control" data-type="lat" data-index="1" onchange="editLatLng(this);" autocomplete="off" type="text" name="lat1">
+      <input class="form-control" data-type="lat" data-index="1" onchange="editLatLng(this);" autocomplete="off" type="text" name="plot[polygon][0][lat]">
     </div>
     <div class="form-group col-md-6">
       <label for="plot_ลองจิจูด">เสิชลองจิจูด</label>
-      <input class="form-control" data-type="lng" data-index="1" onchange="editLatLng(this);" autocomplete="off" type="text" name="lng1">
+      <input class="form-control" data-type="lng" data-index="1" onchange="editLatLng(this);" autocomplete="off" type="text" name="plot[polygon][0][lng]">
     </div>
   </div>
 
