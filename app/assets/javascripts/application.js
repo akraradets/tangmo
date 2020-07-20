@@ -22,4 +22,5 @@
 //= require bootstrap-sprockets
 //= require wow.js
 //= require leaflet
+//= require mymap
 //= require_tree .

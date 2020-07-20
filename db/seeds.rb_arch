@@ -867,7 +867,7 @@ plot15_2 = Plot.new(
     addressProvince: '',
     addressZipcode: '',
     lat: '9.167585',
-    long: '0'
+    long: '99.174843'
     )
 Dir[Rails.root + "seedPicture/plot15_2/*"].each do |pic|
     plot15_2.pictures.attach(io: File.open(pic), filename: pic.split('/').last)

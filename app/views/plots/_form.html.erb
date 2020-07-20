@@ -1,6 +1,101 @@
+<%= form_with(model: plot, local: true, id:"myForm") do |form| %>
 <script>
+var editableLayers;
+var drawControl;
+var latlngs;
+var color = '<%= Rails.configuration.polygonColour %>';
+var l;
+function addPolygon(editableLayers,latlngs,color){
+  console.log(latlngs)
+  // override the existing layer
+  editableLayers.removeLayer(editableLayers.getLayers()[0]);
+  L.polygon(latlngs,{color:color}).addTo(editableLayers);
+  generateLatlng();
+}
+
+
 $( document ).ready(function() {
+  var lat = <%= plot.lat.nil? ? Rails.configuration.centerLat_default : plot.lat %>;
+  var lng = <%= plot.long.nil? ? Rails.configuration.centerLng_default : plot.long %>;
+  map = initMap(lat, lng, false, 'map');
+
+  // Init Overlays
+  var overlays = {};
+  // Init Sidebar Control
+  var sidebar = addSidebar(map);
+  // Init Layer Control
+  var layerControl = addLayerControl(map,overlays);
+  // Init EditableLayers
+  editableLayers = new L.FeatureGroup().addTo(map);
+  //Init Leaflet Draw
+  drawControl = addDrawControl(map, editableLayers, color=color);
+
+  //On Draw Create Event
+  map.on(L.Draw.Event.CREATED, function(e) {
+    latlngs = e.layer.getLatLngs()[0];
+    addPolygon(editableLayers,latlngs,color);
+  });
+
+  //On Draw Edit Event
+  map.on(L.Draw.Event.EDITED, function(e) {
+    l = e;
+    latlngs = e.layers.getLayers()[0].getLatLngs()[0];
+    generateLatlng();
+  });
+
+  //On Draw Delete Event
+  map.on(L.Draw.Event.DELETED, function(e) {
+    console.log("Draw Delete", JSON.stringify(editableLayers.toGeoJSON()));
+    div = $("#poly-latlngs");
+    div.html("");
+  });
+
+
 });
+function generateLatlng(){
+  // clear all latlngs from last create
+  div = $("#poly-latlngs");
+  div.html("");
+
+  template = '<div class="form-group col-md-6"> <label for="<for>"><for>_<i></label>  <input class="form-control" autocomplete="off" data-type="<for>" data-index="<i>" onchange="editLatLng(this);" type="number" name="plot[<i>][<for>]" value="<value>"> </div>';
+  var count = 1;
+  latlngs.forEach(latlng => {
+    console.log(latlng);
+    div.append(template.split('<for>').join('ละติจูด').split('<i>').join(count).replace('<value>',latlng.lat));
+    div.append(template.split('<for>').join('ลองจิจูด').split('<i>').join(count).replace('<value>',latlng.lng));
+    count = count + 1;
+  });
+}
+
+function editLatLng(input){
+  input = $(input);
+  value = parseFloat(input.val());
+  index = parseInt(input.attr('data-index')) - 1;
+  type = input.attr('data-type');
+  // search latlng
+  if(latlngs == undefined){
+    lat = $("input[name=lat1]").val();
+    lng = $("input[name=lng1]").val();
+    if(lat != "" && lng != ""){
+      // search latlng
+      console.log("search latlng");
+      map.flyTo([lat,lng],13)
+    }
+  }
+  else{
+    if(type == 'ละติจูด'){
+      latlngs[index].lat = value;
+    }
+    else{
+      latlngs[index].lng = value;
+    }
+    console.log(latlngs);
+    addPolygon(editableLayers,latlngs,color);
+  }
+
+}
+
+
 function readURL(input) {
   target = input.getAttribute('data')
   console.log(target)
@@ -49,7 +144,6 @@ function promiseFunc(){
 
 </script>
 
-<%= form_with(model: plot, local: true, id:"myForm") do |form| %>
   <% if plot.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(plot.errors.count, "error") %> prohibited this plot from being saved:</h2>
@@ -144,6 +238,23 @@ function promiseFunc(){
     <div class="form-group col-md-6">
       <%= form.label "ลองจิจูด" %>
       <%= form.text_field :long, class: "form-control",autocomplete: "off" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col">
+      <%= form.label "วาดแปลง" %>
+      <div id="map" style="width: 100%; height: 300px;"></div>
+    </div>
+  </div>
+  <div class="row" id="poly-latlngs">
+    <div class="form-group col-md-6">
+      <label for="plot_ลองจิจูด">เสิชละติจูด</label>
+      <input class="form-control" data-type="lat" data-index="1" onchange="editLatLng(this);" autocomplete="off" type="text" name="lat1">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="plot_ลองจิจูด">เสิชจิจูด</label>
+      <input class="form-control" data-type="lng" data-index="1" onchange="editLatLng(this);" autocomplete="off" type="text" name="lng1">
     </div>
   </div>
 

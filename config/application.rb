@@ -25,6 +25,12 @@ module Tangmo
     config.logo = "TANGMO_LOGO.png"
     config.english = "Tangmo"
     config.thai = "แตงโม"
+
+    # #1b5e20 green darken-4
+    # #b71c1c red darken-4
+    config.polygonColour = "#b71c1c"
+    config.centerLat_default = 9.19019
+    config.centerLng_default = 99.2241
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
