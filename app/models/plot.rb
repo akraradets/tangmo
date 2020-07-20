@@ -41,6 +41,10 @@ class Plot < ApplicationRecord
       if self.logistic.nil?
         self.logistic = {}.to_json
       end
+
+      if(self.polygon.nil?)
+        self.polygon = [].to_json
+      end
     end
   end
 
