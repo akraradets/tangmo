@@ -87,7 +87,7 @@ class PlotsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def plot_params
-      params.require(:plot).permit(:farmer_id, :areaRai, :treeCount, :breed, :project, :certificate, :certificateDate, :harvestPeriod, :harvestQuantity, :price, :plotManagement, :fertilizeManagement, :waterManagement, :illnessManagement, :harvestManagement, :sellingChannel, :logistic, :addressNo, :addressMoo, :addressTambon, :addressAmphoe, :addressProvince, :addressZipcode, :lat, :long, :picture)
+      params.require(:plot).permit(:farmer_id, :areaRai, :treeCount, :breed, :project, :certificate, :certificateDate, :harvestPeriod, :harvestQuantity, :price, :plotManagement, :fertilizeManagement, :waterManagement, :illnessManagement, :harvestManagement, :sellingChannel, :logistic, :addressNo, :addressMoo, :addressTambon, :addressAmphoe, :addressProvince, :addressZipcode, :lat, :long, :picture, :polygon)
     end
 
     def pre_process
@@ -114,6 +114,10 @@ class PlotsController < ApplicationController
         params["plot"]["logistic"] = {}
       end
 
+      if(params["plot"]["polygon"].nil?)
+        params["plot"]["polygon"] = []
+      end
+      
       params["plot"]["plotManagement"] = params["plot"]["plotManagement"].to_json
       params["plot"]["fertilizeManagement"] = params["plot"]["fertilizeManagement"].to_json
       params["plot"]["waterManagement"] = params["plot"]["waterManagement"].to_json
@@ -121,5 +125,14 @@ class PlotsController < ApplicationController
       params["plot"]["harvestManagement"] = params["plot"]["harvestManagement"].to_json
       params["plot"]["sellingChannel"] = params["plot"]["sellingChannel"].to_json
       params["plot"]["logistic"] = params["plot"]["logistic"].to_json
+
+      counter = 0
+      polygon = []
+      while params["plot"]["polygon"].empty? == false and params["plot"]["polygon"].key?(counter.to_s)
+        latlng = params["plot"]["polygon"][counter.to_s]
+        polygon.append(latlng)
+        counter = counter + 1
+      end
+      params["plot"]["polygon"] = polygon.to_json
     end
 end

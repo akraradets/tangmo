@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 5) do
     t.float "long"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "polygon", default: "[]", null: false
+    t.string "polygon", limit: 5000, default: "[]", null: false
     t.index ["farmer_id"], name: "index_plots_on_farmer_id"
     t.index ["lat", "long"], name: "index_plots_on_lat_and_long"
   end

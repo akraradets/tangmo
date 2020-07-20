@@ -63,6 +63,9 @@ class Plot < ApplicationRecord
 
   def areaSqurekilometre
     # 1 rai = 0.0016 kilometre
+    if(areaRai.nil?)
+      return ''
+    end
     areaSqurekilometre = areaRai * 0.0016
     return  areaSqurekilometre
   end

@@ -5,6 +5,18 @@ var drawControl;
 var latlngs;
 var color = '<%= Rails.configuration.polygonColour %>';
 var l;
+
+function addMarker(lat,lng){
+  map.flyTo([lat,lng],13);
+  map.eachLayer((l)=>{
+    if(l instanceof L.Marker){
+      map.removeLayer(l);
+    }
+  });
+  // editing.hasOwnProperty('_marker')
+  L.marker([lat,lng]).addTo(map);
+}
+
 function addPolygon(editableLayers,latlngs,color){
   console.log(latlngs)
   // override the existing layer
@@ -13,6 +25,13 @@ function addPolygon(editableLayers,latlngs,color){
   generateLatlng();
 }
 
+$('#myForm').on('keyup keypress', function(e) {
+  var keyCode = e.keyCode || e.which;
+  if (keyCode === 13) { 
+    e.preventDefault();
+    return false;
+  }
+});
 
 $( document ).ready(function() {
   var lat = <%= plot.lat.nil? ? Rails.configuration.centerLat_default : plot.lat %>;
@@ -50,6 +69,15 @@ $( document ).ready(function() {
     div.html("");
   });
 
+  if(<%= plot.polygon.nil? == false %>){
+    console.log('there is polygon');
+    latlngs = JSON.parse('<%= raw plot.polygon %>');
+    addPolygon(editableLayers,latlngs,color)
+  }
+  if(<%= plot.lat.nil? == false %>){
+    console.log('there is marker');
+    addMarker(lat,lng)
+  }
 
 });
 function generateLatlng(){
@@ -57,7 +85,7 @@ function generateLatlng(){
   div = $("#poly-latlngs");
   div.html("");
 
-  template = '<div class="form-group col-md-6"> <label for="<for_d>"><for_d>_<i_d></label>  <input class="form-control" autocomplete="off" data-type="<for>" data-index="<i>" onchange="editLatLng(this);" type="number" name="plot[polygon][<i>][<for>]" value="<value>"> </div>';
+  template = '<div class="form-group col-md-6"> <label for="<for_d>"><for_d>_<i_d></label>  <input class="form-control" autocomplete="off" data-type="<for>" data-index="<i>" onchange="editPolygon(this);" type="number" name="plot[polygon][<i>][<for>]" value="<value>"> </div>';
   var count = 1;
   latlngs.forEach(latlng => {
     console.log(latlng);
@@ -78,32 +106,29 @@ function generateLatlng(){
 }
 
 function editLatLng(input){
+  lat = $("input[name='plot[lat]']").val()
+  lng = $("input[name='plot[long]']").val()
+  if(lat != "" && lng != ""){
+    // search latlng
+    console.log("search latlng");
+    console.log([lat,lng]);
+    addMarker(lat,lng);
+  }
+}
+
+function editPolygon(input){
   input = $(input);
   value = parseFloat(input.val());
   index = parseInt(input.attr('data-index'));
   type = input.attr('data-type');
-  // search latlng
-  if(latlngs == undefined){
-    lat = $("input[name='plot[polygon][0][lat]']").val();
-    lng = $("input[name='plot[polygon][0][lng]']").val();
-    if(lat != "" && lng != ""){
-      // search latlng
-      console.log("search latlng");
-      console.log([lat,lng]);
-      map.flyTo([lat,lng],13);
-    }
+  if(type == 'lat'){
+    latlngs[index].lat = value;
   }
   else{
-    if(type == 'lat'){
-      latlngs[index].lat = value;
-    }
-    else{
-      latlngs[index].lng = value;
-    }
-    console.log(latlngs);
-    addPolygon(editableLayers,latlngs,color);
+    latlngs[index].lng = value;
   }
-
+  console.log(latlngs);
+  addPolygon(editableLayers,latlngs,color);
 }
 
 
@@ -244,11 +269,11 @@ function promiseFunc(){
   <div class="row">
     <div class="form-group col-md-6">
       <%= form.label "ละติจูด" %>
-      <%= form.text_field :lat, class: "form-control",autocomplete: "off" %>
+      <%= form.text_field :lat, class: "form-control",autocomplete: "off", onchange:"editLatLng(this);", data:'lat'%>
     </div>
     <div class="form-group col-md-6">
       <%= form.label "ลองจิจูด" %>
-      <%= form.text_field :long, class: "form-control",autocomplete: "off" %>
+      <%= form.text_field :long, class: "form-control",autocomplete: "off", onchange:"editLatLng(this);",data:'lng' %>
     </div>
   </div>
 
@@ -261,11 +286,11 @@ function promiseFunc(){
   <div class="row" id="poly-latlngs">
     <div class="form-group col-md-6">
       <label for="plot_ลองจิจูด">เสิชละติจูด</label>
-      <input class="form-control" data-type="lat" data-index="1" onchange="editLatLng(this);" autocomplete="off" type="text" name="plot[polygon][0][lat]">
+      <input class="form-control" data-type="lat" data-index="1" onchange="editPolygon(this);" autocomplete="off" type="text" name="plot[polygon][0][lat]">
     </div>
     <div class="form-group col-md-6">
       <label for="plot_ลองจิจูด">เสิชลองจิจูด</label>
-      <input class="form-control" data-type="lng" data-index="1" onchange="editLatLng(this);" autocomplete="off" type="text" name="plot[polygon][0][lng]">
+      <input class="form-control" data-type="lng" data-index="1" onchange="editPolygon(this);" autocomplete="off" type="text" name="plot[polygon][0][lng]">
     </div>
   </div>
 

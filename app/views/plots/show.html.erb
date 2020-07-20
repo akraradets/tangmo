@@ -1,4 +1,6 @@
 <script>
+var latlngs = '<%= raw @plot.polygon %>';
+var color = '<%= Rails.configuration.polygonColour %>';
 $( document ).ready(function() {
   $("#nav-li-plot").addClass('active');
 
@@ -7,7 +9,17 @@ $( document ).ready(function() {
   var lng = <%= @plot.long %>;
   map = initMap(lat, lng, false, 'map');
   addMaker();
+  addPolygon();
 });
+
+function addPolygon(){
+  console.log(latlngs)
+  polygon = JSON.parse(latlngs)
+  // override the existing layer
+  // editableLayers.removeLayer(editableLayers.getLayers()[0]);
+  L.polygon(polygon,{color:color}).addTo(map);
+  // generateLatlng();
+}
 
 function addMaker(){
   <% if(@plot.lat.nil? == false and @plot.long.nil? == false) %>
